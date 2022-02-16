@@ -25,21 +25,38 @@ export default function Register() {
   };
   return (
     <div className="register">
-      <span className="registerTitle">Register</span>
+      <span className="registerTitle">Create Account</span>
       <form className="registerForm" onSubmit={handleSubmit}>
-        <label>Username</label>
+        <label>First Name</label>
         <input
           type="text"
           className="registerInput"
-          placeholder="Enter your username..."
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter your First Name..."
+          
         />
+        <label>Last Name</label>
+        <input
+          type="text"
+          className="registerInput"
+          placeholder="Enter your Last Name..."
+          
+        />
+
+        
         <label>Email</label>
         <input
           type="text"
           className="registerInput"
           placeholder="Enter your email..."
-          onChange={(e) => setEmail(e.target.value)}
+          //onChange={(e) => setEmail(e.target.value)}
+        />
+
+<label>Phone Number</label>
+        <input
+          type="text"
+          className="registerInput"
+          placeholder="Enter your Phone Number..."
+          
         />
         <label>Password</label>
         <input
@@ -47,6 +64,14 @@ export default function Register() {
           className="registerInput"
           placeholder="Enter your password..."
           onChange={(e) => setPassword(e.target.value)}
+        />
+
+      <label >Confrim Password</label>
+        <input
+          type="password"
+          className="registerInput"
+          placeholder="Enter your Confirm password..."
+          
         />
         <button className="registerButton" type="submit">
           Register

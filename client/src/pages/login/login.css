@@ -4,12 +4,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
+
+  /* background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
     url("https://images.pexels.com/photos/768473/pexels-photo-768473.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-  background-size: cover;
+  background-size: cover; */
 }
 
 .loginTitle {
@@ -35,14 +36,14 @@
 .loginButton {
   margin-top: 20px;
   cursor: pointer;
-  background-color: lightcoral;
+  background-color: darkslategray;
   border: none;
   color: white;
   border-radius: 10px;
   padding: 10px;
 }
 
-.loginButton:disabled{
+.loginButton:disabled {
   cursor: not-allowed;
   background-color: rgb(252, 173, 173);
 }
@@ -51,10 +52,17 @@
   position: absolute;
   top: 60px;
   right: 20px;
-  background-color: teal;
+  background-color: darkslategray;
   cursor: pointer;
   border: none;
   padding: 10px;
   color: white;
   border-radius: 10px;
+}
+.forgotpass {
+  text-decoration: none;
+  color: black;
+  position: relative;
+  right: -80px;
+  top: 10px;
 }
