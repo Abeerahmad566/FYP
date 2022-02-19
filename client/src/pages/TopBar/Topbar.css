@@ -10,8 +10,7 @@
   z-index: 999;
 }
 
-.topLeft,
-.topRight {
+.topLeft {
   flex: 1;
   display: flex;
   align-items: center;
@@ -20,6 +19,7 @@
 
 .topCenter {
   flex: 6;
+  margin-right: 350px;
 }
 
 .topList {
@@ -31,7 +31,7 @@
 }
 
 .topListItem {
-  margin-right: 20px;
+  margin-right: 18px;
   font-size: 18px;
   font-weight: 300;
   cursor: pointer;

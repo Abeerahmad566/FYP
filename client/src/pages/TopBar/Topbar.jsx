@@ -19,18 +19,18 @@ export default function Topbar() {
             </Link>
           </li>
           <li className="topListItem">
-            <Link className="link" to="/">
+            <Link className="link" to="/predictionPage">
               Predict
             </Link>
           </li>
           <li className="topListItem">
-            <Link className="link" to="/">
+            <Link className="link" to="/contact">
               Contact
             </Link>
           </li>
          
           <li className="topListItem" >
-            LOGOUT
+            Logout
           </li>
         </ul>
       </div>

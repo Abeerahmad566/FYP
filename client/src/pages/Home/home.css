@@ -1,1 +1,20 @@
-Hello
+.homepagepic {
+  height: calc(70vh);
+
+  background-image: url(../img/homepage.jpg);
+  margin: auto;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.Button {
+  margin-left: 40%;
+  margin-top: 5%;
+  margin-bottom: auto;
+}
+.txt {
+  position: relative;
+  left: 5%;
+  color: aliceblue;
+  font-size: 4vw;
+  font-weight: 400;
+}
