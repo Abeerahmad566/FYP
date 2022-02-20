@@ -1,4 +1,4 @@
 {
-    "db": "mongodb+srv://abeer:abeer@cluster0.xb4hm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "db": "mongodb+srv://Abeer:abeer@cluster0.hpwdt.mongodb.net/FYP?retryWrites=true&w=majority",
     "jwtPrivateKey": "jwtPrivateKey"
 }
