@@ -1,3 +1,9 @@
+.form {
+  margin-top: -2%;
+}
+.container {
+  margin-top: 4%;
+}
 .ContactSize {
   font-size: 4vw;
   font-weight: 400;
@@ -9,7 +15,7 @@
   font-weight: 400;
   position: relative;
   left: 35%;
-  top: 10%;
+  top: 7%;
   background-color: #005ca9;
   border-radius: 5%;
 }
@@ -17,7 +23,7 @@
 .para1 {
   position: relative;
   right: 40%;
-  top: 10%;
+  top: 7%;
   font-size: 1vw;
   font-weight: 400;
 }

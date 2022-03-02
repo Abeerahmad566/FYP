@@ -13,16 +13,26 @@ router.get("/",async (req, res) => {
 router.post("/register", async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send("User with given Email already exist");
+  const salt = await bcrypt.genSalt(10);
+    const hashedPass = await bcrypt.hash(req.body.password, salt);
   user = new User();
   user.firstname = req.body.firstname;
   user.lastname = req.body.lastname;
   user.phonenumber = req.body.phonenumber;
   user.email = req.body.email;
-  user.password = req.body.password;
-  let salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+  user.password = hashedPass;
+ 
   await user.save();
-  return res.send(_.pick(user, ["firstname","lastname","phonenumber", "email"]));
+  let token = jwt.sign(
+    { _id: user._id, name: user.name, },
+    config.get("jwtPrivateKey")
+  );
+  let datatoRetuen = {
+    name: user.name,
+    email: user.email,
+    token: user.token,
+  };
+  return res.send(datatoRetuen);
 });
 router.post("/login", async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
@@ -30,10 +40,9 @@ router.post("/login", async (req, res) => {
   let isValid = await bcrypt.compare(req.body.password, user.password);
   if (!isValid) return res.status(401).send("Invalid Password");
   let token = jwt.sign(
-    { _id: user._id, email: user.email },
+    { _id: user._id, email: user.email, name: user.name },
     config.get("jwtPrivateKey")
   );
   res.send(token);
-  
 });
 module.exports = router;

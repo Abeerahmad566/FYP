@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var informationSchema = mongoose.Schema({
   
-userid:String,
+// userid:String,
 age: Number,
 income: Number,
 carownership:String,
@@ -24,9 +24,7 @@ function validateinformation(data) {
         currentjobyears: Joi.number().min(1).max(2).required(),
         legalstatus: Joi.string().min(2).max(2).required(),
         experience: Joi.number().min(1).max(2).required(),
-        Houseownership: Joi.number().min(2).max(2).required(),
-       
-        
+        Houseownership: Joi.number().min(2).max(2).required(),    
     });
     return schema.validate(data, { abortEarly: false });
   }

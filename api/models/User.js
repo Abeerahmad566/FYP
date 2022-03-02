@@ -9,11 +9,6 @@ var userSchema = mongoose.Schema({
   password: String,
 });
 var User = mongoose.model("User",userSchema);
-
-userSchema.methods.generateHashedPassword = async function () {
-  let salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-};
 function validateUser(data) {
   const schema = Joi.object({
     firstname: Joi.string().min(3).max(10).required(),

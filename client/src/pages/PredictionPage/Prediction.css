@@ -18,3 +18,14 @@ span {
   background-color: #005ca9;
   border-radius: 5%;
 }
+.rgstrButton {
+  border: none;
+  background-color: #005ca9;
+  border-radius: 10%;
+  margin-left: 40%;
+  margin-top: 2%;
+}
+.error {
+  margin-left: 40%;
+  margin-top: 2%;
+}

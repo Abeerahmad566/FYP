@@ -1,12 +1,13 @@
 import "./Topbar.css";
 import { Link } from "react-router-dom";
 import logo from '../img/logo.png';
+import userService from "../../services/UserService";
 export default function Topbar() {
     return(
 <div className="top">
       <div className="topLeft">
    
-            <Link className="link" to="/">
+            <Link className="link" to="/home">
               <img className="logo" src={logo} alt="" />
             </Link>
          
@@ -14,7 +15,7 @@ export default function Topbar() {
       <div className="topCenter">
         <ul className="topList">
           <li className="topListItem">
-            <Link className="link" to="/">
+            <Link className="link" to="/home">
               Home
             </Link>
           </li>
@@ -29,8 +30,12 @@ export default function Topbar() {
             </Link>
           </li>
          
-          <li className="topListItem" >
-            Logout
+          <li className="topListItem"   
+          onClick={(e) => {
+            userService.logout();
+            window.location.reload();
+          }}>
+            Logout{userService.getLoggedInUser._id}
           </li>
         </ul>
       </div>
