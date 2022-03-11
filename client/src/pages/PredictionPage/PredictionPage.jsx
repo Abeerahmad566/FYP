@@ -35,10 +35,20 @@ const PredictionPage = () => {
     const lgstatusvalidation=(e)=>{
       const lgstatus = e.target.value;
       setLegalStatus(lgstatus);
-      if(LegalStatus!=""){
+      if(lgstatus!="Yes"||"No"||"NO"||"YES"||"yes"){
+        setError("Please Enter Yes OR No In Legal Staus Field")
+      }
+      else if(lgstatus=="Yes"||"No"||"NO"||"YES"||"yes")
+      {
+        setError("")
+      }
+      else
+      {
+
         setError("")
       }
     }
+  
 
     const incmevalidation=(e)=>{
       const incme = e.target.value;
@@ -98,7 +108,9 @@ const PredictionPage = () => {
      else if(Profession==""){setError("Please Enter Profession")}
      else if(HouseOwnership==""){setError("Please Enter HouseOwnership")}
      else if(CurrentHouseYears==""){setError("Please Enter CurrentHouseYears")}
-     else if(LegalStatus==""){setError("Please Enter LegalStatus")}
+     else if(LegalStatus==""||LegalStatus!="yes"||"no"){
+       setError("Please Enter Correct Data in Legal Status Field")
+    }
      else if(Experience=="")
      {
       setError("Please Enter Experience")
@@ -128,7 +140,7 @@ const PredictionPage = () => {
            <TopBar/>
        <div className="formdivcol1 col-sm-2">
        <label style={{backgroundColor: "#005CA9", display:"block"}}>Age</label>
-       <input class="form-control" type="text" placeholder="Enter Your Age"
+       <input class="form-control" type="number" placeholder="Enter Your Age"
        value={age}
        onChange={(e) => {
          agevalidation(e);

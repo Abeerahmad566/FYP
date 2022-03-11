@@ -19,34 +19,46 @@ const Register = () => {
     const emlverfication=(e)=>{
       const eml = e.target.value;
       setEmail(eml);
-      if(email!=""){
-        setError("")
+     
+      if(!email.includes("@"))
+      {
+        setError("Enter Valid Email")
       }
+     else if(email!="")
+     {
+       setError("")
+     }
     }
     const fnverfication=(e)=>{
-const fn =e.target.value;
-setFirstName(fn);
-if(Firstname!="")
+      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
+      if(!rx_live.test(e.target.value))
+      {
+        setFirstName(e.target.value)
+      }
+else if(Firstname!="")
     {
       setError("")
     }
     }
     const lnverfication=(e)=>{
-      const ln =e.target.value;
-      setlastName(ln);
-      if(lastname!="")
-          {
-            setError("")
-          }
+      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
+     if(!rx_live.test(e.target.value))
+     {
+       setlastName(e.target.value)
+     }
+     else if(lastname!="")
+     {
+       setError("")
+     }
     }
     const pnverfication=(e)=>{
-      const pn =e.target.value;
-      setphonenumber(pn);
-      if(phonenumber!="")
-          {
-            setError("")
-          }
+      
+      const re = /^[0-9\b]+$/;
+      if (re.test(e.target.value))
+      {    
+      setphonenumber(e.target.value);    
     }
+  }
     const pssverfication=(e)=>{
 const pss = e.target.value;
 setPassword(pss);
@@ -68,9 +80,23 @@ setError("Please Enter Last Name")
       {
 setError("Please Enter Email")
       }
+      else if(!email.includes("@"))
+      {
+        setError("Enter Valid Email")
+      }
      else if(phonenumber=="")
       {
 setError("Please Enter Phone Number")
+      }
+      else if(phonenumber.length>12||phonenumber.length<11)
+      {
+        {
+          setError("Enter 11 digits Number")
+        }
+      }
+      else if(phonenumber.length==11)
+      {
+        setError("")
       }
       else if(password=="")
       {

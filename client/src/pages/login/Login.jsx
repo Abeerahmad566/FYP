@@ -15,6 +15,10 @@ const Login = () => {
     if(email ==""){
       setLoginerror("Email field is empty")
 } 
+else if(!email.includes("@"))
+{
+  setLoginerror("Enter Valid Email")
+}
 else if(password ==""){
   setLoginerror("Password field is empty")
   }
