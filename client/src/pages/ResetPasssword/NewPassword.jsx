@@ -49,22 +49,24 @@ import { TextField, Button } from "@material-ui/core";
       <img className="rsetpass" src={ResetPasswordPic} alt="" />
       <br/>
       <div className="container">
-      <b><span style={{fontSize:"2vw"}}>Enter New Password</span></b><br/>
+      <b><span style={{fontSize:"2vw"}}>Reset Password</span></b><br/>
+      <label style={{ marginTop: '20px' }}>Enter Your New Password</label><br/>
       <TextField
       style={{marginTop:"1%"}}
           type="password"
-          placeholder="Enter  Password"
+          placeholder="Enter New Password"
           value={password}
           onChange={(e) => {
             pssverfication(e);
           }}
         />{" "}
         <br />
+        <label style={{ marginTop: '20px' }}>Enter  New Confirm Password</label><br/>
         <TextField
          style={{marginTop:"1%"}}
           value={Confirmpassword}
           type="password"
-         placeholder="Enter confirm Password"
+         placeholder="Enter New Confirm Password"
           onChange={(e)=>checkcnfpasswordvaldiation (e)}
         />
         <br/>

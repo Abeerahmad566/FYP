@@ -2,6 +2,7 @@ import React from "react";
 import "./Prediction.css";
 import TopBar from '../TopBar/Topbar'
 import infromationService from "../../services/InformationService";
+import userService from "../../services/UserService";
 const PredictionPage = () => {
     const[age,setage]= React.useState("");
     const[CurrentJobYears,setCurrentJobYears]= React.useState("");
@@ -13,7 +14,7 @@ const PredictionPage = () => {
     const[HouseOwnership,setHouseOwnership]= React.useState("");
     const[Experience,setExperience]= React.useState("");
     const [error, setError] = React.useState("");
-  
+  const userid = userService.getLoggedInUser()._id;
 
     const agevalidation=(e)=>{
       const agefrm = e.target.value;
@@ -104,9 +105,18 @@ const PredictionPage = () => {
      }
   else{
     infromationService
-        .addInformation(age,income,CarOwnership,CurrentHouseYears,Profession,CurrentJobYears,LegalStatus,Experience,HouseOwnership)
+        .addInformation(userid,age,income,CarOwnership,CurrentHouseYears,Profession,CurrentJobYears,LegalStatus,Experience,HouseOwnership)
           .then((data) => {
-            console.log(data);
+            console.log(data)
+            setage("")
+            setincome("")
+            setCarOwnership("")
+            setCurrentJobYears("")
+            setProfession("")
+            setHouseOwnership("")
+            setCurrentHouseYears("")
+            setLegalStatus("")
+            setExperience("")
           })
           .catch((err) => {
             console.log(err);
@@ -193,6 +203,7 @@ const PredictionPage = () => {
       >Make Prediction</button>
        <div className="resultb">
            <b><span>Result</span></b>
+        
        </div>
        </div>
       

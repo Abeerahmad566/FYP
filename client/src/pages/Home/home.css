@@ -9,11 +9,10 @@
 .Button {
   margin-left: 40%;
   margin-top: 5%;
-  margin-bottom: auto;
 }
 .txt {
   position: relative;
-  left: 5%;
+  right: -0%;
   color: aliceblue;
   font-size: 4vw;
   font-weight: 400;

@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var informationSchema = mongoose.Schema({
   
-// userid:String,
+userid:String,
 age: Number,
 income: Number,
 carownership:String,

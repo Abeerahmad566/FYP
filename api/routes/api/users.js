@@ -24,11 +24,11 @@ router.post("/register", async (req, res) => {
  
   await user.save();
   let token = jwt.sign(
-    { _id: user._id, name: user.name, },
+    { _id: user._id, name: user.firstname, },
     config.get("jwtPrivateKey")
   );
   let datatoRetuen = {
-    name: user.name,
+    name: user.firstname,
     email: user.email,
     token: user.token,
   };
@@ -40,9 +40,10 @@ router.post("/login", async (req, res) => {
   let isValid = await bcrypt.compare(req.body.password, user.password);
   if (!isValid) return res.status(401).send("Invalid Password");
   let token = jwt.sign(
-    { _id: user._id, email: user.email, name: user.name },
+    { _id: user._id, email: user.email, name: user.firstname },
     config.get("jwtPrivateKey")
   );
   res.send(token);
 });
+
 module.exports = router;

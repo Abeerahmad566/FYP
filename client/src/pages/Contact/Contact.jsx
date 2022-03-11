@@ -25,8 +25,8 @@ export default function PredictionPage() {
     <span className="spanpara1">We'd love to help! </span>
     <p className="para1">Feel Free to Leave us a Message!</p>
 </div>
-<div className="container">
-            <form className="form" onSubmit={sendemail}>
+<div className="form">
+            <form  onSubmit={sendemail}>
                         <div className="col-sm-4 form-group ">
                             <input type="text" className="form-control" placeholder="Name" name="name"/>
                         </div>

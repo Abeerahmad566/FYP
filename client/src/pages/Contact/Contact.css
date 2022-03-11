@@ -1,8 +1,5 @@
 .form {
-  margin-top: -2%;
-}
-.container {
-  margin-top: 4%;
+  margin-left: 10%;
 }
 .ContactSize {
   font-size: 4vw;
@@ -28,8 +25,8 @@
   font-weight: 400;
 }
 .col1 {
+  margin-top: -18%;
   margin-left: 60%;
-  margin-top: -25%;
 }
 .col2 {
   margin-left: 60%;

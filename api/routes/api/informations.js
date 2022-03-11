@@ -2,8 +2,8 @@ const express = require("express");
 let router = express.Router();
 const auth = require("../../middleWares/auth");
 const {Information} = require("../../models/information");
-//get products
-router.get("/",auth,async (req, res) => {
+//get information
+router.get("/:id",async (req, res) => {
   let informations = await Information.find({userid:req.params.id});
   if(informations)
   return res.send(informations);
@@ -11,10 +11,12 @@ router.get("/",auth,async (req, res) => {
   res.send("No info");
 });
 
+
+
 //Insert a record
 router.post("/", async (req, res) => {
   let information = new Information();
-  // information.userid = req.body.userid;
+  information.userid = req.body.userid;
   information.age = req.body.age;
   information.income = req.body.income;
   information.carownership = req.body.carownership;

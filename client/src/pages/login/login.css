@@ -16,8 +16,9 @@
   padding: 10px;
 }
 .full {
-  margin-left: 60%;
   margin-top: -30%;
+  float: right;
+  margin-right: 10%;
 }
 .lgnpic {
   height: 550px;
@@ -25,4 +26,8 @@
 }
 .registerlink {
   text-decoration: none;
+}
+.fgpsslink {
+  text-decoration: none;
+  margin-left: 13%;
 }

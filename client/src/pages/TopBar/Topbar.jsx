@@ -33,9 +33,9 @@ export default function Topbar() {
           <li className="topListItem"   
           onClick={(e) => {
             userService.logout();
-            window.location.reload();
+            window.location.href = "/login";
           }}>
-            Logout{userService.getLoggedInUser._id}
+            Logout {userService.getLoggedInUser().name}
           </li>
         </ul>
       </div>

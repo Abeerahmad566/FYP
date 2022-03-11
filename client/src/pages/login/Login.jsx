@@ -1,38 +1,36 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
 import userService from "../../services/UserService";
-import { toast } from "react-toastify";
 import login from '../img/login.jpg';
 import { Link } from "react-router-dom";
 import './login.css'
+import {useState} from "react"
+//const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const Login = () => {
-  const {loginerror,setloginerror}=React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const checkvalidation=(e)=> {
+  const [loginerror,setLoginerror]= useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const checkvalidation=()=> {
     if(email ==""){
-      setloginerror("email field is empty")
+      setLoginerror("Email field is empty")
 } 
 else if(password ==""){
-  setloginerror("password field is empty")
+  setLoginerror("Password field is empty")
   }
   else{
     userService
     .login(email, password)
     .then((data) => {
-      console.log(data);
       window.location.href = "/home";
     })
     .catch((err) => {
-      toast.error(err.response.data, {
-        position: toast.POSITION.TOP_LEFT,
-      });
+      console.log(err)
     });
   }
 }
   return (
-  <><div
-    >
+  <><div className="" >
       <img className="lgnpic" src={login} alt="" />
       </div><div className="full">
         <span className="lgntxt">Login</span>
@@ -40,7 +38,7 @@ else if(password ==""){
         <label>Enter Email</label>
         <br />
         <TextField
-
+        type="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => {
@@ -57,6 +55,10 @@ else if(password ==""){
             setPassword(e.target.value);
           } } />
         <br />
+        <Link className="fgpsslink" to="/enteremail">
+        <i >ForgotPassword!</i>
+        </Link>
+        <br/>
         <Link className="registerlink" to="/register">
         <b >not a user?Register here!</b>
         </Link>
