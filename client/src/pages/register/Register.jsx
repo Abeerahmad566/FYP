@@ -19,8 +19,8 @@ const Register = () => {
     const emlverfication=(e)=>{
       const eml = e.target.value;
       setEmail(eml);
-     
-      if(!email.includes("@"))
+      const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      if(!regex.test(email))
       {
         setError("Enter Valid Email")
       }

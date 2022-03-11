@@ -5,17 +5,18 @@ import login from '../img/login.jpg';
 import { Link } from "react-router-dom";
 import './login.css'
 import {useState} from "react"
-//const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
 const Login = () => {
   const [loginerror,setLoginerror]= useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const checkvalidation=()=> {
+    const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if(email ==""){
       setLoginerror("Email field is empty")
 } 
-else if(!email.includes("@"))
+else if(!regex.test(email))
 {
   setLoginerror("Enter Valid Email")
 }
