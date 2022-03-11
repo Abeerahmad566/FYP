@@ -58,6 +58,10 @@ else if(Firstname!="")
       {    
       setphonenumber(e.target.value);    
     }
+    else if(phonenumber!="")
+     {
+       setError("")
+     }
   }
     const pssverfication=(e)=>{
 const pss = e.target.value;

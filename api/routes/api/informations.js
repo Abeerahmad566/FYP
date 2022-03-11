@@ -23,7 +23,6 @@ router.post("/", async (req, res) => {
   information.currenthouseyears= req.body.currenthouseyears;
   information.profession=req.body.profession;
   information.currentjobyears=req.body.currentjobyears;
-  information.legalstatus=req.body.legalstatus;
   information.experience=req.body.experience;
   information.Houseownership=req.body.Houseownership;
   await information.save();

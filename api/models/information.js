@@ -8,7 +8,7 @@ carownership:String,
 currenthouseyears:Number,
 profession:String,
 currentjobyears: Number,
-legalstatus: String,
+
 experience: Number,
 Houseownership: String,
 
@@ -22,7 +22,7 @@ function validateinformation(data) {
         currenthouseyears: Joi.number().min(1).max(3).required(),
         profession: Joi.string().min(0).max(20).required(),
         currentjobyears: Joi.number().min(1).max(2).required(),
-        legalstatus: Joi.string().min(2).max(2).required(),
+    
         experience: Joi.number().min(1).max(2).required(),
         Houseownership: Joi.number().min(2).max(2).required(),    
     });

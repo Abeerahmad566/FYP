@@ -17,11 +17,10 @@ Aos.init({ duration:2000});
    },[])
    
   const [userid,setuserid]=useState(userService.getLoggedInUser()._id)
-   const [informations, setInformations] = useState([])
+   const [informations, setInformations] = useState([""])
   
    const getdata=()=>{
-      // {userService.isLoggedIn()&& setuserid(userService.getLoggedInUser()._id)}
-      // console.log(userid)
+
 
       InformationService
                   .getInformation(userid)
@@ -29,11 +28,11 @@ Aos.init({ duration:2000});
                     console.log(data);
                   setInformations(data)
                   setuserid("")
-                  console.log(userid)
+                 
                   })
                   .catch((err) => {
                     console.log(err);
-                    console.log(userid)
+                   
                   });
    }
       
@@ -47,7 +46,7 @@ Aos.init({ duration:2000});
    </div>
    <div>
    <Button href="predictionPage" className="Button" variant="primary">Make Prediction</Button>
-   {informations&&
+   {informations.length >0 &&
    
    <Table striped bordered hover>
    <thead>
@@ -58,13 +57,13 @@ Aos.init({ duration:2000});
       <th>Current House Years</th>
       <th>Profession</th>
       <th>Current Job Years</th>
-      <th>Legal Status</th>
       <th>Experience</th>
       <th>House Ownership</th>
       <th>Prediction Result</th>
     </tr>
   </thead>
   </Table>
+  
   }
   {informations&& informations.map((information)=>(
             <SingleInformation information={information} />

@@ -9,7 +9,7 @@ const PredictionPage = () => {
     const[CurrentHouseYears,setCurrentHouseYears]= React.useState("");
     const[income,setincome]= React.useState("");
     const[Profession,setProfession]= React.useState("");
-    const[LegalStatus,setLegalStatus]= React.useState("");
+    
     const[CarOwnership,setCarOwnership]= React.useState("");
     const[HouseOwnership,setHouseOwnership]= React.useState("");
     const[Experience,setExperience]= React.useState("");
@@ -17,83 +17,84 @@ const PredictionPage = () => {
   const userid = userService.getLoggedInUser()._id;
 
     const agevalidation=(e)=>{
-      const agefrm = e.target.value;
-      setage(agefrm);
-      if(age!=""){
+      const re = /^[0-9\b]+$/;
+      if(re.test(e.target.value))
+      {
+        setage(e.target.value)
+      }
+      else if(age!=""){
         setError("")
       }
     }
 
     const profnvalidation=(e)=>{
-      const profn = e.target.value;
-      setProfession(profn);
-      if(Profession!=""){
+      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
+     if(!rx_live.test(e.target.value))
+     {
+       setProfession(e.target.value)
+     }
+      else if(Profession!=""){
         setError("")
       }
     }
 
-    const lgstatusvalidation=(e)=>{
-      const lgstatus = e.target.value;
-      setLegalStatus(lgstatus);
-      if(lgstatus!="Yes"||"No"||"NO"||"YES"||"yes"){
-        setError("Please Enter Yes OR No In Legal Staus Field")
-      }
-      else if(lgstatus=="Yes"||"No"||"NO"||"YES"||"yes")
-      {
-        setError("")
-      }
-      else
-      {
-
-        setError("")
-      }
-    }
-  
+    
 
     const incmevalidation=(e)=>{
-      const incme = e.target.value;
-      setincome(incme);
-      if(income!=""){
+      const re = /^[0-9\b]+$/;
+      if(re.test(e.target.value))
+      {
+        setincome(e.target.value)
+      }
+      else if(income!=""){
         setError("")
       }
     }
 
     const crhouseyearsvalidation=(e)=>{
-      const crhouseyears = e.target.value;
-      setCurrentHouseYears(crhouseyears);
-      if(CurrentHouseYears!=""){
+      const re = /^[0-9\b]+$/;
+      if(re.test(e.target.value))
+      {
+        setCurrentHouseYears(e.target.value)
+      }
+     else if(CurrentHouseYears!=""){
         setError("")
       }
     }
 
     const crjobyearsvalidation=(e)=>{
-      const crjobyears = e.target.value;
-      setCurrentJobYears(crjobyears);
-      if(CurrentJobYears!=""){
+      const re = /^[0-9\b]+$/;
+      if(re.test(e.target.value))
+      {
+        setCurrentJobYears(e.target.value)
+      }
+      else if(CurrentJobYears!=""){
         setError("")
       }
     }
 
     const husownvalidation=(e)=>{
-      const husown = e.target.value;
-      setHouseOwnership(husown);
-      if(HouseOwnership!=""){
-        setError("")
+      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
+      if(!rx_live.test(e.target.value))
+      {
+        setHouseOwnership(e.target.value)
       }
     }
-
     const carownvalidation=(e)=>{
-      const carown = e.target.value;
-      setCarOwnership(carown);
-      if(CarOwnership!=""){
-        setError("")
+      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
+      if(!rx_live.test(e.target.value))
+      {
+        setCarOwnership(e.target.value)
       }
     }
 
     const expvalidation=(e)=>{
-      const exp = e.target.value;
-      setExperience(exp);
-      if(Experience!=""){
+      const re = /^[0-9\b]+$/;
+      if(re.test(e.target.value))
+      {
+        setExperience(e.target.value)
+      }
+      else if(Experience!=""){
         setError("")
       }
     }
@@ -104,36 +105,38 @@ const PredictionPage = () => {
       }
      else if(income==""){setError("Please Enter income")}
      else if(CarOwnership==""){setError("Please Enter CarOwnership")}
+     
      else if(CurrentJobYears==""){setError("Please Enter CurrentJobYears")}
      else if(Profession==""){setError("Please Enter Profession")}
      else if(HouseOwnership==""){setError("Please Enter HouseOwnership")}
      else if(CurrentHouseYears==""){setError("Please Enter CurrentHouseYears")}
-     else if(LegalStatus==""||LegalStatus!="yes"||"no"){
-       setError("Please Enter Correct Data in Legal Status Field")
-    }
+     
      else if(Experience=="")
      {
       setError("Please Enter Experience")
      }
   else{
+  
     infromationService
-        .addInformation(userid,age,income,CarOwnership,CurrentHouseYears,Profession,CurrentJobYears,LegalStatus,Experience,HouseOwnership)
+        .addInformation(userid,age,income,CarOwnership,CurrentHouseYears,Profession,CurrentJobYears,Experience,HouseOwnership)
           .then((data) => {
             console.log(data)
             setage("")
             setincome("")
             setCarOwnership("")
-            setCurrentJobYears("")
-            setProfession("")
-            setHouseOwnership("")
             setCurrentHouseYears("")
-            setLegalStatus("")
+            setCurrentJobYears("")
+           
             setExperience("")
+           setProfession("")
+           setHouseOwnership("")
           })
           .catch((err) => {
             console.log(err);
           });
-  }
+  
+
+    }
     }
     return(
        <div>
@@ -176,22 +179,15 @@ const PredictionPage = () => {
          profnvalidation(e);
        } }/>
        
-       <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Legal Status</label>
-       <input class="form-control" type="text" placeholder="Enter YES or NO"
-       value={LegalStatus}
-       onChange={(e) => {
-         lgstatusvalidation(e);
-       } }/>
-       </div>
        
-            <div className="formdivcol3 col-sm-2">
-           <label style={{backgroundColor: "#005CA9", display:"block"}} >Car Ownership</label>
+           <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Car Ownership</label>
            <input class="form-control" type="text" placeholder="Enter YES or NO"
        value={CarOwnership}
        onChange={(e) => {
         carownvalidation(e);
        } }/>
-
+       </div>
+<div className="formdivcol3 col-sm-2">
         <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >House Ownership</label>
         <input class="form-control" type="text" placeholder="Enter YES or NO"
        value={HouseOwnership}

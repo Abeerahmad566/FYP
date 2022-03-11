@@ -5,7 +5,8 @@ import login from '../img/login.jpg';
 import { Link } from "react-router-dom";
 import './login.css'
 import {useState} from "react"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
   const [loginerror,setLoginerror]= useState("");
   const [email, setEmail] = useState("");
@@ -31,6 +32,9 @@ else if(password ==""){
     })
     .catch((err) => {
       console.log(err)
+      toast.error(err.response.data, {
+        position: toast.POSITION.TOP_CENTER,
+      });
     });
   }
 }
