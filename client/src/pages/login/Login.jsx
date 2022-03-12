@@ -31,8 +31,15 @@ else if(password ==""){
       window.location.href = "/home";
     })
     .catch((err) => {
-      console.log(err)
-      toast.error(err.response.data, {
+    if(err.response.status==400)
+    {
+      setLoginerror("Entered Email do not Exist")
+    }
+    else if(err.response.status==401)
+    {
+      setLoginerror("Invalid Password")
+    }
+      toast.error(err.response.status, {
         position: toast.POSITION.TOP_CENTER,
       });
     });

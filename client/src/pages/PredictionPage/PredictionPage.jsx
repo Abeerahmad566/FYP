@@ -3,6 +3,7 @@ import "./Prediction.css";
 import TopBar from '../TopBar/Topbar'
 import infromationService from "../../services/InformationService";
 import userService from "../../services/UserService";
+import { FormControl,FormLabel,RadioGroup,FormControlLabel,Radio } from "@material-ui/core";
 const PredictionPage = () => {
     const[age,setage]= React.useState("");
     const[CurrentJobYears,setCurrentJobYears]= React.useState("");
@@ -73,20 +74,6 @@ const PredictionPage = () => {
       }
     }
 
-    const husownvalidation=(e)=>{
-      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
-      if(!rx_live.test(e.target.value))
-      {
-        setHouseOwnership(e.target.value)
-      }
-    }
-    const carownvalidation=(e)=>{
-      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
-      if(!rx_live.test(e.target.value))
-      {
-        setCarOwnership(e.target.value)
-      }
-    }
 
     const expvalidation=(e)=>{
       const re = /^[0-9\b]+$/;
@@ -179,30 +166,29 @@ const PredictionPage = () => {
          profnvalidation(e);
        } }/>
        
-       
-           <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Car Ownership</label>
-           <input class="form-control" type="text" placeholder="Enter YES or NO"
-       value={CarOwnership}
-       onChange={(e) => {
-        carownvalidation(e);
-       } }/>
-       </div>
-<div className="formdivcol3 col-sm-2">
-        <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >House Ownership</label>
-        <input class="form-control" type="text" placeholder="Enter YES or NO"
-       value={HouseOwnership}
-       onChange={(e) => {
-        husownvalidation(e);
-       } }/>
-
-        <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Experience</label>
+       <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Experience</label>
        <input class="form-control" type="text" placeholder="Enter Your Experience Years"
          value={Experience}
          onChange={(e) => {
            expvalidation(e);
          } }/>
 
+           
        </div>
+<div className="formdivcol3 col-sm-2">
+<label style={{backgroundColor: "#005CA9", display:"block"}} >Car OwnerShip</label>
+  <RadioGroup  >
+    <FormControlLabel value="Yes" control={<Radio />} label="Yes" onChange={()=>setCarOwnership("Yes")} />
+    <FormControlLabel value="No" control={<Radio />} label="No"  onChange={()=>setCarOwnership("No")}/>
+  </RadioGroup>
+  <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >House Ownership</label>
+           <RadioGroup  >
+    <FormControlLabel value="Yes" control={<Radio />} label="Yes" onChange={()=>setHouseOwnership("Yes")} />
+    <FormControlLabel value="No" control={<Radio />} label="No"  onChange={()=>setHouseOwnership("No")}/>
+  </RadioGroup>
+        
+       </div>
+     
        <div className="error" style={{color:"red"}}>{error}</div>
       
        <button className="rgstrButton"
@@ -210,9 +196,10 @@ const PredictionPage = () => {
       onClick={checkvaldiation}
       >Make Prediction</button>
        <div className="resultb">
-           <b><span>Result</span></b>
+           <b style={{backgroundColor:"#005ca9"}}>Result</b>
         
        </div>
+
        </div>
       
     );

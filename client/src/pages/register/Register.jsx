@@ -118,6 +118,10 @@ setError("Please Enter Password")
                 window.location.href = "/login";
               })
               .catch((err) => {
+                if(err.response.status==400)
+                {
+                  setError("User with Given Email is already Registered")
+                }
                 console.log(err);
                 toast.error(err.response.data, {
                   position: toast.POSITION.TOP_LEFT,
