@@ -25,7 +25,7 @@
   margin-top: 350px;
   margin-right: -250px;
 }
-@media (max-width: 500px) {
+@media only screen and (max-width: 500px) {
   .RegisterButton {
     font-size: 0.5rem;
     margin-top: 20%;
@@ -53,3 +53,27 @@
     margin-right: 20%;
   }
 } */
+@media only screen and (min-width: 500px) and (max-width: 1300px) {
+  .RegisterButton {
+    font-size: 0.5rem;
+    margin-top: 20%;
+    margin-right: -20%;
+  }
+
+  .LoginButton {
+    font-size: 0.5rem;
+    margin-top: 20%;
+    margin-right: 20%;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .RegisterButton {
+    font-size: 0.4rem;
+    padding: 5px;
+  }
+
+  .LoginButton {
+    font-size: 0.4rem;
+    padding: 5px;
+  }
+}
