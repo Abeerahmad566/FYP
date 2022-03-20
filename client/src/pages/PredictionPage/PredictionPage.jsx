@@ -3,7 +3,7 @@ import "./Prediction.css";
 import TopBar from '../TopBar/Topbar'
 import infromationService from "../../services/InformationService";
 import userService from "../../services/UserService";
-import { FormControl,FormLabel,RadioGroup,FormControlLabel,Radio } from "@material-ui/core";
+import {RadioGroup,FormControlLabel,Radio } from "@material-ui/core";
 const PredictionPage = () => {
     const[age,setage]= React.useState("");
     const[CurrentJobYears,setCurrentJobYears]= React.useState("");
@@ -127,46 +127,51 @@ const PredictionPage = () => {
     }
     return(
        <div>
+         
            <TopBar/>
-       <div className="formdivcol1 col-sm-2">
-       <label style={{backgroundColor: "#005CA9", display:"block"}}>Age</label>
-       <input class="form-control" type="number" placeholder="Enter Your Age"
-       value={age}
-       onChange={(e) => {
-         agevalidation(e);
-       } }/>
+           <div class="container">
+  <div class="row mt-5">
+    
+    <div className=" col-sm">
+              <label style={{backgroundColor: "#005CA9", display:"block"}}>Age</label>
+               <input class="form-control" type="number" placeholder="Enter Your Age"
+                value={age}
+                onChange={(e) => {
+                  agevalidation(e);
+                } }/>
        
        
-       <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Current Job Years</label>
-       <input class="form-control" type="text" placeholder="Enter Current Job Years"
-       value={CurrentJobYears}
-       onChange={(e) => {
-         crjobyearsvalidation(e);
-       } }/>
-       
-       <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Current House Years</label>
-       <input class="form-control" type="text" placeholder="Enter Current House Years"
-       value={CurrentHouseYears}
-       onChange={(e) => {
-         crhouseyearsvalidation(e);
-       } }/>
-       </div>
-
-       <div className="formdivcol2 col-sm-2">
+                <label class="mt-4" style={{backgroundColor: "#005CA9", display:"block"}} >Current Job Years</label>
+                <input class="form-control" type="text" placeholder="Enter Current Job Years"
+                value={CurrentJobYears}
+                onChange={(e) => {
+                  crjobyearsvalidation(e);
+                } }/>
+                
+                <label class="mt-4" style={{backgroundColor: "#005CA9", display:"block"}} >Current House Years</label>
+                <input class="form-control" type="text" placeholder="Enter Current House Years"
+                value={CurrentHouseYears}
+                onChange={(e) => {
+                  crhouseyearsvalidation(e);
+                } }/>
+              
+    </div>
+    
+    <div className="col-sm">
        <label style={{backgroundColor: "#005CA9", display:"block"}} >Income</label>
        <input class="form-control" type="text" placeholder="Enter Your Income"
        value={income}
        onChange={(e) => {
          incmevalidation(e);
        } }/>
-       <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Profession</label>
+       <label class="mt-4" style={{backgroundColor: "#005CA9", display:"block"}} >Profession</label>
        <input class="form-control" type="text" placeholder="Enter Your Profession"
        value={Profession}
        onChange={(e) => {
          profnvalidation(e);
        } }/>
        
-       <label style={{backgroundColor: "#005CA9", display:"block",marginTop:"10%"}} >Experience</label>
+       <label class="mt-4" style={{backgroundColor: "#005CA9", display:"block"}} >Experience</label>
        <input class="form-control" type="text" placeholder="Enter Your Experience Years"
          value={Experience}
          onChange={(e) => {
@@ -174,8 +179,10 @@ const PredictionPage = () => {
          } }/>
 
            
-       </div>
-<div className="formdivcol3 col-sm-2">
+      
+    </div>
+    
+    <div className=" col-sm">
 <label style={{backgroundColor: "#005CA9", display:"block"}} >Car OwnerShip</label>
   <RadioGroup  >
     <FormControlLabel value="Yes" control={<Radio />} label="Yes" onChange={()=>setCarOwnership("Yes")} />
@@ -187,7 +194,16 @@ const PredictionPage = () => {
     <FormControlLabel value="No" control={<Radio />} label="No"  onChange={()=>setHouseOwnership("No")}/>
   </RadioGroup>
         
-       </div>
+      
+    </div>
+  </div>
+
+</div>
+          
+       
+
+      
+
      
        <div className="error" style={{color:"red"}}>{error}</div>
       

@@ -9,22 +9,21 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Enteremail from "./pages/ResetPasssword/enterEmail"
 import ResetPassword from "./pages/ResetPasssword/NewPassword"
+import { ToastContainer } from "react-bootstrap";
 
 
 function App() {
  
   return (
     <Router>
-     
+      <ToastContainer />
       <Switch>
       <Route path="/register">{ <Register />}</Route>
         <Route path="/login">{ <Login />}</Route>
         <Route path ="/enteremail">{<Enteremail/>}</Route>
         <Route path="/resetpass">{<ResetPassword/>}</Route>
         <Route exact path="/">
-          <Auth>
         <LandingPage/>
-        </Auth>
         </Route>
         <Auth>
          <Route path="/contact">{<Contact/>}</Route> 

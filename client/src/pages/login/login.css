@@ -1,11 +1,18 @@
 .lgntxt {
   font-size: 6vw;
 }
-
+.imgWrapper {
+  width: 100%;
+}
 .loginTitle {
   font-size: 50px;
 }
-
+.imgcolWrapper {
+  margin-right: 30%;
+}
+.colWrapper {
+  margin-top: 20%;
+}
 .siginbtn {
   margin-top: 20px;
   cursor: pointer;
@@ -15,19 +22,16 @@
   border-radius: 10px;
   padding: 10px;
 }
-.full {
-  margin-top: -30%;
-  float: right;
-  margin-right: 10%;
-}
-.lgnpic {
-  height: 550px;
-  margin-top: 10%;
-}
+
 .registerlink {
   text-decoration: none;
 }
 .fgpsslink {
   text-decoration: none;
   margin-left: 13%;
+}
+@media (max-width: 500px) {
+  .lgntxt {
+    margin-top: 5%;
+  }
 }

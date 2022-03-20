@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import './login.css'
 import {useState} from "react"
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const [loginerror,setLoginerror]= useState("");
   const [email, setEmail] = useState("");
@@ -34,21 +34,32 @@ else if(password ==""){
     if(err.response.status==400)
     {
       setLoginerror("Entered Email do not Exist")
+      toast.error( "Entered Email do not Exist",{
+        position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+
+      });
     }
     else if(err.response.status==401)
     {
       setLoginerror("Invalid Password")
     }
-      toast.error(err.response.status, {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      
     });
   }
 }
   return (
-  <><div className="" >
-      <img className="lgnpic" src={login} alt="" />
-      </div><div className="full">
+  <><div className="container" >
+    <div className="row colWrapper">
+      <div className="col-sm imgcolWrapper">
+      <img className="imgWrapper"  src={login} alt="" />
+      </div>
+      <div className="col-sm">
         <span className="lgntxt">Login</span>
         <br />
         <label>Enter Email</label>
@@ -85,8 +96,11 @@ else if(password ==""){
           onClick={checkvalidation}
         >Sigin
         </button>
-          
-      </div></>
+        </div>
+      </div>
+      </div>
+      <ToastContainer />
+      </>
    
   );
 };

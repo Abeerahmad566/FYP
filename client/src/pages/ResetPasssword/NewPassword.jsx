@@ -2,11 +2,15 @@ import "./NewPassword.css";
 import React from 'react';
 import ResetPasswordPic from "../img/rsetpss.jpg";
 import { TextField, Button } from "@material-ui/core";
- const NewPassword = () =>
+import {toast} from "react-toastify"
+import axios from "axios" 
+ const NewPassword = (props) =>
  {
     const [password, setPassword] = React.useState("");
     const [Confirmpassword, setConfirmPassword] =React. useState("");
+    const [otp, setotp] =React. useState("");
     const [error, setError] = React.useState("");
+
     const pssverfication=(e)=>{
         const pss = e.target.value;
         setPassword(pss);
@@ -18,11 +22,7 @@ import { TextField, Button } from "@material-ui/core";
     const checkcnfpasswordvaldiation= (e)=>  {
                 const confmpass=e.target.value
                 setConfirmPassword(confmpass);
-                if(confmpass!="")
-                {
-                    setError("")
-                }
-                else if(password != confmpass){
+                if(password != confmpass){
                   setError("Both Passwords should Match")
                 }
                 else{
@@ -30,8 +30,24 @@ import { TextField, Button } from "@material-ui/core";
                 }
             
               }
-    const checkvalidation=()=>{
-        if(password=="")
+              const otpverfication=(e)=>{
+      
+                const re = /^[0-9\b]+$/;
+                if (re.test(e.target.value))
+                {    
+                setotp(e.target.value);    
+              }
+              else if(otp!="")
+               {
+                 setError("")
+               }
+            }
+    const checkvalidation=async()=>{
+      if(otp=="")
+      {
+        setError("Please Enter Otp")
+      }
+        else if(password=="")
         {
             setError("Please Enter Password")
         }
@@ -39,17 +55,61 @@ import { TextField, Button } from "@material-ui/core";
         {
             setError("Please Enter Confirm Password")
         }
+        else if(password!=Confirmpassword)
+        {
+          setError("Password do not Match")
+        }
         else
         {
-            alert("Password Changed")
+          try{
+            let url = "http://localhost:4000/api/users/reset-password"
+            let options ={
+              method:"POST",
+              url:url,
+               
+            }
+            let response = await axios(options)
+            let record = response.data;
+            if(record.statusText=='Success')
+            {
+              setError(record.message)
+              // toast.sucess(record.message);
+              window.location.href = "/resetpass";
+            }
+            else{
+              setError(record.message)
+              toast.error(record.message)
+            }
+          }
+          catch(e)
+          {
+            
+            toast.error("Something went wrong")
+          }
+          }
         }
-    }
+    
   return(
   <div>
+    <div className="container">
+      <div className="row">
+        <div className="col-sm mt-5">
       <img className="rsetpass" src={ResetPasswordPic} alt="" />
-      <br/>
-      <div className="container">
-      <b><span style={{fontSize:"2vw"}}>Reset Password</span></b><br/>
+      
+      </div>
+      <div className="col-sm ml-5 mt-5">
+      <b><span style={{fontSize:"2rem"}}>Reset Password</span></b><br/>
+      <label style={{ marginTop: '20px' }}>Enter Your Otp</label><br/>
+      <TextField
+      style={{marginTop:"1%"}}
+          
+          placeholder="Enter Otp"
+          value={otp}
+          onChange={(e) => {
+            otpverfication(e);
+          }}
+        />{" "}
+        <br/>
       <label style={{ marginTop: '20px' }}>Enter Your New Password</label><br/>
       <TextField
       style={{marginTop:"1%"}}
@@ -71,6 +131,7 @@ import { TextField, Button } from "@material-ui/core";
         />
         <br/>
         <b style={{color:"red"}}>{error}</b>
+        <br/>
         <button
          className="newpassButton"
           onClick={
@@ -80,6 +141,8 @@ import { TextField, Button } from "@material-ui/core";
           Submit
         </button>
         </div>
-  </div>)   
+  </div>
+  </div>
+    </div>)   
  }
  export default NewPassword;

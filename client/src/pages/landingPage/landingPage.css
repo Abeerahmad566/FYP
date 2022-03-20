@@ -1,6 +1,6 @@
 .landingPageimg {
   height: calc(100vh);
-  width: 100%;
+
   background-image: url(../img/img1.png);
   background-size: 100%;
   background-repeat: no-repeat;
@@ -25,3 +25,31 @@
   margin-top: 350px;
   margin-right: -250px;
 }
+@media (max-width: 500px) {
+  .RegisterButton {
+    font-size: 0.5rem;
+    margin-top: 20%;
+    margin-right: -28%;
+  }
+  .landingPageimg {
+    height: calc(26vh);
+  }
+  .LoginButton {
+    font-size: 0.5rem;
+    margin-top: 20%;
+    margin-right: 20%;
+  }
+}
+/* @media (max-width: 1300px) {
+  .RegisterButton {
+    font-size: 1rem;
+    margin-top: 20%;
+    margin-right: -20%;
+  }
+
+  .LoginButton {
+    font-size: 1rem;
+    margin-top: 20%;
+    margin-right: 20%;
+  }
+} */

@@ -1,5 +1,7 @@
 .form {
-  margin-left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .ContactSize {
   font-size: 4vw;
@@ -28,9 +30,7 @@
   margin-top: -18%;
   margin-left: 60%;
 }
-.col2 {
-  margin-left: 60%;
-}
+
 .pcontact {
   position: relative;
   margin-top: -4%;
@@ -38,7 +38,6 @@
 }
 .hrline {
   width: 30%;
-  margin-left: 60%;
 }
 .facebook {
   font-size: 1.3em;

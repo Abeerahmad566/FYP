@@ -8,7 +8,8 @@ import {Table} from "react-bootstrap"
 import userService from "../../services/UserService";
 import InformationService from "../../services/InformationService";
 import SingleInformation from "../SingleInformation/SingleInformation"
-import Auth from "../../components/Auth";
+import mainimg from "../img/homepage.jpg"
+import { Grid } from "@material-ui/core";
 
  const Home=()=> {
    
@@ -39,13 +40,21 @@ Aos.init({ duration:2000});
    React.useEffect(getdata, []);
    
    return(
+     
    <div>
    <TopBar/>
-   <div className="homepagepic">
-      <p className="txt" data-aos='fade-left'>Lending Data Prediction</p>
-   </div>
    <div>
-   <Button href="predictionPage" className="Button" variant="primary">Make Prediction</Button>
+   <div className="homepagepic">
+    
+    <p className="txt" data-aos='fade-left'>Lending Data Prediction</p>
+ </div>
+   </div>
+   <div className="container">
+   <div className="tableWrapper">
+  <Grid container justify="center">
+   
+   <Button href="predictionPage" className="btnwrapper" variant="primary">Make Prediction</Button>
+   </Grid>
    {informations.length >0 &&
    
    <Table striped bordered hover>
@@ -62,13 +71,17 @@ Aos.init({ duration:2000});
       <th>Prediction Result</th>
     </tr>
   </thead>
-  </Table>
-  
-  }
+  <tbody>
   {informations&& informations.map((information)=>(
             <SingleInformation information={information} />
          ))}
+  </tbody>
+  </Table>
+  
+  }
+  
 
+   </div>
    </div>
    </div>
    );

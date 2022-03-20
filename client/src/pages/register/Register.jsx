@@ -142,8 +142,13 @@ setError("Please Enter Password")
         }
   return (
     <div >
+      <div className="container">
+        <div className="row">
+
+        <div className="col-sm">
       <img className="rgstrpic" src={Signup} alt="" />
-      <div className="fullrgstr">
+      </div>
+      <div className="col-sm">
       <span className="rgstrtxt">Register</span>
         <br />
         <label style={{ marginTop: '20px' }}>Enter Your First Name</label>
@@ -222,6 +227,9 @@ setError("Please Enter Password")
         </button>
       </div>
     </div>
+    </div>
+
+      </div>
   );
 };
 

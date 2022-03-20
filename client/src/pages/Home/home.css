@@ -2,13 +2,13 @@
   height: calc(70vh);
 
   background-image: url(../img/homepage.jpg);
-  margin: auto;
+
   background-size: 100%;
   background-repeat: no-repeat;
 }
-.Button {
+.btnwrapper {
+  position: relative;
   margin-left: 40%;
-  margin-top: 5%;
 }
 .txt {
   position: relative;
@@ -16,4 +16,12 @@
   color: aliceblue;
   font-size: 4vw;
   font-weight: 400;
+}
+.tableWrapper {
+  overflow: auto;
+}
+@media (max-width: 500px) {
+  .homepagepic {
+    height: calc(17vh);
+  }
 }
