@@ -11,12 +11,13 @@ const SingleInformation = (props) => {
       <td >{information.age}</td>
       <td >{information.income}</td>
       <td >{information.carownership}</td>
+      <td> {information.married}</td>
       <td>{information.currenthouseyears}</td>
       <td >{information.profession}</td>
       <td >{information.currentjobyears}</td>
       <td >{information.experience}</td>
       <td >{information.Houseownership}</td>
-      <td >{information.Houseownership}</td>
+      <td >{information.result}</td>
       
     </tr>
   

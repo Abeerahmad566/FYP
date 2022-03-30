@@ -10,6 +10,7 @@ import InformationService from "../../services/InformationService";
 import SingleInformation from "../SingleInformation/SingleInformation"
 import mainimg from "../img/homepage.jpg"
 import { Grid } from "@material-ui/core";
+import Footer from "../../components/Footer/Footer";
 
  const Home=()=> {
    
@@ -43,12 +44,12 @@ Aos.init({ duration:2000});
      
    <div>
    <TopBar/>
-   <div>
+  
    <div className="homepagepic">
     
     <p className="txt" data-aos='fade-left'>Lending Data Prediction</p>
  </div>
-   </div>
+  
    <div className="container">
    <div className="tableWrapper">
   <Grid container justify="center">
@@ -63,6 +64,7 @@ Aos.init({ duration:2000});
       <th>Age</th>
       <th>Income</th>
       <th>Car Ownership</th>
+      <th>RelationShip Status</th>
       <th>Current House Years</th>
       <th>Profession</th>
       <th>Current Job Years</th>
@@ -83,6 +85,7 @@ Aos.init({ duration:2000});
 
    </div>
    </div>
+   <Footer/>
    </div>
    );
 }

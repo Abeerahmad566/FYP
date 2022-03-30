@@ -3,21 +3,22 @@ import { TextField } from "@material-ui/core";
 import userService from "../../services/UserService";
 import login from '../img/login.jpg';
 import { Link } from "react-router-dom";
+import validator from 'validator'
 import './login.css'
 import {useState} from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
   const [loginerror,setLoginerror]= useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const checkvalidation=()=> {
-    const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    
     if(email ==""){
       setLoginerror("Email field is empty")
-} 
-else if(!regex.test(email))
+} else if(!validator.isEmail(email))
 {
   setLoginerror("Enter Valid Email")
 }
@@ -36,18 +37,15 @@ else if(password ==""){
       setLoginerror("Entered Email do not Exist")
       toast.error( "Entered Email do not Exist",{
         position: "top-right",
-autoClose: 5000,
-hideProgressBar: false,
-closeOnClick: true,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-
+         theme: "colored" 
       });
     }
     else if(err.response.status==401)
     {
       setLoginerror("Invalid Password")
+      toast.error( "Invalid Password",{
+        position: "top-right",
+      });
     }
       
     });

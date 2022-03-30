@@ -6,12 +6,13 @@ import userService from "../../services/UserService";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import './register.css'
-
+import validator from 'validator'
+import  useState from 'react-usestateref';
 const Register = () => {
   const [error, setError] = React.useState("");
   const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [Firstname, setFirstName] = React.useState("");
+    const [Firstname, setFirstName,FirstnameRef] = useState("");
     const [lastname, setlastName] = React.useState("");
     const [phonenumber,setphonenumber] = React.useState("");
     const [Confirmpassword, setConfirmPassword] =React. useState("");
@@ -19,8 +20,7 @@ const Register = () => {
     const emlverfication=(e)=>{
       const eml = e.target.value;
       setEmail(eml);
-      const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      if(!regex.test(email))
+      if(!validator.isEmail(email))
       {
         setError("Enter Valid Email")
       }
@@ -30,12 +30,13 @@ const Register = () => {
      }
     }
     const fnverfication=(e)=>{
-      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
-      if(!rx_live.test(e.target.value))
+      const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
+      
+      if(!name.test(FirstnameRef.current))
       {
-        setFirstName(e.target.value)
+        setError("Invalid ")
       }
-else if(Firstname!="")
+else if(FirstnameRef.current!=="")
     {
       setError("")
     }
@@ -52,13 +53,8 @@ else if(Firstname!="")
      }
     }
     const pnverfication=(e)=>{
-      
-      const re = /^[0-9\b]+$/;
-      if (re.test(e.target.value))
-      {    
       setphonenumber(e.target.value);    
-    }
-    else if(phonenumber!="")
+   if(phonenumber!="")
      {
        setError("")
      }
@@ -92,7 +88,7 @@ setError("Please Enter Email")
       {
 setError("Please Enter Phone Number")
       }
-      else if(phonenumber.length>12||phonenumber.length<11)
+      else if(phonenumber.length>11||phonenumber.length<11)
       {
         {
           setError("Enter 11 digits Number")
@@ -157,7 +153,8 @@ setError("Please Enter Password")
          placeholder="Enter First Name"
           value={Firstname}
           onChange={(e) => {
-            fnverfication(e);
+            setFirstName(e.target.value)
+            fnverfication();
           }}
         />{" "}
         <br />
@@ -175,6 +172,7 @@ setError("Please Enter Password")
         <br />
         <TextField
          placeholder="Enter Email"
+         type="email"
           value={email}
           onChange={(e) => {
            emlverfication(e);
@@ -185,6 +183,7 @@ setError("Please Enter Password")
         <br />
         <TextField
          placeholder="Enter Phone Number"
+         type="number"
           value={phonenumber}
           onChange={(e) => {
             pnverfication(e);

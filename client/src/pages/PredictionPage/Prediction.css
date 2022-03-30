@@ -13,3 +13,22 @@
   margin-left: 40%;
   margin-top: 2%;
 }
+.prof {
+  width: 25%;
+}
+@media (max-width: 550px) {
+  .prof {
+    width: 55%;
+  }
+}
+@media (max-width: 500px) and (max-width: 1300px) {
+  .prof {
+    width: 50%;
+  }
+
+  @media only screen and (max-width: 280px) {
+    .prof {
+      width: 60%;
+    }
+  }
+}

@@ -10,13 +10,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Enteremail from "./pages/ResetPasssword/enterEmail"
 import ResetPassword from "./pages/ResetPasssword/NewPassword"
 import { ToastContainer } from "react-bootstrap";
-
-
+import "react-toastify/dist/ReactToastify.css";
 function App() {
  
   return (
     <Router>
-      <ToastContainer />
+      <ToastContainer  theme= "colored"  />
       <Switch>
       <Route path="/register">{ <Register />}</Route>
         <Route path="/login">{ <Login />}</Route>
