@@ -17,6 +17,7 @@ class UserService extends GenericService {
     });
   register = (firstname,lastname, email,phonenumber, password) =>
     this.post("users/register", { firstname,lastname, email,phonenumber, password });
+    forget=(email)=>this.post("users/forgetpassword",{email})
   logout = () => {
     localStorage.removeItem("token");
   };

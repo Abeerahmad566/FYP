@@ -5,7 +5,8 @@ var bcrypt = require("bcryptjs");
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const Otp = require("../../models/otp");
+const crypto = require('crypto');
+const sendEmail = require("./sendemail")
 const { response } = require("../../app");
 router.get("/",async (req, res) => {
   console.log(req.user);
@@ -47,83 +48,81 @@ router.post("/login", async (req, res) => {
   );
   res.send(token);
 });
-router.post("/email-send",async(req,res)=>{
-  let data = await User.findOne({email:req.body.email});
-  const responseType = {};
-  if(data)
-  {
-    let otpcode = Math.floor((Math.random()*10000)+1);
-    let otpData = new Otp({
-      email:req.body.email,
-      code:otpcode,
-      expireIn: new Date().getTime()+300*1000
-    })
-    let otpResponese = await otpData.save();
-    responseType.statusText = 'Success'
-    //mailer(data,otpData)
-    responseType.message= 'Please check your Email id';
+//Forget Password
+router.post('/forgetpassword', async (req, res) => {
+ 
+  const user = await User.findOne({ email: req.body.email });
+
+  if (!user) {
+    return res.status(404).json('User Not Exsist');
   }
-  else{
-    responseType.statusText = 'Error'
-    responseType.message= 'Email Id does not exist';
-  }
-  res.status(200).json(responseType);
-});
-router.post("/reset-password",async(req,res)=>{
+
+  // Get ResetPassword Token
+  const resetToken = user.getResetPasswordToken();
+
+  await user.save();
+
+  const resetPasswordUrl = `http://localhost:3000/passwordreset/${resetToken}`;
   
-  let data = await Otp.findOne({email:req.body.email,code:req.body.otpCode});
-  const response={}
-  if(data){
-    let currentTime = new Date().getTime();
-    let diff = data.expireIn - currentTime;
-    if(diff<0)
-    {
-response.message="Code Expire"
-response.statusText='error'
-    }
-    else{
-      let user = await User.findOne({email:req.body.email});
-      const salt = await bcrypt.genSalt(10);
-    const hashedPass = await bcrypt.hash(req.body.password, salt);
-      user.password = hashedPass;
-      user.save();
-      response.message="Password Changed Successfully"
-response.statusText='Success'
-    }
+  const message = `
+     <h1>You have requested a password reset</h1>
+     <p>Please make a put request to the following link:</p>
+     <a href=${resetPasswordUrl} clicktracking=off>${resetPasswordUrl}</a>
+   `;
+
+  try {
+    await sendEmail({
+      to: user.email,
+      subject: `Mern-App Password Recovery`,
+      text: message,
+    });
+
+    res.status(200).json({
+      message: `Email sent to ${user.email} successfully`,
+    });
+  } catch (error) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+
+    return res.status(500).json(' Email Could Not be  Send');
   }
-  else{
-    response.message="Invalid Otp"
-response.statusText='error'
-  }
-  res.status(200).json(responseType);
 });
 
+//Reset Password Route
 
-const mailer=(email,otp)=>{
-  var nodemailer = require("nodemailer");
-  var transport = nodemailer.createTransport({
-    service:'gmail',
-    port:587,
-    secure:false,
-    auth:{
-      user:"loanprediction@gmail.com",
-      pass:"123"
+router.put('/passwordreset/:resetToken', async (req, res) => {
+  //Hash the token which is provides in the url and generate the new token
+  const resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(req.params.resetToken)
+    .digest('hex');
+
+  try {
+    const user = await User.findOne({
+      resetPasswordToken,
+      resetPasswordExpire: { $gt: Date.now() },
+    });
+
+    //Check that Token is Expired or not
+    if (!user) {
+      return res.status(400).json('Token is Expired or Invalid');
     }
-  });
-  var mailOptions = {
-    from:"loanprediction@gmail.com",
-    to:"",
-    subject:"Reset your Password",
-    text:"Hello"
-  };
-  transporter.sendMail(mailOptions, function(error,info){
-    if(error){
-      console.log(error);
-    }
-    else
-    {
-console.log("Email send:" +info.response);
-    }
-  });
-}
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+
+    res.status(201).json({
+      success: true,
+      data: 'Password Updated Success',
+   
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
+

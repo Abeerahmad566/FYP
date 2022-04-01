@@ -4,7 +4,7 @@ import "./Prediction.css";
 import TopBar from '../TopBar/Topbar'
 import infromationService from "../../services/InformationService";
 import userService from "../../services/UserService";
-import {RadioGroup,FormControlLabel,Radio, TextField } from "@material-ui/core";
+import {RadioGroup,FormControlLabel,Radio } from "@material-ui/core";
 import { DropdownButton ,Dropdown} from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";
 import  useState from 'react-usestateref';
@@ -73,13 +73,6 @@ setError("")
         setError("")
       }
     }
-    const marriedvalidation=(e)=>{
-     
-      setmarried(e.target.value)
-    if(married!=""){
-      setError("")
-    }
-  }
 
     const profnvalidation=(e)=>{
       
@@ -166,7 +159,7 @@ setError("")
     
     <div className=" col-sm">
               <label style={{backgroundColor: "#005CA9", display:"block",width:"50%"}}>Age</label>
-               <TextField style={{width:"50%"}} class="form-control" type="number" placeholder="Enter Your Age" InputProps={{ disableUnderline: true }}
+               <input style={{width:"50%"}} class="form-control" type="number" placeholder="Enter Your Age" InputProps={{ disableUnderline: true }}
                 value={age}
                 onChange={(e) => {
                   agevalidation(e);
@@ -206,35 +199,28 @@ setError("")
          } }/>
 
 <label class="mt-4" style={{backgroundColor: "#005CA9", display:"block",width:"50%"}} >RelationShip Status </label>
-  <RadioGroup  >
-  <FormControlLabel value="married" control={<Radio />} label="Married" onChange={()=>setmarried("married")} />
-  <FormControlLabel value="single" control={<Radio />} label="Single"  onChange={()=>setmarried("single")}/>
-</RadioGroup> 
-      
+  <RadioGroup value={married}>
+  <FormControlLabel value="married"  control={<Radio checked={married.length===0?false: married.includes("married")?true:false} />} label="Married" onChange={()=>setmarried("married")} />
+  <FormControlLabel value="single"  control={<Radio checked={married.length===0?false:married.includes("single")?true:false} />} label="Single"  onChange={()=>setmarried("single")}/>
+</RadioGroup>   
     </div>
-    
-    
-    
+
   </div>
 <div className="row">
 <div className=" col-sm">
-
-<label class="" style={{backgroundColor: "#005CA9", display:"block",width:"50%"}} >House Ownership</label>
+<label style={{backgroundColor: "#005CA9", display:"block",width:"50%"}} >House Ownership</label>
 <DropdownButton id="dropdown-basic-button" title={HouseOwnership} size="sm" 
      onSelect={(e)=>HouseOwnershipval(e)}>
 <Dropdown.Item eventKey="rented" >Rented</Dropdown.Item>
 <Dropdown.Item eventKey="owned">Owned</Dropdown.Item>
 <Dropdown.Item eventKey="norent_noown">Other</Dropdown.Item>
 </DropdownButton>  
-    
   </div>
   <div className="col-sm">
-  
-
 <label style={{backgroundColor: "#005CA9", display:"block",width:"50%"}} >Car OwnerShip</label>
 <RadioGroup  >
-  <FormControlLabel value="Yes" control={<Radio />} label="Yes" onChange={()=>setCarOwnership("yes")} />
-  <FormControlLabel value="No" control={<Radio />} label="No"  onChange={()=>setCarOwnership("no")}/>
+  <FormControlLabel value="Yes" control={<Radio checked={CarOwnership.length===0?false: CarOwnership.includes("yes")?true:false} />} label="Yes" onChange={()=>setCarOwnership("yes")} />
+  <FormControlLabel value="No" control={<Radio checked={CarOwnership.length===0?false: CarOwnership.includes("no")?true:false} />} label="No"  onChange={()=>setCarOwnership("no")}/>
 </RadioGroup>
   </div>
   <div className="row">

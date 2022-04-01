@@ -13,7 +13,7 @@ const Register = () => {
   const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [Firstname, setFirstName,FirstnameRef] = useState("");
-    const [lastname, setlastName] = React.useState("");
+    const [lastname, setlastName,LastnameRef] =  useState("");
     const [phonenumber,setphonenumber] = React.useState("");
     const [Confirmpassword, setConfirmPassword] =React. useState("");
     
@@ -24,12 +24,12 @@ const Register = () => {
       {
         setError("Enter Valid Email")
       }
-     else if(email!="")
+     else  if(email!="")
      {
        setError("")
      }
     }
-    const fnverfication=(e)=>{
+    const fnverfication=()=>{
       const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
       
       if(!name.test(FirstnameRef.current))
@@ -41,16 +41,17 @@ else if(FirstnameRef.current!=="")
       setError("")
     }
     }
-    const lnverfication=(e)=>{
-      const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/
-     if(!rx_live.test(e.target.value))
-     {
-       setlastName(e.target.value)
-     }
-     else if(lastname!="")
-     {
-       setError("")
-     }
+    const lnverfication=()=>{
+      const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
+      
+      if(!name.test(LastnameRef.current))
+      {
+        setError("Invalid ")
+      }
+else if(LastnameRef.current!=="")
+    {
+      setError("")
+    }
     }
     const pnverfication=(e)=>{
       setphonenumber(e.target.value);    
@@ -94,12 +95,10 @@ setError("Please Enter Phone Number")
           setError("Enter 11 digits Number")
         }
       }
-      else if(phonenumber.length==11)
-      {
-        setError("")
-      }
+     
       else if(password=="")
       {
+        
 setError("Please Enter Password")
       }
       else if (Confirmpassword=="")
@@ -107,6 +106,7 @@ setError("Please Enter Password")
         setError("Please Enter Confirm Password")
       }
       else{
+        console.log(password)
         userService
               .register(Firstname,lastname, email,phonenumber, password)
               .then((data) => {
@@ -164,7 +164,8 @@ setError("Please Enter Password")
          placeholder="Enter Last Name"
           value={lastname}
           onChange={(e) => {
-            lnverfication(e);
+           setlastName(e.target.value)
+            lnverfication();
           }}
         />{" "}
         <br />

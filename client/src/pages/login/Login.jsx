@@ -45,6 +45,7 @@ else if(password ==""){
       setLoginerror("Invalid Password")
       toast.error( "Invalid Password",{
         position: "top-right",
+        theme:"colored"
       });
     }
       
