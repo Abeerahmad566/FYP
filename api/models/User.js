@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 const Joi = require("@hapi/joi");
 const crypto = require('crypto');
+const jwt = require("jsonwebtoken");
 var userSchema = mongoose.Schema({
   firstname: String,
   lastname: String,
@@ -16,44 +17,44 @@ var userSchema = mongoose.Schema({
 
 //Hash the Password
 
-// userSchema.pre('save', async function (next) {
-//   if (!this.isModified('password')) {
-//     next();
-//   }
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
 
-//   let salt = await bcrypt.genSalt(10);
-//   this.password = await bcrypt.hash(this.password, salt);
-// });
+  let salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
-// //generate the token
-// userSchema.methods.generateToken = function () {
-//   return jwt.sign(
-//     { _id: this._id, name: this.name, role: this.role },
-//     process.env.JWT_KEY
-//   );
-// };
+//generate the token
+userSchema.methods.generateToken = function () {
+  return jwt.sign(
+    { _id: this._id, name: this.name},
+    process.env.JWT_KEY
+  );
+};
 
-// //Generate the Reset Password Token
-// userSchema.methods.getResetPasswordToken = function () {
-//   //Generate the Reset Token
-//   const resetToken = crypto.randomBytes(20).toString('hex');
+//Generate the Reset Password Token
+userSchema.methods.getResetPasswordToken = function () {
+  //Generate the Reset Token
+  const resetToken = crypto.randomBytes(20).toString('hex');
 
-//   //Hash the Above Reset Token add the resetpasswordtoken to user Schema
-//   this.resetPasswordToken = crypto
-//     .createHash('sha256')
-//     .update(resetToken)
-//     .digest('hex');
+  //Hash the Above Reset Token add the resetpasswordtoken to user Schema
+  this.resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
 
-//   //Assign the resetpasswordToken Expire Time
-//   this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
-//   return resetToken;
-// };
-// function validateUserReset(data) {
-//   const schema = Joi.object({
-//     password: Joi.string().min(5).max(10).required(),
-//   });
-//   return schema.validate(data, { abortEarly: false });
-// }
+  //Assign the resetpasswordToken Expire Time
+  this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
+  return resetToken;
+};
+function validateUserReset(data) {
+  const schema = Joi.object({
+    password: Joi.string().min(5).max(10).required(),
+  });
+  return schema.validate(data, { abortEarly: false });
+}
 
 
 var User = mongoose.model("User",userSchema);
@@ -75,4 +76,4 @@ function validateUserLogin(data) {
   return schema.validate(data, { abortEarly: false });
 }
 
-module.exports={User,validateUser,validateUserLogin}
+module.exports={User,validateUser,validateUserLogin,validateUserReset}

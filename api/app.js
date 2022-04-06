@@ -9,7 +9,9 @@ var usersRouter = require("./routes/api/users");
 var informatiosRouter = require("./routes/api/informations");
 var config = require("config");
 var cors = require('cors');
+var dotenv = require('dotenv');
 
+dotenv.config();
 var app = express();
 app.use(cors());
 // view engine setup

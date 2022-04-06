@@ -4,12 +4,18 @@ import ResetPasswordPic from "../img/rsetpss.jpg";
 import { TextField, Button } from "@material-ui/core";
 import {toast} from "react-toastify"
 import axios from "axios" 
+import swal from 'sweetalert';
+import {useParams} from "react-router-dom";
+import userService from "../../services/UserService";
  const NewPassword = (props) =>
  {
+  
     const [password, setPassword] = React.useState("");
     const [Confirmpassword, setConfirmPassword] =React. useState("");
-    const [otp, setotp] =React. useState("");
     const [error, setError] = React.useState("");
+
+    const {resetToken} = useParams();
+    console.log(resetToken)
 
     const pssverfication=(e)=>{
         const pss = e.target.value;
@@ -30,24 +36,9 @@ import axios from "axios"
                 }
             
               }
-              const otpverfication=(e)=>{
-      
-                const re = /^[0-9\b]+$/;
-                if (re.test(e.target.value))
-                {    
-                setotp(e.target.value);    
-              }
-              else if(otp!="")
-               {
-                 setError("")
-               }
-            }
+              
     const checkvalidation=async()=>{
-      if(otp=="")
-      {
-        setError("Please Enter Otp")
-      }
-        else if(password=="")
+       if(password=="")
         {
             setError("Please Enter Password")
         }
@@ -61,34 +52,31 @@ import axios from "axios"
         }
         else
         {
-          try{
-            let url = "http://localhost:4000/api/users/reset-password"
-            let options ={
-              method:"POST",
-              url:url,
-               
-            }
-            let response = await axios(options)
-            let record = response.data;
-            if(record.statusText=='Success')
-            {
-              setError(record.message)
-              // toast.sucess(record.message);
-              window.location.href = "/resetpass";
-            }
-            else{
-              setError(record.message)
-              toast.error(record.message)
-            }
-          }
-          catch(e)
-          {
-            
-            toast.error("Something went wrong")
-          }
-          }
+         
+            userService.newpassword
+              (resetToken, { password })
+              .then((res) => {
+                setPassword("")
+                setConfirmPassword("")
+                swal({ title: "Congratulations!",
+                text: "Password Reset Successfully",
+                type: "success"}).then(okay => {
+                  if (okay) {
+                   window.location.href = "/login";
+                 }
+               });
+              })
+              .catch((error) => {
+                swal({
+                  title: 'Oops!',
+                  text: "Something Went Wrong",
+                  icon: 'error',
+                  button: 'ok ',
+                });
+                console.log(error);
+              });
         }
-    
+    }
   return(
   <div>
     <div className="container">
@@ -99,17 +87,7 @@ import axios from "axios"
       </div>
       <div className="col-sm ml-5 mt-5">
       <b><span style={{fontSize:"2rem"}}>Reset Password</span></b><br/>
-      <label style={{ marginTop: '20px' }}>Enter Your Otp</label><br/>
-      <TextField
-      style={{marginTop:"1%"}}
-          
-          placeholder="Enter Otp"
-          value={otp}
-          onChange={(e) => {
-            otpverfication(e);
-          }}
-        />{" "}
-        <br/>
+      
       <label style={{ marginTop: '20px' }}>Enter Your New Password</label><br/>
       <TextField
       style={{marginTop:"1%"}}

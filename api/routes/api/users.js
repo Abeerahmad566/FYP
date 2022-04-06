@@ -13,29 +13,28 @@ router.get("/",async (req, res) => {
   let users = await User.find();
   return res.send(users);
 });
-router.post("/register", async (req, res) => {
+router.post('/register',  async (req, res) => {
+  console.log(req.body);
+
   let user = await User.findOne({ email: req.body.email });
-  if (user) return res.status(400).send("User with given Email already exist");
-  const salt = await bcrypt.genSalt(10);
-    const hashedPass = await bcrypt.hash(req.body.password, salt);
+  if (user)
+    return res.status(400).json('User with Given Email Already Exsist ');
   user = new User();
-  user.firstname = req.body.firstname;
-  user.lastname = req.body.lastname;
-  user.phonenumber = req.body.phonenumber;
-  user.email = req.body.email;
-  user.password = hashedPass;
- 
+  (user.firstname = req.body.firstname),
+  (user.lastname = req.body.lastname),
+    (user.email = req.body.email),
+    (user.phonenumber = req.body.phonenumber),
+    (user.password = req.body.password);
+  let accessToken = user.generateToken(); //----->Genrate Token
   await user.save();
-  let token = jwt.sign(
-    { _id: user._id, name: user.firstname, },
-    config.get("jwtPrivateKey")
-  );
+  //const { password, ...info } = user._doc;
   let datatoRetuen = {
-    name: user.firstname,
+    name: user.name,
     email: user.email,
-    token: user.token,
+    phone: user.phone,
+    accessToken: accessToken,
   };
-  return res.send(datatoRetuen);
+  res.status(200).json(datatoRetuen);
 });
 router.post("/login", async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
@@ -48,9 +47,118 @@ router.post("/login", async (req, res) => {
   );
   res.send(token);
 });
+// //Forget Password
+// router.post('/forgetpassword', async (req, res) => {
+ 
+//   const user = await User.findOne({ email: req.body.email });
+
+//   if (!user) {
+//     return res.status(404).json('User Not Exsist');
+//   }
+
+//   // Get ResetPassword Token
+//   const resetToken = user.getResetPasswordToken();
+
+//   await user.save();
+
+//   const resetPasswordUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+  
+//   const message = `
+//      <h1>You have requested a password reset</h1>
+//      <p>Please make a put request to the following link:</p>
+//      <a href=${resetPasswordUrl} clicktracking=off>${resetPasswordUrl}</a>
+//    `;
+
+//   try {
+//     await sendEmail({
+//       to: user.email,
+//       subject: `Mern-App Password Recovery`,
+//       text: message,
+//     });
+
+//     res.status(200).json({
+//       message: `Email sent to ${user.email} successfully`,
+//     });
+//   } catch (error) {
+//     user.resetPasswordToken = undefined;
+//     user.resetPasswordExpire = undefined;
+
+//     await user.save();
+
+//     return res.status(500).json(' Email Could Not be  Send');
+//   }
+// });
+
+// //Reset Password Route
+
+// router.put('/passwordreset/:resetToken', async (req, res) => {
+//   //Hash the token which is provides in the url and generate the new token
+//   const resetPasswordToken = crypto
+//     .createHash('sha256')
+//     .update(req.params.resetToken)
+//     .digest('hex');
+
+//   try {
+//     const user = await User.findOne({
+//       resetPasswordToken,
+//       resetPasswordExpire: { $gt: Date.now() },
+//     });
+
+//     //Check that Token is Expired or not
+//     if (!user) {
+//       return res.status(400).json('Token is Expired or Invalid');
+//     }
+//     user.password = req.body.password;
+//     user.resetPasswordToken = undefined;
+//     user.resetPasswordExpire = undefined;
+
+//     await user.save();
+
+//     res.status(201).json({
+//       success: true,
+//       data: 'Password Updated Success',
+   
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 //Forget Password
 router.post('/forgetpassword', async (req, res) => {
- 
+  /*try {
+    const user = User.findOne({ email: req.body.email });
+    if (!user) return res.status(401).json('Email does not Exsist');
+    // Reset Token Gen and add to database hashed (private) version of token
+    const resetToken = user.getResetPasswordToken();
+    await user.save();
+    // Create reset url to email to provided email
+    const rresetPasswordUrl = `${req.protocol}://${req.get(
+      'host'
+    )}/passwordreset/${resetToken}`;
+    // HTML Message
+    const message = `
+       <h1>You have requested a password reset</h1>
+       <p>Please make a put request to the following link:</p>
+       <a href=${rresetPasswordUrl} clicktracking=off>${rresetPasswordUrl}</a>
+     `;
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: 'Password Reset Request',
+        text: message,
+      });
+      res.status(200).json('Email Sent Successfully ');
+    } catch (err) {
+      console.log(err);
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
+      await user.save();
+      return res.status(500).json('Email Could Not b send');
+    }
+  } catch (error) {
+    return res.status(501).json('Bhai nai honi email send');
+  }*/
+
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
@@ -63,7 +171,7 @@ router.post('/forgetpassword', async (req, res) => {
   await user.save();
 
   const resetPasswordUrl = `http://localhost:3000/passwordreset/${resetToken}`;
-  
+  // const resetPasswordUrl = `http://localhost:3000/passwordreset`;
   const message = `
      <h1>You have requested a password reset</h1>
      <p>Please make a put request to the following link:</p>
@@ -118,7 +226,7 @@ router.put('/passwordreset/:resetToken', async (req, res) => {
     res.status(201).json({
       success: true,
       data: 'Password Updated Success',
-   
+      //token: user.generateToken(),
     });
   } catch (error) {
     console.log(error);

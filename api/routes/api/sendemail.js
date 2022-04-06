@@ -2,15 +2,18 @@ const nodemailer = require('nodemailer');
 
 const sendEmail = (options) => {
   const transporter = nodemailer.createTransport({
-    service: config.get("EMAIL_SERVICE"),
+   
+    service: process.env.EMAIL_SERVICE,
+    port: 587,
+  secure: false,
     auth: {
-      user: config.get("EMAIL_ADDRESS"),
-      pass: config.get("EMAIL_PASSWOR"),
+      user: process.env.EMAIL_ADDRESS,
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 
   const mailOptions = {
-    from: config.get("EMAIL_ADDRESS"),
+    from: process.env.EMAIL_ADDRESS,
     to: options.to,
     subject: options.subject,
     html: options.text,
@@ -24,4 +27,6 @@ const sendEmail = (options) => {
     }
   });
 };
+
+
 module.exports = sendEmail;
