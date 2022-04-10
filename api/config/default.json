@@ -1,7 +1,0 @@
-{
-    "db": "mongodb+srv://Abeer:abeer@cluster0.hpwdt.mongodb.net/FYP?retryWrites=true&w=majority",
-    "jwtPrivateKey": "jwtPrivateKey",
-    "EMAIL_SERVICE" : "gmail",
-"EMAIL_ADDRESS" : "shaniashraf999@gmail.com",
-"EMAIL_PASSWORD" : "zeeshanashraf1992"
-}
