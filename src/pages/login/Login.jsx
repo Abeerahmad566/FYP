@@ -54,7 +54,7 @@ else if(password ==""){
 }
   return (
   <><div className="container" >
-    <div className="row colWrapper">
+    <div className="row " id="colWrapper">
       <div className="col-sm imgcolWrapper">
       <img className="imgWrapper"  src={login} alt="" />
       </div>
