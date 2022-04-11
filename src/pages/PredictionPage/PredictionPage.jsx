@@ -23,21 +23,10 @@ const PredictionPage = () => {
   const userid = userService.getLoggedInUser()._id;
 const postdata =()=>
 {
-  console.log(userid)
-    console.log(age)
-    console.log(income)
-    console.log(CurrentHouseYears)
-    console.log(CurrentJobYears)
-    console.log(HouseOwnership)
-    console.log(CarOwnership)
-    console.log(Profession)
-    console.log(married)
-    console.log(Experience)
-    console.log(result)
+  if(result){
   infromationService
         .addInformation(userid,age,income,CarOwnership,CurrentHouseYears,married,Profession,CurrentJobYears,Experience,HouseOwnership,result)
-          .then((data) => {
-            console.log(data)
+          .then(() => {
             setage("")
             setincome("")
             setCarOwnership("")
@@ -47,12 +36,15 @@ const postdata =()=>
             setExperience("")
            setProfession("Select Profession")
            setHouseOwnership("Select House OwnerShip")
+          
           })
           .catch((err) => {
             console.log(err);
           });
 }
+}
 React.useEffect(postdata,[result])
+
   const HouseOwnershipval=(e)=>{
     setHouseOwnership(e)
     
