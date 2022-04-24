@@ -11,12 +11,14 @@ import Enteremail from "./pages/ResetPasssword/enterEmail"
 import ResetPassword from "./pages/ResetPasssword/NewPassword"
 import { ToastContainer } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
+import Profile from "./pages/profile/Profile";
 function App() {
  
   return (
     <Router>
       <ToastContainer  theme= "colored"  />
       <Switch>
+      
       <Route path="/register">{ <Register />}</Route>
         <Route path="/login">{ <Login />}</Route>
         <Route path ="/enteremail">{<Enteremail/>}</Route>
@@ -28,6 +30,7 @@ function App() {
          <Route path="/contact">{<Contact/>}</Route> 
          <Route path="/predictionPage">{<PredictionPage/>}</Route>
       <Route path="/home">{<Home/>}</Route>
+      <Route path ="/profile">{<Profile/>}</Route>
       </Auth>
         
     

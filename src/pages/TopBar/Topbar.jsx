@@ -1,6 +1,7 @@
 import "./Topbar.css";
 import { Link } from "react-router-dom";
 import logo from '../img/logo.png';
+import homepage from "../img/homepage.jpg"
 import userService from "../../services/UserService";
 import {Navbar,Container,Nav} from "react-bootstrap"
 import { Button } from "@material-ui/core";
@@ -22,8 +23,9 @@ export default function Topbar() {
             window.location.href = "/login";
           }}> Logout 
            </Nav.Link>
+
       </Nav>
-    
+    <Nav.Link style={{marginLeft: '20%'}} href="/profile"><img style={{borderRadius:"200/2px" ,height:"50px",width:"50px"}} src={homepage}/></Nav.Link>
     </Navbar.Collapse>
   
 </Navbar>

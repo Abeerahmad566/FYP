@@ -1,3 +1,4 @@
+
 .homepagepic {
   height: calc(70vh);
 
@@ -9,6 +10,8 @@
 .btnwrapper {
   position: relative;
   margin-left: 40%;
+  
+
 }
 .txt {
   position: relative;
@@ -20,6 +23,7 @@
 .tableWrapper {
   overflow: auto;
 }
+
 @media (max-width: 500px) {
   .homepagepic {
     height: calc(17vh);

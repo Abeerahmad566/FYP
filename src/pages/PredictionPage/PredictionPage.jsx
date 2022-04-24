@@ -122,8 +122,8 @@ setError("")
       setError("Please Enter Experience")
      }
   else{
-    await axios.post("https://loanpredictionfyp.herokuapp.com/api/informations/predict",{
-   //await axios.post("http://localhost:4000/api/informations/predict",{
+    // await axios.post("https://loanpredictionfyp.herokuapp.com/api/informations/predict",{
+   await axios.post("http://localhost:4000/api/informations/predict",{
       Income:income,
       Age:age,
       Experience:Experience,

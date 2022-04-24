@@ -27,7 +27,6 @@ Aos.init({ duration:2000});
       InformationService
                   .getInformation(userid)
                   .then((data) => {
-                    console.log(data);
                   setInformations(data)
                   setuserid("")
                  
@@ -53,8 +52,9 @@ Aos.init({ duration:2000});
    <div className="container">
    <div className="tableWrapper">
   <Grid container justify="center">
-   
+ 
    <Button href="predictionPage" className="btnwrapper" variant="primary">Make Prediction</Button>
+   
    </Grid>
    {informations.length >0 &&
    
