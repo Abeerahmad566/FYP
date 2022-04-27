@@ -1,10 +1,6 @@
 import "./Contact.css"
 import TopBar from "../TopBar/Topbar"
 import emailjs from "emailjs-com";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {  faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import {faFacebook, faGooglePlusG, faLinkedin, faTwitter} from "@fortawesome/free-brands-svg-icons"
-import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 export default function PredictionPage() {
     function sendemail(e){
@@ -26,7 +22,7 @@ export default function PredictionPage() {
     <span className="spanpara1">We'd love to help! </span>
     <p className="para1">Feel Free to Leave us a Message!</p>
 </div>
-<div className="form" >
+<div className="form ">
             <form  onSubmit={sendemail}>
                         <div className="col-sm-15 form-group ">
                             <input type="text" className="form-control" placeholder="Name" name="name"/>

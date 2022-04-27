@@ -1,8 +1,11 @@
 import './SingleInformation.css';
 import { withRouter } from "react-router";
-import {Table} from "react-bootstrap"
+import {Button, Table} from "react-bootstrap"
+import userService from '../../services/UserService';
+import InformationService from "../../services/InformationService";
 const SingleInformation = (props) => {
-    const {information,history}=props
+
+    const {information,history,onDelete}=props
     return(
         
             
@@ -18,6 +21,16 @@ const SingleInformation = (props) => {
       <td >{information.experience}</td>
       <td >{information.Houseownership}</td>
       <td >{information.result}</td>
+      <td><Button variant="danger"
+      onClick={(e)=>{
+        InformationService.deleteInformation(information._id).then((data) => {
+          console.log(data);
+          onDelete();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      }}>Delete</Button></td>
       
     </tr>
   

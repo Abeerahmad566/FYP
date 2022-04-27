@@ -22,14 +22,11 @@ Aos.init({ duration:2000});
    const [informations, setInformations] = useState([""])
   
    const getdata=()=>{
-
-
+     console.log(userService.getLoggedInUser().lastname)
       InformationService
                   .getInformation(userid)
                   .then((data) => {
-                  setInformations(data)
-                  setuserid("")
-                 
+                  setInformations(data)               
                   })
                   .catch((err) => {
                     console.log(err);
@@ -71,11 +68,12 @@ Aos.init({ duration:2000});
       <th>Experience</th>
       <th>House Ownership</th>
       <th>Prediction Result</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
   {informations&& informations.map((information)=>(
-            <SingleInformation information={information} />
+            <SingleInformation information={information} onDelete={getdata}/>
          ))}
   </tbody>
   </Table>

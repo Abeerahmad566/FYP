@@ -6,6 +6,9 @@ class UserService extends GenericService {
   }
   getUser = (id) => this.get("users/" + id);
   updateUser = (_id, data) => this.put("users/updateprofile/" + _id, data);
+
+  updateUserpassword=(_id,data)=>this.put("users/updatepassword/"+_id,data);
+  
   login = (email, password) =>
     new Promise((resolve, reject) => {
       this.post("users/login", { email, password })

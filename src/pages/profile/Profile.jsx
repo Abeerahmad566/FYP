@@ -7,13 +7,10 @@ const Profile = ()=>{
     const [userid,setuserid]=useState(userService.getLoggedInUser()._id)
    const [users, setusers] = useState([""])
    const getdata=()=>{
-
-console.log(userid)
     userService
                 .getUser(userid)
-                .then((data) => {
+                .then((data) => {  
                 setusers(data)
-                console.log(data)
                 })
                 .catch((err) => {
                   console.log(err);

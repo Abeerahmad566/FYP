@@ -1,7 +1,7 @@
 .form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 40%;
+ margin-left: 31%;
+
 }
 .ContactSize {
   font-size: 4vw;

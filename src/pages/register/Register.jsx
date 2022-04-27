@@ -1,7 +1,7 @@
 
 import React from "react";
 import Signup from '../img/signup.jpg'
-import { TextField, Button } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import userService from "../../services/UserService";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
@@ -90,11 +90,11 @@ setError("Please Enter Email")
 setError("Please Enter Phone Number")
       }
       else if(phonenumber.length>11||phonenumber.length<11)
-      {
+      
         {
           setError("Enter 11 digits Number")
         }
-      }
+      
      
       else if(password=="")
       {
@@ -106,7 +106,7 @@ setError("Please Enter Password")
         setError("Please Enter Confirm Password")
       }
       else{
-        console.log(password)
+      
         userService
               .register(Firstname,lastname, email,phonenumber, password)
               .then((data) => {
@@ -119,8 +119,9 @@ setError("Please Enter Password")
                   setError("User with Given Email is already Registered")
                 }
                 console.log(err);
-                toast.error(err.response.data, {
-                  position: toast.POSITION.TOP_LEFT,
+                toast.error( "User with Given Email is already Registered",{
+                  position: "top-right",
+                  theme:"colored"
                 });
               });
       }
