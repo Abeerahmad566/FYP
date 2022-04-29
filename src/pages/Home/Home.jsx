@@ -1,9 +1,11 @@
+
+import './home.css';
 import TopBar from "../TopBar/Topbar";
 import React, { useEffect,useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import './home.css';
+
 import {Table} from "react-bootstrap"
 import userService from "../../services/UserService";
 import InformationService from "../../services/InformationService";
@@ -22,7 +24,6 @@ Aos.init({ duration:2000});
    const [informations, setInformations] = useState([""])
   
    const getdata=()=>{
-     console.log(userService.getLoggedInUser().lastname)
       InformationService
                   .getInformation(userid)
                   .then((data) => {
@@ -35,11 +36,25 @@ Aos.init({ duration:2000});
    }
       
    React.useEffect(getdata, []);
-   
+   const [users, setusers] = useState([""])
+   const getuserdata=()=>{
+    userService
+                .getUser(userid)
+                .then((data) => {  
+                setusers(data)
+                console.log(data)
+                })
+                .catch((err) => {
+                  console.log(err);
+                 
+                });
+ }
+useEffect(getuserdata, []);
    return(
      
    <div>
-   <TopBar/>
+     {users&&users.map((user)=>(<TopBar user={user}/>))}
+   
   
    <div className="homepagepic">
     
@@ -50,7 +65,7 @@ Aos.init({ duration:2000});
    <div className="tableWrapper">
   <Grid container justify="center">
  
-   <Button href="predictionPage" className="btnwrapper" variant="primary">Make Prediction</Button>
+   <Button href="predictionPage" style={{marginLeft:"-10%"}} variant="primary">Make Prediction</Button>
    
    </Grid>
    {informations.length >0 &&

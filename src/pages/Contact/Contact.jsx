@@ -1,8 +1,25 @@
 import "./Contact.css"
+import React, { useEffect,useState } from 'react';
+import userService from "../../services/UserService";
 import TopBar from "../TopBar/Topbar"
 import emailjs from "emailjs-com";
 import Footer from "../../components/Footer/Footer";
 export default function PredictionPage() {
+    const [userid,setuserid]=useState(userService.getLoggedInUser()._id)
+   const [users, setusers] = useState([""])
+   const getdata=()=>{
+    userService
+                .getUser(userid)
+                .then((data) => {  
+                setusers(data)
+                console.log(data)
+                })
+                .catch((err) => {
+                  console.log(err);
+                 
+                });
+ }
+useEffect(getdata, []);
     function sendemail(e){
         e.preventDefault();
 
@@ -15,7 +32,7 @@ export default function PredictionPage() {
             e.target.reset()
     }
     return(<div>
-<TopBar/>
+{users && users.map((user)=>(<TopBar user={user}/>))}
 <div >
     <b className="ContactSize">Contact</b>
     <hr></hr>

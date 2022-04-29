@@ -7,8 +7,11 @@ class UserService extends GenericService {
   getUser = (id) => this.get("users/" + id);
   updateUser = (_id, data) => this.put("users/updateprofile/" + _id, data);
 
-  updateUserpassword=(_id,data)=>this.put("users/updatepassword/"+_id,data);
-  
+  updateUserImg = (id, data) => this.put("users/updateprofileimg/" + id, data);
+
+  updateUserpassword = (_id, data) =>
+    this.put("users/updatepassword/" + _id, data);
+
   login = (email, password) =>
     new Promise((resolve, reject) => {
       this.post("users/login", { email, password })
@@ -20,15 +23,13 @@ class UserService extends GenericService {
           reject(err);
         });
     });
-  register = (firstname,lastname, email,phonenumber, password) =>
-    this.post("users/register", { firstname,lastname, email,phonenumber, password });
+  register = (data) => this.post("users/register", data);
 
-    forget=(email)=>
-    this.post("users/forgetpassword",{email})
+  forget = (email) => this.post("users/forgetpassword", { email });
 
-    newpassword=(token,password)=>
-    this.put("users/passwordreset/"+token,password)
-    
+  newpassword = (token, password) =>
+    this.put("users/passwordreset/" + token, password);
+
   logout = () => {
     localStorage.removeItem("token");
   };
@@ -43,7 +44,6 @@ class UserService extends GenericService {
       return null;
     }
   };
-  
 }
 
 let userService = new UserService();

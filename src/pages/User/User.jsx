@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button'
 import userService from '../../services/UserService';
 import { toast, ToastContainer } from "react-toastify";
 import  useState from 'react-usestateref';
+import nophoto from "../img/nophoto.jpg"
+import axios from 'axios'
 const User = (props)=>{
     const {user,history}=props
     const [firstname,setfirstname,FirstnameRef]=useState("")
@@ -11,20 +13,18 @@ const User = (props)=>{
     const [password,setpassword]=useState("")
     const [confrimpassword,setconfrimpassword]=useState("")
     const[showpasswordfld,setshowpasswordfld]=useState(false)
+    const [photo,setphoto]=useState();
+    const[file,setFile]=useState()
     const userid = userService.getLoggedInUser()._id;
     const [error,seterror]=useState("")
-
-    // const [ setUser] = useState({});
-    // const handleChange = ({target}) => {
-    //     const {name, value} = target;
-    //     console.log(name)
-    //     console.log(value)
-    //     setfirstname(value);
-    //     console.log(firstname);
-        
-    // };
-
-
+    const [stateimg, setStateimg] = useState({
+      photo: "",
+    });
+    const imageFileSelectHandler = (e) => {
+      setStateimg({
+        photo: e.target.files[0],
+      });
+    };
     const updatepassword=()=>{
         if(password=="")
         {
@@ -139,17 +139,51 @@ const User = (props)=>{
     }
 
   }
+  const handleimgupdate=(e)=>{
+    e.preventDefault();
+      const formData = new FormData();
+      formData.append("photo", stateimg.photo);
+    userService
+            .updateUserImg(userid,formData)
+            .then((data) => {
+                toast.success( "Image Updated SuccessFully",{
+                    position: "top-right",
+                    theme:"colored"
+                  });
+                  setTimeout(function(){
+                    window.location.reload(true);
+                 }, 2000);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+  
     return(
         <div className="main">
-             
+            <div className="row">
+                <div className="col-sm">
+                  <img style={{borderRadius:"150px",width:"300px",height:"300px",marginLeft:"10%",marginTop:"-75%"}}src={user.photo? "http://localhost:4000/"+user.photo:nophoto}></img>
+                  
+                <label htmlFor="fileInput">
+            <i  className="imguploadlogo fas fa-plus fa-4x"></i>
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            style={{ display: "none"}}
+            onChange={imageFileSelectHandler}
+          />
+       <Button variant="outline-info" size="sm" className="uploadbtn" onClick={handleimgupdate}>Upload Image</Button>
+                </div>
+               <div className="col2 col-sm">
             {!showpasswordfld &&
             <>
             <label
             style={{paddingRight:"42px"}}>
                <b>Change First Name</b>
             </label>
-            {/* <input type="text" name='firstname' value={user.firstname}
-                                   onChange={(e) => setfirstname(e.target.value)} className="form-control" id="firstname"/> */}
+            
             <input
             type="text"
              placeholder={user.firstname}
@@ -181,6 +215,8 @@ const User = (props)=>{
                 
                 phoneverification(e);
               } }/>
+              
+               
               </>
             }
             {showpasswordfld &&
@@ -212,7 +248,7 @@ const User = (props)=>{
                
                  {showpasswordfld && 
                  <><Button variant="primary"
-                    style={{ marginRight: "15%", marginLeft: "5%" }}
+                    style={{ marginRight: "5%", marginLeft: "5%" }}
                     onClick={() => {
                         setshowpasswordfld(false);
                         console.log(showpasswordfld);
@@ -229,7 +265,8 @@ const User = (props)=>{
                    
                   <ToastContainer/>
         </div>
-
+        </div>
+          </div>
     );
 }
 export default User;

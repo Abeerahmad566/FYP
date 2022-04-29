@@ -1,0 +1,22 @@
+.predictagainbtn{
+    margin-left: 40%;
+    margin-top: 10.8%;
+
+}
+.resultb {
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .firstStep{
+      margin-left: 20%;
+  }
+  .secondStep{
+    margin-left: 22%;
+  }
+  .thirdStep{
+    margin-left: 22%;
+  }
+  .dropdown-menu {
+    height: 250%;
+    overflow-y: scroll;
+  }

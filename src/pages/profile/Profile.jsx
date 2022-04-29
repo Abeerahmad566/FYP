@@ -11,6 +11,7 @@ const Profile = ()=>{
                 .getUser(userid)
                 .then((data) => {  
                 setusers(data)
+                console.log(data)
                 })
                 .catch((err) => {
                   console.log(err);
@@ -20,7 +21,7 @@ const Profile = ()=>{
 useEffect(getdata, []);
     return(
         <>
-        <Topbar/>
+      {users && users.map((user)=>(  <Topbar user={user}/>))}
 <div className="profile">
     <div className="headerprofile">
         <b>Edit Your Profile</b>
