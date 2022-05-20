@@ -183,7 +183,6 @@ const User = (props)=>{
             style={{paddingRight:"42px"}}>
                <b>Change First Name</b>
             </label>
-            
             <input
             type="text"
              placeholder={user.firstname}

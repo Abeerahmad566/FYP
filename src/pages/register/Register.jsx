@@ -3,7 +3,7 @@ import React from "react";
 import Signup from '../img/signup.jpg'
 import { TextField } from "@material-ui/core";
 import userService from "../../services/UserService";
-import { toast } from "react-toastify";
+import { toast,ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import './register.css'
 import validator from 'validator'
@@ -113,9 +113,13 @@ const Register = () => {
         .catch((err) => {
           if (err.response.status == 400) {
             setError("User with Given Email is already Registered")
+            toast.error("User with Given Email is already Registered", {
+              position: "top-right",
+              theme: "colored"
+            });
           }
           console.log(err);
-          toast.error("User with Given Email is already Registered", {
+          toast.error(err, {
             position: "top-right",
             theme: "colored"
           });
@@ -220,6 +224,7 @@ const Register = () => {
               <i style={{ background: "aqua", borderRadius: "50px", width: "30px", height: "30px", padding: "6px", marginRight: "60px" }} className=" fas fa-plus fa-lg"></i>
             </label>
             <input
+           
               type="file"
               id="fileInput"
               style={{ display: "none" }}
@@ -244,9 +249,10 @@ const Register = () => {
           </div>
         </div>
       </div>
-
+      <ToastContainer/>
     </div>
   );
+  
 };
 
 export default Register;
