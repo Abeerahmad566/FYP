@@ -13,6 +13,7 @@ import Topbar from "../TopBar/Topbar";
 import Button from 'react-bootstrap/Button'
 import {Stepper,StepLabel,Step} from "@material-ui/core"
 import CircularProgress from '@mui/material/CircularProgress';
+
 const MultiStep = () => {
   const[age,setage,ageRef]= useState("");
   const[CurrentJobYears,setCurrentJobYears]= React.useState("");
@@ -328,18 +329,18 @@ const steps = [
           ))}
         </Stepper>
       </Box>
-      );
+    
 
 
       <div className="container">
         <div className="firstStep">
         {firstStep &&
           <>
-            <label style={{ backgroundColor: "#005CA9", display: "block", width: "50%" }}>Age</label><input style={{ width: "50%" }} class="form-control" type="number" placeholder="Enter Your Age" InputProps={{ disableUnderline: true }}
+            <label style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Age</label><input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Your Age" InputProps={{ disableUnderline: true }}
               value={age}
               onChange={(e) => {
                 agevalidation(e);
-              } } /><label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "50%" }}>RelationShip Status </label><RadioGroup value={married}>
+              } } /><label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>RelationShip Status </label><RadioGroup value={married}>
               <FormControlLabel value="married" control={<Radio checked={married.length === 0 ? false : married.includes("married") ? true : false} />} label="Married" onChange={() => setmarried("married")} />
               <FormControlLabel value="single" control={<Radio checked={married.length === 0 ? false : married.includes("single") ? true : false} />} label="Single" onChange={() => setmarried("single")} />
             </RadioGroup>
@@ -347,21 +348,21 @@ const steps = [
           </div>
           <div className="secondStep">
         {secondStep &&
-          <><label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "50%" }}>Current Job Years</label><input style={{ width: "50%" }} class="form-control" type="number" placeholder="Enter Current Job Years"
+          <><label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Current Job Years</label><input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Current Job Years"
             value={CurrentJobYears}
             onChange={(e) => {
               crjobyearsvalidation(e);
             } } />
 
-            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "50%" }}>Income</label>
-            <input style={{ width: "50%" }} class="form-control" type="number" placeholder="Enter Your Income"
+            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Income</label>
+            <input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Your Income"
               value={income}
               onChange={(e) => {
                 incmevalidation(e);
               } } />
 
-            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "50%" }}>Job Experience</label>
-            <input style={{ width: "50%" }} class="form-control" type="number" placeholder="Enter Your Experience Years"
+            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Job Experience</label>
+            <input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Your Experience Years"
               value={Experience}
               onChange={(e) => {
                 expvalidation(e);
@@ -430,13 +431,13 @@ const steps = [
           <div className="thirdStep">
         {thirdStep &&
           <>
-            <label style={{ backgroundColor: "#005CA9", display: "block", width: "50%" }}>Car OwnerShip</label><RadioGroup>
+            <label style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Car OwnerShip</label><RadioGroup>
               <FormControlLabel value="Yes" control={<Radio checked={CarOwnership.length === 0 ? false : CarOwnership.includes("yes") ? true : false} />} label="Yes" onChange={() => setCarOwnership("yes")} />
               <FormControlLabel value="No" control={<Radio checked={CarOwnership.length === 0 ? false : CarOwnership.includes("no") ? true : false} />} label="No" onChange={() => setCarOwnership("no")} />
             </RadioGroup>
 
-            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "50%" }}>Current House Years</label>
-            <input style={{ width: "50%" }} class="form-control" type="number" placeholder="Enter Current House Years"
+            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Current House Years</label>
+            <input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Current House Years"
               value={CurrentHouseYears}
               onChange={(e) => {
                 crhouseyearsvalidation(e);

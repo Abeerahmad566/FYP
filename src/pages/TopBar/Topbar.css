@@ -1,3 +1,658 @@
 .logo {
   height: 50px;
 }
+.dropbtn{
+  color: white;
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+.dropbtn:hover{
+text-decoration: underline;
+}
+.homeicon{
+  position:relative;
+  left:-25px;
+  top:23px;
+}
+.onlinepredictionicon{
+  position:relative;
+  left:-25px;
+  top:23px;
+}
+.connect{
+  position:relative;
+  left:-25px;
+  top:23px;
+}
+.logouticon{
+  color: white;
+  position:relative;
+  left:-18px;
+  top:35px;
+}
+.profileimg{
+  border-radius:100px ;
+  height:50px;
+  width:50px;
+}
+
+@media  (width: 375px) {
+  .homeicon {
+   
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+.Hometxt
+{
+  position: relative;
+  left: -80px;
+}
+.onlinepredictionicon{
+position: relative;
+top: 0px;
+left: 0px;
+
+}
+.predicttxt{
+position: relative;
+left: -80px;
+}
+.Contacttxt{
+position: relative;
+left: -80px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+  .logouticon{
+    position: relative;
+    top: -70px;
+    left: -25px;
+  }
+  .dropbtn{
+    position: relative;
+   top: -95px;
+   left: 0px
+  }
+  .profileimg{
+    position: relative;
+    top: -189px;
+    left: 30px;
+   
+  }
+}
+@media (width: 1024px) {
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .Hometxt
+  {
+    position: relative;
+    left: -200px;
+  }
+.onlinepredictionicon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  
+}
+.predicttxt{
+  position: relative;
+  left: -200px;
+}
+.Contacttxt{
+  position: relative;
+  left: -200px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+ 
+}
+.profileimg{
+  position: relative;
+  top: -189px;
+  left: -100px;
+ 
+}
+.logouticon{
+  position: relative;
+  top: -70px;
+  left: -15px;
+}
+.dropbtn{
+  position: relative;
+ top: -95px;
+ left: 10px
+}
+}
+
+@media (max-width: 280px) {
+ 
+  .Hometxt
+  {
+    position: relative;
+    top:0px;
+    left: -50px;
+  }
+.predicttxt{
+  position: relative;
+  left: -50px;
+}
+.Contacttxt{
+  position: relative;
+  left: -50px;
+}
+
+}
+@media (width: 540px) {
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .Hometxt
+  {
+    position: relative;
+    left: -110px;
+  }
+.onlinepredictionicon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  
+}
+.predicttxt{
+  position: relative;
+  left: -110px;
+}
+.Contacttxt{
+  position: relative;
+  left: -110px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+ 
+}
+.profileimg{
+  position: relative;
+  top: -189px;
+  left: 40px;
+ 
+}
+.logouticon{
+  position: relative;
+  top: -70px;
+  left: -20px;
+}
+.dropbtn{
+  position: relative;
+ top: -95px;
+ left: 10px
+}
+
+}
+@media (width: 912px) {
+  .logouticon{
+    position: relative;
+    top: -70px;
+    left: -18px;
+  }
+  .dropbtn{
+    position: relative;
+   top: -95px;
+   left: 5px
+  }
+  .connect{
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+  .onlinepredictionicon{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
+  }
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .profileimg{
+    position: relative;
+    top: -189px;
+    left: 40px;
+   
+  }
+  .Hometxt
+  {
+    position: relative;
+    top:0px;
+    left: -180px;
+  }
+.predicttxt{
+  position: relative;
+  left: -180px;
+}
+.Contacttxt{
+  position: relative;
+  left: -180px;
+}
+}
+@media (width: 768px) {
+ 
+  .logouticon{
+    position: relative;
+    top: -70px;
+    left: -25px;
+  }
+  .dropbtn{
+    position: relative;
+   top: -95px;
+   left: 0px
+  }
+  .connect{
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+  .onlinepredictionicon{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
+  }
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .profileimg{
+    position: relative;
+    top: -189px;
+    left: 40px;
+   
+  }
+  .Hometxt
+  {
+    position: relative;
+    top:0px;
+    left: -160px;
+  }
+.predicttxt{
+  position: relative;
+  left: -160px;
+}
+.Contacttxt{
+  position: relative;
+  left: -160px;
+}
+
+}
+@media (width: 820px) {
+  .logouticon{
+    position: relative;
+    top: -70px;
+    left: -18px;
+  }
+  .dropbtn{
+    position: relative;
+   top: -95px;
+   left: 5px
+  }
+  .connect{
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+  .onlinepredictionicon{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
+  }
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .profileimg{
+    position: relative;
+    top: -189px;
+    left: 40px;
+   
+  }
+  .Hometxt
+  {
+    position: relative;
+    top:0px;
+    left: -160px;
+  }
+.predicttxt{
+  position: relative;
+  left: -160px;
+}
+.Contacttxt{
+  position: relative;
+  left: -160px;
+}
+}
+@media (width: 360px) {
+  .profileimg{
+    position: relative;
+    top: -189px;
+    left: 40px;
+   
+  }
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .Hometxt
+  {
+    position: relative;
+    left: -80px;
+  }
+.onlinepredictionicon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  
+}
+.predicttxt{
+  position: relative;
+  left: -80px;
+}
+.Contacttxt{
+  position: relative;
+  left: -80px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+ 
+}
+
+.logouticon{
+  position: relative;
+  top: -70px;
+  left: -22px;
+}
+.dropbtn{
+  position: relative;
+ top: -95px;
+ left: 0px
+}
+}
+@media (width: 390px) {
+ 
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .Hometxt
+  {
+    position: relative;
+    left: -80px;
+  }
+.onlinepredictionicon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  
+}
+.predicttxt{
+  position: relative;
+  left: -80px;
+}
+.Contacttxt{
+  position: relative;
+  left: -80px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+ 
+}
+
+.logouticon{
+  position: relative;
+  top: -70px;
+  left: -22px;
+}
+.dropbtn{
+  position: relative;
+ top: -95px;
+ left: 0px
+}
+.profileimg{
+  position: relative;
+  top: -189px;
+  left: 40px;
+ 
+}
+}
+@media (width: 393px) {
+  .profileimg{
+    position: relative;
+    top: -189px;
+    left: 40px;
+   
+  }
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .Hometxt
+  {
+    position: relative;
+    left: -80px;
+  }
+.onlinepredictionicon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  
+}
+.predicttxt{
+  position: relative;
+  left: -80px;
+}
+.Contacttxt{
+  position: relative;
+  left: -80px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+ 
+}
+
+.logouticon{
+  position: relative;
+  top: -70px;
+  left: -22px;
+}
+.dropbtn{
+  position: relative;
+ top: -95px;
+ left: 0px
+}
+}
+
+@media (width: 280px) {
+ 
+  .profileimg{
+    position: relative;
+    top: -189px;
+    left: 40px;
+   
+  }
+ .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .Hometxt
+  {
+    position: relative;
+    left: -60px;
+  }
+.onlinepredictionicon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  
+}
+.predicttxt{
+  position: relative;
+  left: -60px;
+}
+.Contacttxt{
+  position: relative;
+  left: -60px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+ 
+}
+
+.logouticon{
+  position: relative;
+  top: -70px;
+  left: -20px;
+}
+.dropbtn{
+  position: relative;
+ top: -95px;
+ left: 5px
+}
+}
+@media (width: 412px) {
+  .profileimg{
+    position: relative;
+    top: -189px;
+    left: 40px;
+   
+  }
+ .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .Hometxt
+  {
+    position: relative;
+    left: -80px;
+  }
+.onlinepredictionicon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  
+}
+.predicttxt{
+  position: relative;
+  left: -80px;
+}
+.Contacttxt{
+  position: relative;
+  left: -80px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+ 
+}
+
+.logouticon{
+  position: relative;
+  top: -70px;
+  left: -20px;
+}
+.dropbtn{
+  position: relative;
+ top: -95px;
+ left: 5px
+}
+}
+@media (width: 414px) {
+
+  .homeicon {
+    
+     position: relative;
+     top: -2px;
+     left: 0px;
+   }
+   .Hometxt
+   {
+     position: relative;
+     left: -80px;
+   }
+ .onlinepredictionicon{
+   position: relative;
+   top: 0px;
+   left: 0px;
+   
+ }
+ .predicttxt{
+   position: relative;
+   left: -80px;
+ }
+ .Contacttxt{
+   position: relative;
+   left: -80px;
+ }
+ .connect{
+   position: relative;
+   top: 0px;
+   left: 0px;
+  
+ }
+ 
+ .logouticon{
+   position: relative;
+   top: -70px;
+   left: -20px;
+ }
+ .dropbtn{
+   position: relative;
+  top: -95px;
+  left: 5px
+ }
+ .profileimg{
+  position: relative;
+  top: -189px;
+  left: 40px;
+ 
+}
+ }

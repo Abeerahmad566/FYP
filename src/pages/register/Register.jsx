@@ -97,7 +97,7 @@ const Register = () => {
       // for (var key of formData.entries()) {
       //   console.log(key[0] + ", " + key[1]);
       // }
-      formData.append("fristname", Firstname);
+      formData.append("firstname", Firstname);
       formData.append("lastname", lastname);
       formData.append("email", email);
       formData.append("phonenumber", phonenumber);
@@ -221,8 +221,9 @@ const Register = () => {
             <br />
 
             <label htmlFor="fileInput">
-              <i style={{ background: "aqua", borderRadius: "50px", width: "30px", height: "30px", padding: "6px", marginRight: "60px" }} className=" fas fa-plus fa-lg"></i>
+              <i style={{ marginTop:"10px",background: "aqua", borderRadius: "50px", width: "30px", height: "30px", padding: "6px", marginRight: "10px" }} className=" fas fa-plus fa-lg"></i>
             </label>
+            <b>Upload Image<i>(optional)</i></b>
             <input
            
               type="file"
@@ -230,9 +231,6 @@ const Register = () => {
               style={{ display: "none" }}
               onChange={imageFileSelectHandler}
             />
-
-
-
             <div style={{ color: "red" }}>{error}</div>
             <Link className="registerlink" to="/login">
               <b >Already a user? Login Here!</b>
