@@ -11,7 +11,7 @@ const Featureboxes = () => {
 
   //Get All Users
   const totalPrediction = async () => {
-    await axios.get("http://localhost:4000/api/informations/get/totalprediction").then((res) => {
+    await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/get/totalprediction").then((res) => {
       setTotal(res.data);
     });
   };
@@ -19,7 +19,7 @@ const Featureboxes = () => {
 
   //Get All Orders Count
   const totalApproved = async() => {
-    await axios.get("http://localhost:4000/api/informations/get/totalApproved").then((res) => {
+    await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/get/totalApproved").then((res) => {
       setApproved(res.data);
     });
   };
@@ -28,7 +28,7 @@ const Featureboxes = () => {
   //Get All Revenue
 
   const totalRejected = async () => {
-    await axios.get("http://localhost:4000/api/informations/get/totalRejected").then((res) => {
+    await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/get/totalRejected").then((res) => {
       setRejected(res.data);
     });
   };

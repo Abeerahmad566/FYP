@@ -32,7 +32,7 @@ export default function Topbar(props) {
         <Nav.Link className="Contacttxt" style={{marginLeft: '20%',color:'white' }} href="/adminpanel"><AdminPanelSettingsIcon className="connect" />Admin</Nav.Link>
       }
       </Nav>
-    <Nav.Link  style={{marginLeft: '20%'}} href="/profile"><img className="profileimg" src={user.photo? "http://localhost:4000/"+user.photo:nophoto}/></Nav.Link>
+    <Nav.Link  style={{marginLeft: '20%'}} href="/profile"><img className="profileimg" src={user.photo? "https://loanpredictionfypapi.herokuapp.com/"+user.photo:nophoto}/></Nav.Link>
    <Nav.Link  onClick={(e) => {
             userService.logout();
             window.location.href = "/login";

@@ -29,7 +29,7 @@ export default function BasicTable() {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/informations/stats");
+        const res = await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/stats");
         console.log(res.data)
         res.data.map((item) =>
           setStats((prev) => [

@@ -116,7 +116,7 @@ export default function PendingLoans() {
     const formData = new FormData();
    formData.append("status", Status);
 
-   await axios.put(`http://localhost:4000/api/informations/updatestatus/`+id,{id,formData})
+   await axios.put(`https://loanpredictionfypapi.herokuapp.com/api/informations/updatestatus/`+id,{id,formData})
       .then((response) => {
          console.log(response.status)  
          getdata();
