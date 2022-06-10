@@ -1,12 +1,4 @@
 
-.homepagepic {
-  height: calc(70vh);
-
-  background-image: url(../img/homepage.jpg);
-
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
 .btnwrapper {
  
 margin-right: 30%;
@@ -21,9 +13,45 @@ margin-right: 30%;
 .tableWrapper {
   overflow: auto;
 }
+.bold{
+  font-size: 30px;
+    font-weight: 700;
+    margin-left: 37%;
+  }
+  .pbold{
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 39%;
+  }
+  .makeprediction{
+   font-size: large;
+   border: none;
+   background-color: #0071D4;
+   border-radius: 5%;
+   color: aliceblue;
+   margin-top: 1%;
+   text-decoration: none;
+  }
+  .makeprediction:hover{
+    color: aliceblue;
+    text-decoration: none;
+  }
 
 @media (max-width: 500px) {
   .homepagepic {
     height: calc(17vh);
   }
+  .bold{
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 20%;
+  }
+  .makeprediction{
+    font-size: small; 
+    }
+    .pbold{
+      font-size: 20px;
+    font-weight: 700;
+    margin-left: 20%;
+    }
 }

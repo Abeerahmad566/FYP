@@ -1,0 +1,18 @@
+
+  .appldoctable{
+    overflow-y: scroll;
+    width: 1500px;
+    margin-left: 10%;
+    margin-top: 20%;
+  }
+  .userdocimg:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  .outsignuserdoc{
+    margin-left: 125%;
+  }
+  .outsignuserdoc:hover{
+    cursor: pointer;
+    opacity: 0.5;
+  }

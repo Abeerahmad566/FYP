@@ -1,11 +1,24 @@
+
+.rgstrpic{
+  margin-top: 10%;
+}
 .rgstrtxt {
   font-size: 50px;
+  color: #1e90ff;
+ 
 }
-
+.registerInput{
+  border:1px solid#ccc;
+  border-radius: 5px;
+  height: 30px;
+}
+.registerInput:focus{
+  border:1px solid black
+}
 .registerButton {
   margin-top: 20px;
   cursor: pointer;
-  background-color: darkslategray;
+  background-color: #1e90ff;
   border: none;
   color: white;
   border-radius: 10px;
@@ -13,11 +26,14 @@
 }
 .btnimg{
 border: none;
-background-color: darkslategray;
+background-color: 1e90ff;
 color: aliceblue;
 padding: 5px;
 border-radius: 20%;
 margin-top: 1%;
+}
+.fa-lg:hover{
+cursor:pointer
 }
 @media (max-width: 500px) {
   .rgstrpic {

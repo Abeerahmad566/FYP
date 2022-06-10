@@ -1,6 +1,7 @@
 
 .lgntxt {
   font-size: 6vw;
+  color: #1e90ff;
 }
 .imgWrapper {
   width: 100%;
@@ -17,19 +18,23 @@
 .siginbtn {
   margin-top: 20px;
   cursor: pointer;
-  background-color: darkslategray;
+  background-color: #1e90ff;
   border: none;
   color: white;
   border-radius: 10px;
   padding: 10px;
 }
 
-.registerlink {
-  text-decoration: none;
+.registerlink:hover {
+  opacity: 0.5;
+}
+.fgpsslink:hover{
+  opacity: 0.5;
 }
 .fgpsslink {
   text-decoration: none;
-  margin-left: 13%;
+  margin-left: 8%;
+  margin-top: 2%;
 }
 @media (max-width: 500px) {
   .lgntxt {

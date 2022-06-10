@@ -24,7 +24,7 @@ useEffect(getdata, []);
       {users && users.map((user)=>(  <Topbar user={user}/>))}
 <div className="profile">
     <div className="headerprofile">
-        <b>Edit Your Profile</b>
+        <b>Your Profile</b>
 </div>
 </div>
 <div className="profilefields">

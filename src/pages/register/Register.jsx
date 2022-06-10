@@ -9,7 +9,9 @@ import './register.css'
 import validator from 'validator'
 import useState from 'react-usestateref';
 import nophoto from "../img/nophoto.jpg"
-const Register = () => {
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowUpFromBracket} from '@fortawesome/free-solid-svg-icons'
+const Register = (props) => {
   const [error, setError] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -17,9 +19,11 @@ const Register = () => {
   const [lastname, setlastName, LastnameRef] = useState("");
   const [phonenumber, setphonenumber] = React.useState("");
   const [Confirmpassword, setConfirmPassword] = React.useState("");
+  const[nameError,setnameError]=useState("");
   const [stateimg, setStateimg] = React.useState({
     photo: "",
   });
+
   const emlverfication = (e) => {
     const eml = e.target.value;
     setEmail(eml);
@@ -34,20 +38,20 @@ const Register = () => {
     const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
 
     if (!name.test(FirstnameRef.current)) {
-      setError("Invalid ")
+      setnameError("Invalid firstname! It must contain all Alphabets")
     }
-    else if (FirstnameRef.current !== "") {
-      setError("")
+    else if (name.test(FirstnameRef.current)) {
+      setnameError("")
     }
   }
   const lnverfication = () => {
     const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
 
     if (!name.test(LastnameRef.current)) {
-      setError("Invalid ")
+      setnameError("Invalid lastname! It must contain all Alphabets")
     }
-    else if (LastnameRef.current !== "") {
-      setError("")
+    else if (name.test(LastnameRef.current)) {
+      setnameError("")
     }
   }
   const pnverfication = (e) => {
@@ -66,24 +70,47 @@ const Register = () => {
   const checkvalidation = (e) => {
     if (Firstname == "") {
       setError("Please Enter First Name")
+      toast.error("Please Enter First Name",{
+        position: "top-right",
+        theme: "colored"
+      });
     }
     else if (lastname == "") {
       setError("Please Enter Last Name")
+      toast.error("Please Enter Last Name",{
+        position: "top-right",
+        theme: "colored"
+      });
     }
     else if (email == "") {
       setError("Please Enter Email")
+      toast.error("Please Enter Email",{
+        position: "top-right",
+        theme: "colored"
+      });
     }
     else if (!email.includes("@")) {
       setError("Enter Valid Email")
     }
     else if (phonenumber == "") {
       setError("Please Enter Phone Number")
+      toast.error("Please Enter Phone Number",{
+        position: "top-right",
+        theme: "colored"
+      });
     }
     else if (phonenumber.length > 11 || phonenumber.length < 11) {
       setError("Enter 11 digits Number")
+      toast.error("Enter 11 digits Number",{
+        position: "top-right",
+        theme: "colored"
+      });
     }
 
-
+else if (password.length<8)
+{
+  setError("Please Enter 8 or more Characters Password")
+}
     else if (password == "") {
 
       setError("Please Enter Password")
@@ -94,16 +121,26 @@ const Register = () => {
     else {
       e.preventDefault();
       const formData = new FormData();
-      // for (var key of formData.entries()) {
-      //   console.log(key[0] + ", " + key[1]);
-      // }
       formData.append("firstname", Firstname);
       formData.append("lastname", lastname);
       formData.append("email", email);
       formData.append("phonenumber", phonenumber);
       formData.append("password", password);
       formData.append("photo", stateimg.photo);
-      console.log(Firstname)
+     if(error){
+      toast.error(error,{
+        position: "top-right",
+        theme: "colored"
+      });
+    }
+      else if(nameError){
+      toast.error(nameError,{
+        position: "top-right",
+        theme: "colored"
+      });
+      
+     }
+     else{
       userService
         .register(formData)
         .then((data) => {
@@ -125,6 +162,7 @@ const Register = () => {
           });
         });
     }
+  }
   }
   const checkcnfpasswordvaldiation = (e) => {
     const confmpass = e.target.value
@@ -154,10 +192,12 @@ const Register = () => {
           <div className="col-sm">
             <span className="rgstrtxt">Register</span>
             <br />
-            <label style={{ marginTop: '20px' }}>Enter Your First Name</label>
+            <label style={{ marginTop: '20px' }}><b>Enter Your First Name</b></label>
             <br />
-            <TextField
-              placeholder="Enter First Name"
+            <input
+              placeholder="John"
+              className="registerInput"
+              type='text'
               value={Firstname}
               onChange={(e) => {
                 setFirstName(e.target.value)
@@ -165,10 +205,11 @@ const Register = () => {
               }}
             />{" "}
             <br />
-            <label style={{ marginTop: '20px' }}>Enter Your Last Name</label>
+            <label style={{ marginTop: '20px' }}><b>Enter Your Last Name</b></label>
             <br />
-            <TextField
-              placeholder="Enter Last Name"
+            <input
+              placeholder="Doe"
+              className="registerInput"
               value={lastname}
               onChange={(e) => {
                 setlastName(e.target.value)
@@ -176,52 +217,56 @@ const Register = () => {
               }}
             />{" "}
             <br />
-            <label style={{ marginTop: '20px' }}>Enter Your Email</label>
+            <label style={{ marginTop: '20px' }}><b>Enter Your Email</b></label>
             <br />
-            <TextField
-              placeholder="Enter Email"
+            <input
+              placeholder="johndoe@gmail.com"
               type="email"
+              className="registerInput"
               value={email}
               onChange={(e) => {
                 emlverfication(e);
               }}
             />{" "}
             <br />
-            <label style={{ marginTop: '20px' }}>Enter Your Phone Number</label>
+            <label style={{ marginTop: '20px' }}><b>Enter Your Phone Number</b></label>
             <br />
-            <TextField
-              placeholder="Enter Phone Number"
+            <input
+              placeholder="03414180005"
               type="number"
+              className="registerInput"
               value={phonenumber}
               onChange={(e) => {
                 pnverfication(e);
               }}
             />{" "}
             <br />
-            <label style={{ marginTop: '20px' }}>Enter Your Password</label>
+            <label style={{ marginTop: '20px' }}><b>Enter Your Password</b></label>
             <br />
-            <TextField
+            <input 
               type="password"
-              placeholder="Enter  Password"
+              placeholder="********"
+              className="registerInput"
               value={password}
               onChange={(e) => {
                 pssverfication(e);
               }}
             />{" "}
             <br />
-            <label style={{ marginTop: '20px' }} >Enter Confrim Password</label>
+            <label style={{ marginTop: '20px' }} ><b>Enter Confrim Password</b></label>
             <br />
-            <TextField
+            <input 
               value={Confirmpassword}
               type="password"
               className="registerInput"
-              placeholder="Enter confirm Password"
+              placeholder="********"
               onChange={(e) => checkcnfpasswordvaldiation(e)}
             />
             <br />
 
             <label htmlFor="fileInput">
-              <i style={{ marginTop:"10px",background: "aqua", borderRadius: "50px", width: "30px", height: "30px", padding: "6px", marginRight: "10px" }} className=" fas fa-plus fa-lg"></i>
+              {/* <i  className=" fa-solid fa-arrow-up-from-bracket"></i> */}
+              <FontAwesomeIcon style={{marginTop:'40%',paddingRight:'10px'}}  icon={faArrowUpFromBracket} className="fa-lg" />
             </label>
             <b>Upload Image<i>(optional)</i></b>
             <input
@@ -232,6 +277,7 @@ const Register = () => {
               onChange={imageFileSelectHandler}
             />
             <div style={{ color: "red" }}>{error}</div>
+            <div style={{ color: "red" }}>{nameError}</div>
             <Link className="registerlink" to="/login">
               <b >Already a user? Login Here!</b>
             </Link>
@@ -242,7 +288,7 @@ const Register = () => {
                 checkvalidation
               }
             >
-              SignUp
+              Register
             </button>
           </div>
         </div>

@@ -5,6 +5,8 @@ import { toast, ToastContainer } from "react-toastify";
 import  useState from 'react-usestateref';
 import nophoto from "../img/nophoto.jpg"
 import axios from 'axios'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowUpFromBracket} from '@fortawesome/free-solid-svg-icons'
 const User = (props)=>{
     const {user,history}=props
     const [firstname,setfirstname,FirstnameRef]=useState("")
@@ -17,13 +19,16 @@ const User = (props)=>{
     const[file,setFile]=useState()
     const userid = userService.getLoggedInUser()._id;
     const [error,seterror]=useState("")
+    const[IsEnabled , setIsEnabled] = useState(true)
     const [stateimg, setStateimg] = useState({
       photo: "",
     });
     const imageFileSelectHandler = (e) => {
       setStateimg({
         photo: e.target.files[0],
+        
       });
+      setIsEnabled(false)
     };
     const updatepassword=()=>{
         if(password=="")
@@ -145,7 +150,7 @@ const User = (props)=>{
       formData.append("photo", stateimg.photo);
     userService
             .updateUserImg(userid,formData)
-            .then((data) => {
+            .then(() => {
                 toast.success( "Image Updated SuccessFully",{
                     position: "top-right",
                     theme:"colored"
@@ -161,12 +166,13 @@ const User = (props)=>{
   
     return(
         <div className="main">
-            <div className="row">
-                <div className="col-sm">
-                  <img style={{borderRadius:"150px",width:"300px",height:"300px",marginLeft:"10%",marginTop:"-75%"}}src={user.photo? "http://localhost:4000/"+user.photo:nophoto}></img>
-                  
-                <label htmlFor="fileInput">
-            <i  className="imguploadlogo fas fa-plus fa-4x"></i>
+            <div className="centerdiv">
+               
+                  <img className="changeimg" src={user.photo? "http://localhost:4000/"+user.photo:nophoto}></img>
+                  <br/>
+                
+                <label htmlFor="fileInput" >
+                <div className="icon"><FontAwesomeIcon   icon={faArrowUpFromBracket} className="faicon fa-2x" /></div>
           </label>
           <input
             type="file"
@@ -174,16 +180,18 @@ const User = (props)=>{
             style={{ display: "none"}}
             onChange={imageFileSelectHandler}
           />
-       <Button variant="outline-info" size="sm" className="uploadbtn" onClick={handleimgupdate}>Upload Image</Button>
-                </div>
-               <div className="col2 col-sm">
+          
+       <Button disabled = {IsEnabled} variant="outline-info"  className="uploadbtn" onClick={handleimgupdate}>Change Image</Button>
+                
             {!showpasswordfld &&
             <>
-            <label
-            style={{paddingRight:"42px"}}>
-               <b>Change First Name</b>
+            <br/>
+            <label className="mt-4 changefirstname"
+             style={{paddingRight:"45px"}}>
+               <b >Change First Name</b>
             </label>
             <input
+            className="changefirstnamefield"
             type="text"
              placeholder={user.firstname}
             onChange={(e) => {
@@ -192,10 +200,12 @@ const User = (props)=>{
               } }/>
               <br/>
               <label
-              style={{paddingRight:"44px"}}>
+              className="mt-3 changelastname"
+                style={{paddingRight:"45px"}}>
                <b>Change Last Name</b>
             </label>
             <input
+            className="changelastnamefield"
             type="text"
              placeholder={user.lastname}
             onChange={(e) => {
@@ -204,10 +214,13 @@ const User = (props)=>{
               } }/>
                 <br/>
               <label
+              className="mt-3 changephonenumber"
+              
               style={{paddingRight:"10px"}}>
               <b> Change Phone Number</b>
             </label>
             <input
+            className="changephonenumberfield"
             type="number"
             placeholder={user.phonenumber}
             onChange={(e) => {
@@ -219,43 +232,53 @@ const User = (props)=>{
               </>
             }
             {showpasswordfld &&
-<>
+<> <br/>
              <label
-             style={{paddingRight:"12px"}}>
+             className="mt-4 changepassword"
+           
+             style={{paddingRight:"13px"}}>
               <b> Change Password</b>
             </label>
             <input
+              className="passwordfield"
             type="password"
             value={password}
             onChange={(e) => {
                 setpassword(e.target.value);
               } }/>
                   <br/>
-                  <label     
+                  <label   
+                  className="mt-3 confrimpassword"  
                   style={{paddingRight:"10px"}}>
                <b>Confirm Password</b>
             </label>
             <input
+            className="confrimpasswordfield"
         type="password"
             value={confrimpassword}
             onChange={(e)=>checkcnfpasswordvaldiation (e)}/>
               </>
             }
                   <br/>
-                  {!showpasswordfld && <Button style={{marginRight:"40px"}}  variant="primary"onClick={updatedata}>Update Profile</Button>}
-                  {!showpasswordfld && <Button variant="primary" onClick={()=>{setshowpasswordfld(true)}}>Update Password</Button>}
+                  {!showpasswordfld && <Button style={{marginRight:"40px"}} className="updateprofile"  variant="outline-info"onClick={updatedata}>Update Profile</Button>}
+                  {!showpasswordfld && <Button variant="outline-info" className="updatepassword"onClick={()=>{setshowpasswordfld(true)}}>Update Password</Button>}
                
                  {showpasswordfld && 
-                 <><Button variant="primary"
-                    style={{ marginRight: "5%", marginLeft: "5%" }}
+                 <><Button variant="outline-info"
+                
+                 className="backbtn"
+                    
                     onClick={() => {
                         setshowpasswordfld(false);
                         console.log(showpasswordfld);
                     } }
                 >Back</Button>
-                        <Button onClick={() => {
+                        <Button
+                      className="changepasswordbtn"
+                        onClick={() => {
                             updatepassword();
-                        } } variant="primary">Change Password</Button>
+                        } } variant="outline-info"
+                        >Change Password</Button>
                   {error}
                     </>
                     
@@ -265,7 +288,7 @@ const User = (props)=>{
                   <ToastContainer/>
         </div>
         </div>
-          </div>
+          
     );
 }
 export default User;

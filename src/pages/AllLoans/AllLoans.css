@@ -1,0 +1,26 @@
+
+.bodydiv{
+ 
+    height: 750px;
+ width: 1500px;
+ position: relative;
+ left:50px;
+ top:20px;
+    
+    border-radius: 5%;
+}
+.allloantable{
+ 
+        width: 1450px;
+        margin-left: 3%;
+    overflow-y: scroll;
+   
+}
+.outsign{
+    cursor: pointer;
+    margin-left: 125%;
+    margin-top: 2%;
+}
+.outsign:hover{
+    opacity: 0.5;
+}

@@ -61,39 +61,41 @@ else if(password ==""){
       <div className="col-sm">
         <span className="lgntxt">Login</span>
         <br />
-        <label>Enter Email</label>
+        <label><b>Enter Email</b></label>
         <br />
-        <TextField
+        <input
         type="email"
-          placeholder="Enter your email"
+          placeholder="johndoe@gmail.com"
+          className="registerInput"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
           } } />
         <br />
-        <label style={{ marginTop: '20px' }}>Enter Password</label>
+        <label style={{ marginTop: '20px' }}><b>Enter Password</b></label>
         <br />
-        <TextField
+        <input
           type="password"
-          placeholder="Enter Password"
+          placeholder="*********"
+          className="registerInput"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           } } />
         <br />
         <Link className="fgpsslink" to="/enteremail">
-        <i >ForgotPassword!</i>
+        Forgot Password!
         </Link>
         <br/>
         <Link className="registerlink" to="/register">
-        <b >not a user?Register here!</b>
+        <b >Not a user? Register here!</b>
         </Link>
         <br />
         <div style={{color:"red"}}>{loginerror}</div>
         <button
           className="siginbtn"
           onClick={checkvalidation}
-        >Sigin
+        >Log in 
         </button>
         </div>
       </div>

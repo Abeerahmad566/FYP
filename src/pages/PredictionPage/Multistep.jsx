@@ -13,19 +13,26 @@ import Topbar from "../TopBar/Topbar";
 import Button from 'react-bootstrap/Button'
 import {Stepper,StepLabel,Step} from "@material-ui/core"
 import CircularProgress from '@mui/material/CircularProgress';
+import {makeStyles } from "@material-ui/core"
+import { Tick } from 'react-crude-animated-tick';
+import {Table} from "react-bootstrap"
+import bg from "../img/bg.jpg"
+import validator from 'validator'
 
 const MultiStep = () => {
+  const userRole= userService.getLoggedInUser().role;
   const[age,setage,ageRef]= useState("");
-  const[CurrentJobYears,setCurrentJobYears]= React.useState("");
-  const[CurrentHouseYears,setCurrentHouseYears]= React.useState("");
-  const[income,setincome]= React.useState("");
-  const[married,setmarried]= React.useState("")
-  const[Profession,setProfession]= React.useState("Select Profession");
-  const[CarOwnership,setCarOwnership]= React.useState("");
-  const[HouseOwnership,setHouseOwnership]= React.useState("Select House OwnerShip");
-  const[Experience,setExperience]= React.useState("");
-  const [result,setresult]=React.useState("");
-  const [error, setError] = React.useState("");
+  const[CurrentJobYears,setCurrentJobYears,currentjobyearsRef]= useState("");
+  const[CurrentHouseYears,setCurrentHouseYears,currenthouseyearsRef]= useState("");
+  const[income,setincome,incomeRef]= useState("");
+  const[married,setmarried]= useState("")
+  const[Profession,setProfession]= useState("Select Profession");
+  const[CarOwnership,setCarOwnership]= useState("");
+  const[HouseOwnership,setHouseOwnership]= useState("Select House OwnerShip");
+  const[Experience,setExperience,experienceRef]= useState("");
+  const [result,setresult]=useState("");
+  const [error, setError] = useState("");
+  const [orgerror, setorgError] = useState("");
   const[firstStep,setfirstStep]= useState(true)
   const[secondStep,setsecondStep]= useState(false)
   const[thirdStep,setthirdStep]= useState(false)
@@ -36,32 +43,167 @@ const[Secondnextbtn,setSecondnextbtn]=useState(false)
 const[showresult,setshowresult]=useState(false)
 const[thirdbackButton,setthirdbackButton]=useState(false)
 const[Submitbtn,setsubmitBtn]=useState(false)
-const [progress, setProgress] = React.useState(0);
+const [loanamount, setloanamount,LoanamountRef] = useState("");
+const [email, setEmail] = React.useState(userService.getLoggedInUser().email);
+const[nameError,setnameError]=useState("");
+  const [firstname, setfirstName, FirstnameRef] = useState(userService.getLoggedInUser().firstname);
+  const [lastname, setlastName, LastnameRef] = useState(userService.getLoggedInUser().lastname);
+const[cnic,setcnic]=useState("");
+const[address,setaddress]=useState("");
+const [photo, setphoto] = useState([]);
+const[designation,setdesignation]=useState("");
+const[organizationname,setorganizationname,OrganizationnameRef]=useState("");
+const[organizationaddress,setorganizationaddress]=useState("");
+const useStyles = makeStyles(() => ({
+  root: {
+    "& .MuiStepIcon-active": { color: "#005CA9", fontSize: "1.6rem",
+  '@media(max-width:500px)':{color: "#005CA9", fontSize: "1rem"},
+  },
+    "& .MuiStepLabel-active": { color: "#005CA9", fontSize: "1.6rem",
+    '@media(max-width:500px)':{color: "#005CA9", fontSize: "1rem"},
+   },
+    "& .MuiStepIcon-completed": { color: "#005CA9", fontSize: "1.5rem" ,
+    '@media(max-width:500px)':{color: "#005CA9", fontSize: "0.8rem"},
+  },
+    "& .MuiStepLabel-completed": { color: "#005CA9", fontSize: "1.5rem",
+    '@media(max-width:500px)':{color: "#005CA9", fontSize: "0.8rem"},
+  },
+    "& .Mui-Z .MuiStepIcon-root": {
+      color: "grey",
+      fontSize: "1.5rem",
+      '@media(max-width:500px)':{color: "grey", fontSize: "0.8rem"},
+    },
+  },
+}));
 
+const c = useStyles();
+const emlverfication = (e) => {
+  const eml = e.target.value;
+  setEmail(eml);
+  if (!validator.isEmail(email)) {
+    setError("Enter Valid Email")
+  }
+  else if (email != "") {
+    setError("")
+  }
+}
+const fnverfication = () => {
+  const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
 
-const postdata =()=>
+  if (!name.test(FirstnameRef.current)) {
+    setnameError("Invalid firstname! It must contain all Alphabets")
+  }
+  else if (name.test(FirstnameRef.current)) {
+    setnameError("")
+  }
+}
+const lnverfication = () => {
+  const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
+
+  if (!name.test(LastnameRef.current)) {
+    setnameError("Invalid lastname! It must contain all Alphabets")
+  }
+  else if (name.test(LastnameRef.current)) {
+    setnameError("")
+  }
+}
+const cnicvalidation=(e)=>{
+  var regexp = new RegExp('^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$');
+  setcnic(e.target.value)
+  if (!regexp.test(cnic)) {
+    setError("Please Enter Valid CNIC")
+    // toast.error("Please Enter Valid CNIC ", {
+    //   position: "top-right",
+    //   theme: "colored"
+    // });
+
+}
+    else if(regexp.test(cnic)){
+      setError("")
+    }
+}
+const addressvalidation=(e)=>{
+  setaddress(e.target.value)
+}
+const designationvalidation=(e)=>{
+  setdesignation(e.target.value)
+}
+const organizationnamevalidation=(e)=>{
+  setorganizationname(e.target.value)
+  const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
+  if (!name.test(OrganizationnameRef.current)) {
+    setorgError("Invalid Organization Name! It must contain all Alphabets")
+  }
+  else if (name.test(OrganizationnameRef.current)) {
+    setorgError("")
+  }
+
+}
+const organizationaddressvalidation=(e)=>{
+  setorganizationaddress(e.target.value)
+}
+const postdata =(e)=>
 {
 if(result){
+    const formData = new FormData();
+    Object.values(photo).forEach(photo=>{
+      formData.append("photo", photo);
+    });
+    formData.append("userid", userid);
+    formData.append("firstname", firstname);
+    formData.append("lastname", lastname);
+    formData.append("email", email);
+      formData.append("age", age);
+      formData.append("income", income);
+      formData.append("carownership", CarOwnership);
+      formData.append("currenthouseyears", CurrentHouseYears);
+      formData.append("married", married);
+      formData.append("profession", Profession);
+      formData.append("currentjobyears", CurrentJobYears);
+      formData.append("experience", Experience);
+      formData.append("Houseownership", HouseOwnership);
+      formData.append("cnic", cnic);
+      formData.append("address", address);
+      formData.append("designation", designation);
+      formData.append("organizationname", organizationname);
+      formData.append("organizationaddress", organizationaddress);
+      formData.append("loanamount", loanamount);
+      formData.append("result", result);
+      formData.append("userRole",userRole)
+      if(result=='Approved')
+      {
+        if(userRole=='superAdmin')
+        {
+          formData.append("status","Approved")
+        }
+        else if(userRole=='admin')
+        {
+          formData.append("status","Approved")
+        }
+        else{
+      formData.append("status","Pending")
+        }
+      }
+      else{
+        formData.append("status","Rejected")
+      }
 infromationService
-      .addInformation(userid,age,income,CarOwnership,CurrentHouseYears,married,Profession,CurrentJobYears,Experience,HouseOwnership,result)
+      .addInformation(formData)
         .then(() => {
-          setage("")
-          setincome("")
-          setCarOwnership("")
-          setCurrentHouseYears("")
-          setCurrentJobYears("")
-          setmarried("")
-          setExperience("")
-         setProfession("Select Profession")
-         setHouseOwnership("Select House OwnerShip")
         
         })
         .catch((err) => {
           console.log(err);
-        });
+        }); 
+
 }
 }
 React.useEffect(postdata,[result])
+
+const onChangephoto = (e) => {
+  console.log(e.target.files);
+  setphoto(e.target.files)
+};
 
 const HouseOwnershipval=(e)=>{
   setHouseOwnership(e)
@@ -73,8 +215,6 @@ setError("")
   
 }
   const agevalidation=(e)=>{
-
-      
     setage(e.target.value)
     if(ageRef.current.includes("-")){
       setage("")
@@ -83,7 +223,17 @@ setError("")
       setError("")
     }
   }
+  const loanamountvalidation=(e)=>{
 
+      
+    setloanamount(e.target.value)
+    if(LoanamountRef.current.includes("-")){
+      setloanamount("")
+    }
+    if(loanamount!=""){
+      setError("")
+    }
+  }
   const profnvalidation=(e)=>{
     
      setProfession(e)
@@ -95,7 +245,10 @@ setError("")
   const incmevalidation=(e)=>{
     
       setincome(e.target.value)
-   if(income!=""){
+      if(incomeRef.current.includes("-")){
+        setincome("")
+      }
+  else if(income!=""){
       setError("")
     }
   }
@@ -103,13 +256,19 @@ setError("")
   const crhouseyearsvalidation=(e)=>{
     
       setCurrentHouseYears(e.target.value)
-     if(CurrentHouseYears!=""){
+      if(currenthouseyearsRef.current.includes("-")){
+        setCurrentHouseYears("")
+      }
+     else if(CurrentHouseYears!=""){
       setError("")
     }
   }
 
   const crjobyearsvalidation=(e)=>{
-    setCurrentJobYears(e.target.value) 
+    setCurrentJobYears(e.target.value)
+    if(currentjobyearsRef.current.includes("-")){
+      setCurrentJobYears("")
+    }
     if(CurrentJobYears!=""){
       setError("")
     }
@@ -119,16 +278,25 @@ setError("")
   const expvalidation=(e)=>{
    
       setExperience(e.target.value)
-    if(Experience!=""){
+      if(experienceRef.current.includes("-")){
+        setExperience("")
+      }
+    else if(Experience!=""){
       setError("")
     }
   }
 
   const checkvaldiation= async()=>  {
     if(age==""){
-      setError("Please Enter Age")
+      toast.error("Please Enter Age", {
+        position: "top-right",
+        theme: "colored"
+      });
     }
-   else if(income==""){setError("Please Enter income")}
+   else if(income==""){toast.error("Please Enter Income", {
+    position: "top-right",
+    theme: "colored"
+  });}
    else if(CarOwnership=="")
    {
      
@@ -137,9 +305,18 @@ setError("")
     theme: "colored"
   });
 }
-   else if(married==""){setError("Please Enter RelationShip Status")}
-   else if(CurrentJobYears==""){setError("Please Enter CurrentJobYears")}
-   else if(Profession=="Select Profession"){setError("Please Select Profession")}
+   else if(married==""){toast.error("Please Select Martial Status", {
+    position: "top-right",
+    theme: "colored"
+  });}
+   else if(CurrentJobYears==""){toast.error("Please Enter Current Job Years", {
+    position: "top-right",
+    theme: "colored"
+  });}
+   else if(Profession=="Select Profession"){toast.error("Please Enter Profession", {
+    position: "top-right",
+    theme: "colored"
+  });}
    else if(HouseOwnership=="Select House OwnerShip")
    {
      
@@ -157,14 +334,85 @@ setError("")
   });}
    else if(Experience=="")
    {
-    setError("Please Enter Experience")
+    toast.error("Please Enter Experience", {
+      position: "top-right",
+      theme: "colored"
+    });
    }
+   else if(cnic=="")
+   {
+    toast.error("Please Enter CNIC", {
+      position: "top-right",
+      theme: "colored"
+    });
+   }
+   else if(address=="")
+   {
+    toast.error("Please Enter Address", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+    
+    
+    else if(designation=="")
+    {
+      toast.error("Please Enter Your Designation", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
+    else if(organizationname=="")
+    {
+      toast.error("Please Enter Your Organization Name", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
+    else if(organizationaddress=="")
+    {
+      toast.error("Please Enter Your Organization Address", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
+   
+    else if(photo=="")
+    {
+      toast.error("Please Upload Your CNIC Photo, Job/Business Card, Electricity,Gas,Water Bills Photo", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
+    else if(photo.length<5)
+    {
+      setError("Please Upload Your CNIC Photo, Job/Business Card, Electricity,Gas,Water Bills Photo")
+      toast.error("Please Upload Your CNIC Photo, Job/Business Card, Electricity,Gas,Water Bills Photo", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
+    
+    else if(loanamount <20000 ||loanamount>=200000)
+    {
+      toast.error("Please Enter Loan Amount between 20,000 and 200,000", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
+    else if(loanamount=="")
+    {
+      toast.error("Please Enter Your Loan Amount", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
 else{
   setshowresult(true)
   setthirdStep(false)
   setthirdbackButton(false)
   setsubmitBtn(false)
-   await axios.post("https://loanpredictionfyp.herokuapp.com/api/informations/predict",{
+   await axios.post("https://loanpredictionfypapi.herokuapp.com/api/informations/predict",{
 //await axios.post("http://localhost:4000/api/informations/predict",{
     Income:income,
     Age:age,
@@ -200,8 +448,65 @@ else{
 useEffect(getdata, []);
 
 const handleNextStep=()=>{
+  
+  if (firstname == "") {
+    setError("Please Enter First Name")
+    toast.error("Please Enter First Name",{
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if (lastname == "") {
+    setError("Please Enter Last Name")
+    toast.error("Please Enter Last Name",{
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if (email == "") {
+    setError("Please Enter Email")
+    toast.error("Please Enter Email",{
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if (!email.includes("@")) {
+    setError("Enter Valid Email")
+  }
+  var regexp = new RegExp('^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$');
   setresult("")
-  if(age==""){
+  if(cnic=="")
+  {
+    toast.error("Please Enter CNIC", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+ 
+  else if (!regexp.test(cnic)) {
+    setError("Please Enter Valid CNIC")
+    toast.error("Please Enter Valid CNIC ", {
+      position: "top-right",
+      theme: "colored"
+    });
+
+}
+
+  else if(address=="")
+  {
+    toast.error("Please Enter  House Address", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if(age<18)
+  {
+    toast.error("Age Must be 18 or Above", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if(age==""){
   
     toast.error("Please Enter Age", {
       position: "top-right",
@@ -211,13 +516,27 @@ const handleNextStep=()=>{
   else if(married=="")
   {
    
-  toast.error("Please Enter RelationShip Status", {
+  toast.error("Please Enter Martial Status", {
     position: "top-right",
     theme: "colored"
   });
 }
+else if(error){
+  toast.error(error,{
+    position: "top-right",
+    theme: "colored"
+  });
+}
+  else if(nameError){
+  toast.error(nameError,{
+    position: "top-right",
+    theme: "colored"
+  });
+  
+ }
   
  else{
+   
    setError("")
   //onfirstpage
   setfirstStep(false)
@@ -229,12 +548,35 @@ const handleNextStep=()=>{
 
   setsecondbackButton(true)
  }
-}
+ }
 const handleNextStepsecond=()=>{
   if(CurrentJobYears=="")
   {
   
     toast.error("Please Enter CurrentJobYears", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if(CurrentJobYears>40)
+  {
+    toast.error("Job Years must be less than 40 years", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if(income<20000)
+  {
+    setError("Income must not be less than 20000")
+    toast.error("Income must not be less than 20000", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if(income>50000)
+  {
+    setError("Income must not be greater than 50000")
+    toast.error("Income must not be greater than 50000", {
       position: "top-right",
       theme: "colored"
     });
@@ -247,6 +589,14 @@ const handleNextStepsecond=()=>{
       theme: "colored"
     });
   }
+  else if(Experience>30)
+   {
+    setError("Experience must not be greater than 30")
+    toast.error("Experience must not be greater than 30", {
+      position: "top-right",
+      theme: "colored"
+    });
+   }
  else if(Experience=="")
    {
     setError("Please Enter Experience")
@@ -263,7 +613,39 @@ const handleNextStepsecond=()=>{
     theme: "colored"
   });
   }
+  else if(orgerror)
+{
+  console.log(orgerror)
+  toast.error(orgerror, {
+    position: "top-right",
+    theme: "colored"
+  });
+}
+  else if(designation=="")
+  {
+    toast.error("Please Enter Your Designation", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if(organizationname=="")
+  {
+    toast.error("Please Enter Your Organization Name", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if(organizationaddress=="")
+  {
+    toast.error("Please Enter Your Organization Address", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+ 
+    
  else {
+
   setError("")
   //onsecondpage
   setfirstStep(false)
@@ -278,7 +660,7 @@ const handleNextStepsecond=()=>{
 
   setsubmitBtn(true)
  }
-}
+ }
 
 const handlebackButton=()=>{
   setError("")
@@ -314,14 +696,18 @@ const steps = [
 ];
 
   return(
-    <><div>
+    <><div >
+
+      
       {users && users.map((user) => (
         <Topbar user={user} />
       ))}
 
 
-      <Box sx={{ width: '100%' }}>
-        <Stepper activeStep={firstStep ? 0 : secondStep ? 1 : 2}>
+      <Box >
+        <Stepper
+        className={c.root}
+        activeStep={firstStep ? 0 : secondStep ? 1 : 2}>
           {steps.map((label) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
@@ -330,46 +716,96 @@ const steps = [
         </Stepper>
       </Box>
     
-
+     
 
       <div className="container">
         <div className="firstStep">
         {firstStep &&
-          <>
-            <label style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Age</label><input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Your Age" InputProps={{ disableUnderline: true }}
+          <><div >
+            
+             <label ><b>First Name</b></label>
+            <input  class="form-control firstname" type="text"  InputProps={{ disableUnderline: true }}
+          value={firstname}
+          onChange={(e) => {
+            setfirstName(e.target.value)
+            fnverfication();
+          }}
+              />
+               <label ><b>Last Name</b></label>
+            <input  class="form-control lastname" type="text" value={lastname} 
+             onChange={(e) => {
+              setlastName(e.target.value)
+              lnverfication();
+            }}
+            InputProps={{ disableUnderline: true }}
+          
+              />
+               <label ><b>Email</b></label>
+            <input  class="form-control email" type="text" value={email} 
+            InputProps={{ disableUnderline: true }}
+            onChange={(e) => {
+              emlverfication(e);
+            }}  
+            />
+               <label ><b>CNIC</b></label>
+              
+            <input  class="form-control cnic" type="text" placeholder="e.g 11111-1111111-1" InputProps={{ disableUnderline: true }}
+              value={cnic}
+              onChange={(e) => {
+                cnicvalidation(e);
+              } } />
+            <label ><b> House Address</b></label>
+            <textarea className="form-control address"   rows="6" placeholder="House no, Street no, Area, City, Country" name="message"
+              value={address}
+              onChange={(e) => {
+                addressvalidation(e);
+              } } 
+              />
+               <label ><b>Age</b></label>
+            <input  class="form-control age" type="number" placeholder="Above 18" InputProps={{ disableUnderline: true }}
               value={age}
               onChange={(e) => {
                 agevalidation(e);
-              } } /><label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>RelationShip Status </label><RadioGroup value={married}>
+              } } />
+              <label class="mt-4" ><b>Martial Status</b></label>
+              <RadioGroup value={married}>
               <FormControlLabel value="married" control={<Radio checked={married.length === 0 ? false : married.includes("married") ? true : false} />} label="Married" onChange={() => setmarried("married")} />
               <FormControlLabel value="single" control={<Radio checked={married.length === 0 ? false : married.includes("single") ? true : false} />} label="Single" onChange={() => setmarried("single")} />
             </RadioGroup>
-          </>}
+
+            </div>
+
+          </>
+          }
           </div>
           <div className="secondStep">
         {secondStep &&
-          <><label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Current Job Years</label><input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Current Job Years"
+          <><label class="mt-4" ><b>Current Job Years</b></label>
+          <input  class="form-control currentjobyears" type="number" placeholder="Years of experience in the current job" InputProps={{ disableUnderline: true }}
             value={CurrentJobYears}
             onChange={(e) => {
               crjobyearsvalidation(e);
             } } />
 
-            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Income</label>
-            <input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Your Income"
+            <label class="mt-4" ><b>Income</b></label>
+            <input  class="form-control income" type="number" placeholder="e.g: 90000 PKR"
               value={income}
               onChange={(e) => {
                 incmevalidation(e);
               } } />
 
-            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Job Experience</label>
-            <input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Your Experience Years"
+            <label class="mt-4" ><b>Job Experience</b></label>
+            <input  class="form-control jobexperience"  type="number" placeholder="Professional experience of the user in years"
               value={Experience}
               onChange={(e) => {
                 expvalidation(e);
               } } />
 
+              
 
-<SplitButton class="mt-4"  id="dropdown-basic-button" title={Profession} size="sm"
+
+<label class="mt-4" ><b>Profession</b></label>
+<DropdownButton style={{marginLeft:'-1%'}}  id="dropdown-basic-button" title={Profession} size="md"
               drop={"down"}
               onSelect={(e) => profnvalidation(e)}>
               <Dropdown.Item eventKey="Mechanical_engineer">Mechanical Engineer</Dropdown.Item>
@@ -424,32 +860,70 @@ const steps = [
               <Dropdown.Item eventKey="Industrial_Engineer">Industrial Engineer</Dropdown.Item>
               <Dropdown.Item eventKey="Technology_specialist">Technology Specialist</Dropdown.Item>
 
-              </SplitButton>
+              </DropdownButton>
 
+              <label class="mt-4" ><b>Designation</b></label>
+            <input  class="form-control designation"  type="text" placeholder="e.g: OG2"
+              value={designation}
+              onChange={(e) => {
+                designationvalidation(e);
+              } } />
+
+<label class="mt-4" ><b>Organization Name</b></label>
+            <input  class="form-control organizationname"  type="text" placeholder="e.g: Abeer Solutions"
+              value={organizationname}
+              onChange={(e) => {
+                organizationnamevalidation(e);
+              } } />
+
+<label class="mt-4" ><b>Organization Address</b></label>
+<textarea className="form-control organizationaddress"   rows="6" placeholder="Staff Welfare Organization G-6, Aabpara, Islamabad." name="message"
+              value={organizationaddress}
+              onChange={(e) => {
+                organizationaddressvalidation(e);
+              } } 
+              />
           </>}
           </div>
           <div className="thirdStep">
         {thirdStep &&
           <>
-            <label style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Car OwnerShip</label><RadioGroup>
+            <label ><b>Car OwnerShip</b></label><RadioGroup>
               <FormControlLabel value="Yes" control={<Radio checked={CarOwnership.length === 0 ? false : CarOwnership.includes("yes") ? true : false} />} label="Yes" onChange={() => setCarOwnership("yes")} />
               <FormControlLabel value="No" control={<Radio checked={CarOwnership.length === 0 ? false : CarOwnership.includes("no") ? true : false} />} label="No" onChange={() => setCarOwnership("no")} />
             </RadioGroup>
 
-            <label class="mt-4" style={{ backgroundColor: "#005CA9", display: "block", width: "40%" }}>Current House Years</label>
-            <input style={{ width: "40%" }} class="form-control" type="number" placeholder="Enter Current House Years"
+            <label class="mt-4" ><b>Residence Duration</b></label>
+            <input class="form-control currenthouseyears" type="number" placeholder="Number of years in the current residence"
               value={CurrentHouseYears}
               onChange={(e) => {
                 crhouseyearsvalidation(e);
               } } />
-
-              <DropdownButton className="mt-4" id="dropdown-basic-button" title={HouseOwnership} size="sm"
+<label class="mt-4" ><b>House Ownership</b></label>
+              <DropdownButton id="dropdown-basic-button" style={{marginLeft:'-1%'}} title={HouseOwnership} size="sm"
               onSelect={(e) => HouseOwnershipval(e)}>
               <Dropdown.Item eventKey="rented">Rented</Dropdown.Item>
               <Dropdown.Item eventKey="owned">Owned</Dropdown.Item>
               <Dropdown.Item eventKey="norent_noown">Other</Dropdown.Item>
             </DropdownButton>
-
+            <label ><b>Upload CNIC, Job/Business Card, Bills Images</b></label>
+         <br/>
+          <input
+            type='file'
+            className='file'
+            multiple
+            onChange={(e)=>onChangephoto(e)}
+          />
+          <i style={{fontSize:'0.9rem',color:'grey'}}>(jpeg,png,file)</i>
+          <br/>
+         <i style={{fontSize:'0.9rem',color:'grey'}}>(Front back cnic and job card and each electricity,gas and water bills image)</i>
+         <br/>
+            <label class="mt-4" ><b>Loan Amount</b></label>
+            <input class="form-control loanamount" type="number" placeholder="You can Maximam loan of 200,000"
+              value={loanamount}
+              onChange={(e) => {
+                loanamountvalidation(e);
+              } } />
           </>}
           </div>
         <br />
@@ -457,26 +931,108 @@ const steps = [
           <Button className="secondStep" variant="outline-primary" onClick={handlebackButton}>
             Back</Button>}
         {firstnextbtn &&
-          <Button className="firstStep" variant="outline-primary" onClick={handleNextStep}>
+          <Button className="firstStep"  variant="outline-primary" onClick={handleNextStep}>
             Next</Button>}
         {thirdbackButton && <Button className="thirdStep" variant="outline-primary" onClick={handlebackButtonthird}>
           Back</Button>}
         {Secondnextbtn &&
-          <Button variant="outline-primary" onClick={handleNextStepsecond}>
+          <Button variant="outline-primary"className="nextStepsecond" onClick={handleNextStepsecond}>
             Next</Button>}
         {Submitbtn &&
-          <Button variant="outline-primary" onClick={checkvaldiation}>
+          <Button variant="outline-primary" className="submitprediction"onClick={checkvaldiation}>
             Submit</Button>}
         {showresult &&
           <>
 
             <div className="resultb">
-              <b style={{ backgroundColor: "#005ca9", padding: "5px", borderRadius: "10%" }}>Result</b>
+              
               <br />
             {!result&&
               <CircularProgress style={{marginLeft: "45%"}} />
             }
-              <div style={{ marginLeft: "40%" }}><b>{result}</b></div>
+              <div style={{ marginLeft: "20%" }}>
+                {result && result=="Approved"?
+                <div className="">
+                   
+                <Table striped bordered hover>
+               <thead>
+                 <tr>
+                   <th><b>Age</b></th>
+                   <th><b>Income</b></th>
+                   <th><b>Car Ownership</b></th>
+                   <th><b>RelationShip Status</b></th>
+                   <th><b>Current House Years</b></th>
+                   <th><b>Profession</b></th>
+                   <th><b>Current Job Years</b></th>
+                   <th><b>Experience</b></th>
+                   <th><b>House Ownership</b></th>
+                   <th><b>Prediction Result</b></th>
+                 
+                 </tr>
+               </thead>
+               <tbody>
+               <tr>
+                  <td style={{textAlign:'center'}} >{age}</td>
+                  <td  style={{textAlign:'center'}}>{income}</td>
+                  <td  style={{textAlign:'center'}}>{CarOwnership}</td>
+                  <td style={{textAlign:'center'}}> {married}</td>
+                  <td style={{textAlign:'center'}}>{CurrentHouseYears}</td>
+                  <td style={{textAlign:'center'}} >{Profession}</td>
+                  <td style={{textAlign:'center'}} >{CurrentJobYears}</td>
+                  <td style={{textAlign:'center'}} >{Experience}</td>
+                  <td style={{textAlign:'center'}} >{HouseOwnership}</td>
+                  <td style={{textAlign:'center'}} >{result}</td>
+                  </tr>
+               </tbody>
+               </Table>
+               <b style={{color:'green'}}>Conditional Loan Approved against these Information</b>
+                   <Tick size={100} />
+               <p style={{color:'red'}}>Credentials Verification required by Bank Adminstration</p>
+                </div>
+                :result=="Rejected"?
+                
+                
+                <>
+             <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th><b>Age</b></th>
+                <th><b>Income</b></th>
+                <th><b>Car Ownership</b></th>
+                <th><b>RelationShip Status</b></th>
+                <th><b>Current House Years</b></th>
+                <th><b>Profession</b></th>
+                <th><b>Current Job Years</b></th>
+                <th><b>Experience</b></th>
+                <th><b>House Ownership</b></th>
+                <th><b>Prediction Result</b></th>
+              
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style={{textAlign:'center'}} >{age}</td>
+                <td  style={{textAlign:'center'}}>{income}</td>
+                <td  style={{textAlign:'center'}}>{CarOwnership}</td>
+                <td style={{textAlign:'center'}}> {married}</td>
+                <td style={{textAlign:'center'}}>{CurrentHouseYears}</td>
+                <td style={{textAlign:'center'}} >{Profession}</td>
+                <td style={{textAlign:'center'}} >{CurrentJobYears}</td>
+                <td style={{textAlign:'center'}} >{Experience}</td>
+                <td style={{textAlign:'center'}} >{HouseOwnership}</td>
+                <td style={{textAlign:'center'}} >{result}</td>
+                </tr>
+            </tbody>
+            </Table>
+            <b style={{color:'red'}}>Conditional Loan Rejected against these Information</b>
+                {/* <div  class="cross-icon cross-delete animateDeleteIcon" style="display: block;">
+                <span class="cross-x-mark animateXMark"/>
+                  <span class="cross-delete-line cross-delete-left"></span>
+                  <span class="cross-delete-line cross-delete-right"></span>
+                  </div>  */}
+                  </>
+            :"" }
+              </div>
 
 
             </div>

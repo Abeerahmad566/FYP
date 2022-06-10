@@ -3,12 +3,17 @@ class InformationService extends GenericService {
   constructor() {
     super();
   }
-  addInformation = (userid,age,income,carownership,currenthouseyears,married,profession,currentjobyears,experience,Houseownership,result) => 
-  this.post("informations", {userid,age,income,carownership,currenthouseyears,married,profession,currentjobyears,experience,Houseownership,result});
-  
+  addInformation = (data) => this.post("informations", data);
+  addCnic = (data) => this.post("informations/uploadcnic", data);
+  addCard = (data) => this.post("informations/uploadcard", data);
   getInformation = (id) => this.get("informations/" + id);
-  deleteInformation = (id) => this.delete("Informations/" + id);
+  getallInformation = () => this.get("informations/");
+  deleteInformation = (id) => this.delete("informations/" + id);
+  updateInformation = (id, data) =>
+    this.put("informations/updatestatus/" + id, data);
+  getpendingInformation = () => this.get("informations/pendingloandata/");
+  getuserspictures = (id) => this.get("informations/getuserspictures/" + id);
 }
 
-let infromationService = new InformationService();
-export default infromationService;
+let informationService = new InformationService();
+export default informationService;

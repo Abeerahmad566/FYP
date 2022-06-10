@@ -1,0 +1,7 @@
+.applicantdocuments{
+    text-decoration: none;
+}
+.applicantdocuments:hover{
+cursor: pointer;
+opacity: 0.5;
+}

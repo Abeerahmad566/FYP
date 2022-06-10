@@ -5,6 +5,9 @@ class UserService extends GenericService {
     super();
   }
   getUser = (id) => this.get("users/" + id);
+  getUsers = () => this.get("users/users/");
+  getAdmins = () => this.get("users/admins/");
+  deleteUser = (id) => this.delete("users/" + id);
   updateUser = (_id, data) => this.put("users/updateprofile/" + _id, data);
 
   updateUserImg = (id, data) => this.put("users/updateprofileimg/" + id, data);
@@ -43,6 +46,16 @@ class UserService extends GenericService {
     } catch (ex) {
       return null;
     }
+  };
+  isAdmin = () => {
+    if (this.isLoggedIn()) {
+      if (
+        this.getLoggedInUser().role == "admin" ||
+        this.getLoggedInUser().role == "superAdmin"
+      )
+        return true;
+      else return false;
+    } else return false;
   };
 }
 
