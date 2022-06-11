@@ -1,4 +1,12 @@
 
 .pendingloantable{
-   
+   overflow-y: auto;
+}
+.npendingbold{
+font-size: 30px;
+font-weight: 700;
+}
+.pendingbold{
+   font-size: 30px;
+font-weight: 700;
 }

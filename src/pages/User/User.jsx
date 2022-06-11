@@ -147,6 +147,7 @@ const User = (props)=>{
   const handleimgupdate=(e)=>{
     e.preventDefault();
       const formData = new FormData();
+      console.log(stateimg.photo)
       formData.append("photo", stateimg.photo);
     userService
             .updateUserImg(userid,formData)
@@ -168,7 +169,7 @@ const User = (props)=>{
         <div className="main">
             <div className="centerdiv">
                
-                  <img className="changeimg" src={user.photo? "http://localhost:4000/"+user.photo:nophoto}></img>
+                  <img className="changeimg" src={user.photo? user.photo:nophoto}></img>
                   <br/>
                 
                 <label htmlFor="fileInput" >

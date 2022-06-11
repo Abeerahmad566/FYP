@@ -13,6 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 export default function Topbar(props) {
  const {user,history}=props
+ const name = userService.getLoggedInUser().firstname;
  const role = userService.getLoggedInUser().role;
      return(
 <div >
@@ -32,7 +33,8 @@ export default function Topbar(props) {
         <Nav.Link className="Contacttxt" style={{marginLeft: '20%',color:'white' }} href="/adminpanel"><AdminPanelSettingsIcon className="connect" />Admin</Nav.Link>
       }
       </Nav>
-    <Nav.Link  style={{marginLeft: '20%'}} href="/profile"><img className="profileimg" src={user.photo? "https://loanpredictionfypapi.herokuapp.com/"+user.photo:nophoto}/></Nav.Link>
+      <Nav.Link  style={{marginLeft: '20%'}} >Welcome {name}</Nav.Link>
+    <Nav.Link  style={{marginLeft: '20%'}} href="/profile"><img className="profileimg" src={user.photo?user.photo:nophoto}/></Nav.Link>
    <Nav.Link  onClick={(e) => {
             userService.logout();
             window.location.href = "/login";

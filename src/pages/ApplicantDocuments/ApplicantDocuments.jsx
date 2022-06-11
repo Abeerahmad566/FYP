@@ -5,6 +5,7 @@ import useState from 'react-usestateref';
 import {Table} from 'react-bootstrap'
 import "./ApplicantDocuments.css"
 import { UilSignOutAlt } from "@iconscout/react-unicons";
+import Admin from "../../components/Admin"
 export default function ApplicantDocuments(props) {
    const [userpictures,setuserpictures]=useState([])
    const search = useLocation().search;
@@ -25,10 +26,12 @@ export default function ApplicantDocuments(props) {
    React.useEffect(getdata, []);
    
     return(
+      <>
+      <Admin>
         <div className="App">
         <div className="AppGlass">
             <div className="appldoctable">
-        <Table striped bordered hover>
+        <Table striped bordered hover style={{backgroundColor:"white"}}>
             <thead>
               <tr>
 
@@ -36,7 +39,7 @@ export default function ApplicantDocuments(props) {
                </thead>
                <tbody>
         {userpictures && userpictures.map((userpicture) => (
-              <tr> <td onClick={()=> window.open(userpicture)}><img className='userdocimg' src={userpicture}></img></td></tr>
+              <tr> <td style={{textAlign:"center"}} onClick={()=> window.open(userpicture)}><img className='userdocimg' src={userpicture}></img></td></tr>
              
                  ))}
          </tbody>
@@ -45,5 +48,7 @@ export default function ApplicantDocuments(props) {
                     <UilSignOutAlt className="outsignuserdoc" onClick={() => {  window.location.href = "/allloans" } }></UilSignOutAlt>
             </div>
             </div>
+            </Admin>
+      </>
     )
 }

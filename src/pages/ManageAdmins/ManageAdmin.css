@@ -1,4 +1,17 @@
 
 .manageadminstable{
-    margin-left: -20%;
+    background-color: white;
+    overflow-y: scroll;
+    margin-left: -70%;
+    
+}
+.existingadminbold{
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 40%;
+}
+.nexistingadminbold{
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 40%;
 }

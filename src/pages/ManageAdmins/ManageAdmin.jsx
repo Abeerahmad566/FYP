@@ -17,6 +17,7 @@ import {
 
 
 } from "@iconscout/react-unicons";
+import Admin from "../../components/Admin"
 export default function ManageAdmin() {
 
   const [selectedprediction, setselectedprediction] = useState(false);
@@ -79,6 +80,8 @@ export default function ManageAdmin() {
         
      React.useEffect(getdata, []);
     return (
+      <>
+      <Admin>
       <div className="App">
       <div className="AppGlass">
         <div className="body">
@@ -121,14 +124,15 @@ export default function ManageAdmin() {
     </>
             </div>
             <div className="col-sm">
-        <div className="Table pendingloantable">
+        
               
                
    {informations.length==0 &&
-   <p style={{paddingTop:'30px',marginRight:'50%'}}><b className='bold'>No Existing Admins</b></p>}
-   {informations.length >0 &&
-  <><p style={{paddingTop:'30px',marginRight:'50%'}}><b className='pbold' >Existing Admins</b></p>
-   <Table striped bordered hover  responsize className="manageadminstable">
+   <p style={{paddingTop:'30px',marginLeft:'-70%'}}><b className='nexistingadminbold'>No Existing Admins</b></p>}
+   
+  <p style={{paddingTop:'30px',marginLeft:'-70%'}}><b className='existingadminbold' >Existing Admins</b></p>
+  <div className="Table manageadminstable">
+   <Table striped bordered hover  responsize >
    <thead>
                  <tr>
                  <th style={{textAlign:'center'}}><b>First Name</b></th>
@@ -145,8 +149,15 @@ export default function ManageAdmin() {
                  ))}
                    
                </tbody>
-             </Table></>
-}
-            </div></div></div></div></div></div>
+             </Table>
+
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </Admin>
+      </>
     )
 }

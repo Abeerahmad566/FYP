@@ -18,7 +18,7 @@
   cursor: pointer;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  background-color: #1e90ff !important;
+  background-color: #2d86df !important;
   text-align: center !important;
 }
 .featuredItem_2 {
@@ -29,7 +29,7 @@
   cursor: pointer;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  background-color: #1eff7c !important;
+  background-color: #34da79 !important;
   text-align: center !important;
 }
 .featuredItem_3 {
@@ -40,7 +40,7 @@
   cursor: pointer;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  background-color:#ff1e1e!important;
+  background-color:#e03232!important;
   text-align: center !important;
   /* margin-right: 20px !important; */
 }

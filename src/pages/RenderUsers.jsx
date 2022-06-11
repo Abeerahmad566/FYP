@@ -5,7 +5,7 @@ export default function RenderUsers(props){
     return (
         <>
     
-    <tr>
+    <tr >
       <td style={{textAlign:'center'}}>{information.firstname}</td>
       <td  style={{textAlign:'center'}}>{information.lastname}</td>
       <td  style={{textAlign:'center'}}>{information.phonenumber}</td>

@@ -12,7 +12,7 @@ import useState from 'react-usestateref';
 import nophoto from "../img/nophoto.jpg"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowUpFromBracket} from '@fortawesome/free-solid-svg-icons'
-
+import Admin from "../../components/Admin"
 const AdminRegister = () => { 
     const [error, setError] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -183,7 +183,10 @@ const AdminRegister = () => {
         window.location.href = "/adminpanel"
     }
     return (
-      <> <section class="vh-100" style={{ backgroundColor: "#68b1fa" }}>
+      
+      <>
+      <Admin>
+       <section class="vh-100" style={{ backgroundColor: "#68b1fa" }}>
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
@@ -313,6 +316,8 @@ const AdminRegister = () => {
           </div>
           <ToastContainer />
         </div>
-      </section></>
+      </section>
+      </Admin>
+      </>
 )}
 export default AdminRegister;

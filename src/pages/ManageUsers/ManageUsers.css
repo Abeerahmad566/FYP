@@ -1,4 +1,15 @@
 
 .manageuserstable{
-    margin-left: -20%;
+    background-color: white;
+    overflow-y: scroll;
+    margin-left: -70%;
+    height: 650px;
+}
+.manageusersbold{
+    font-size: 30px;
+    font-weight: 700;
+}
+.nmanageusersbold{
+    font-size: 30px;
+    font-weight: 700; 
 }

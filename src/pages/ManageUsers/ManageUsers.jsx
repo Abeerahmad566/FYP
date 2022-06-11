@@ -17,6 +17,7 @@ import {
 
 
 } from "@iconscout/react-unicons";
+import Admin from "../../components/Admin"
 export default function ManageUsers() {
 
   const [selectedprediction, setselectedprediction] = useState(false);
@@ -79,11 +80,15 @@ export default function ManageUsers() {
         
      React.useEffect(getdata, []);
     return (
+      <>
+      <Admin>
+
+     
       <div className="App">
       <div className="AppGlass">
         <div className="body">
         <div className="row bodydiv" >
-            <div className="col-sm ">
+            <div className="col-sm">
             <>
       <div className="bars" style={expanded?{left: '60%'}:{left: '5%'}} onClick={()=>setExpaned(!expanded)}>
         <UilBars />
@@ -119,33 +124,40 @@ export default function ManageUsers() {
     </motion.div>
     </>
             </div>
-            <div className="col-sm">
-        <div className="Table pendingloantable">
-              
-               
+            <div className="col-sm">  
    {informations.length==0 &&
-   <p style={{paddingTop:'30px',marginRight:'50%'}}><b className='bold'>No Existing Users</b></p>}
+   <p style={{paddingTop:'30px'}}><b className='nmanageusersbold'>No Existing Users</b></p>}
    {informations.length >0 &&
-  <><p style={{paddingTop:'30px',marginRight:'50%'}}><b className='pbold' >Existing Users</b></p>
-   <Table striped bordered hover  responsize className="manageuserstable">
-   <thead>
-                 <tr>
-                 <th style={{textAlign:'center'}}><b>First Name</b></th>
-                   <th style={{textAlign:'center'}}><b>Last Name</b></th>
-                   <th style={{textAlign:'center'}}><b>Phone Number</b></th>
-                   <th style={{textAlign:'center'}}><b>Email</b></th>
-                   <th style={{textAlign:'center'}}><b>Role</b></th>
-                   <th style={{textAlign:'center'}}><b>Action</b></th>
-                 </tr>
-               </thead>
-               <tbody>
-                 {informations && informations.map((information) => (
-                   <RenderUsers information={information} onDelete={getdata} />
-                 ))}
-                   
-               </tbody>
-             </Table></>
+   
+  <><p style={{ paddingTop: '30px'}}><b className='manageusersbold'>Existing Users</b></p>
+  <div className="manageuserstable">
+                    <Table striped bordered hover responsize>
+                      <thead>
+                        <tr>
+                          <th style={{ textAlign: 'center' }}><b>First Name</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Last Name</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Phone Number</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Email</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Role</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Action</b></th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                        {informations && informations.map((information) => (
+                          <RenderUsers information={information} onDelete={getdata} />
+                        ))}
+
+                      </tbody>
+                    </Table>
+                  </div></>
+            
 }
-            </div></div></div></div></div></div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </Admin>
+      </>
     )
 }

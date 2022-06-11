@@ -11,16 +11,28 @@
 }
 .allloantable{
  
-        width: 1450px;
-        margin-left: 3%;
+        width: 1500px;
+    margin-left: -10%;
     overflow-y: scroll;
+    background-color: white;
+    margin-top: 20%;
+margin-left: -380%;
    
 }
-.outsign{
+.alloutsign{
     cursor: pointer;
     margin-left: 125%;
     margin-top: 2%;
+  
 }
-.outsign:hover{
+.alloutsign:hover{
     opacity: 0.5;
+}
+.existingloansbold{
+    font-size: 30px;
+    font-weight: 700;
+    position: relative;
+    left:600px;
+    white-space: nowrap;
+    margin-top: 2%;
 }

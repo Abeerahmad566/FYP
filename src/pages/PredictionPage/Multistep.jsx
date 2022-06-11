@@ -189,6 +189,7 @@ if(result){
       }
 infromationService
       .addInformation(formData)
+
         .then(() => {
         
         })
@@ -565,22 +566,15 @@ const handleNextStepsecond=()=>{
       theme: "colored"
     });
   }
-  else if(income<20000)
+  else if(income<1000)
   {
-    setError("Income must not be less than 20000")
-    toast.error("Income must not be less than 20000", {
+    setError("Income must not be less than 1000")
+    toast.error("Income must not be less than 1000", {
       position: "top-right",
       theme: "colored"
     });
   }
-  else if(income>50000)
-  {
-    setError("Income must not be greater than 50000")
-    toast.error("Income must not be greater than 50000", {
-      position: "top-right",
-      theme: "colored"
-    });
-  }
+  
   else if(income=="")
   {
     setError("Please Enter income")
@@ -951,7 +945,8 @@ const steps = [
               <CircularProgress style={{marginLeft: "45%"}} />
             }
               <div style={{ marginLeft: "20%" }}>
-                {result && result=="Approved"?
+                {result && result=="Approved"? userRole=="user"?
+    
                 <div className="">
                    
                 <Table striped bordered hover>
@@ -985,10 +980,48 @@ const steps = [
                   </tr>
                </tbody>
                </Table>
-               <b style={{color:'green'}}>Conditional Loan Approved against these Information</b>
+               <b style={{color:'green'}}>Conditional Loan is Due to Approved against these Information</b>
                    <Tick size={100} />
                <p style={{color:'red'}}>Credentials Verification required by Bank Adminstration</p>
                 </div>
+          :
+          <div className="">
+                   
+          <Table striped bordered hover>
+         <thead>
+           <tr>
+             <th><b>Age</b></th>
+             <th><b>Income</b></th>
+             <th><b>Car Ownership</b></th>
+             <th><b>RelationShip Status</b></th>
+             <th><b>Current House Years</b></th>
+             <th><b>Profession</b></th>
+             <th><b>Current Job Years</b></th>
+             <th><b>Experience</b></th>
+             <th><b>House Ownership</b></th>
+             <th><b>Prediction Result</b></th>
+           
+           </tr>
+         </thead>
+         <tbody>
+         <tr>
+            <td style={{textAlign:'center'}} >{age}</td>
+            <td  style={{textAlign:'center'}}>{income}</td>
+            <td  style={{textAlign:'center'}}>{CarOwnership}</td>
+            <td style={{textAlign:'center'}}> {married}</td>
+            <td style={{textAlign:'center'}}>{CurrentHouseYears}</td>
+            <td style={{textAlign:'center'}} >{Profession}</td>
+            <td style={{textAlign:'center'}} >{CurrentJobYears}</td>
+            <td style={{textAlign:'center'}} >{Experience}</td>
+            <td style={{textAlign:'center'}} >{HouseOwnership}</td>
+            <td style={{textAlign:'center'}} >{result}</td>
+            </tr>
+         </tbody>
+         </Table>
+         <b style={{color:'green'}}>Conditional Loan is Approved against these Information</b>
+             <Tick size={100} />
+       
+          </div>
                 :result=="Rejected"?
                 
                 

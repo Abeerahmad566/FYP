@@ -3,7 +3,7 @@ import {Table} from "react-bootstrap"
 import "./PendingLoans.css";
 import userService from "../../services/UserService";
 import InformationService from "../../services/InformationService";
-
+import PendingInformation from "../PendingInformation/PendingInformation"
 import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from 'framer-motion/dist/framer-motion'
@@ -22,6 +22,7 @@ import { toast, ToastContainer } from "react-toastify";
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import  useState  from 'react-usestateref'
+import Admin from "../../components/Admin"
 export default function PendingLoans() {
 
     
@@ -105,29 +106,11 @@ export default function PendingLoans() {
      }
         
      React.useEffect(getdata, []);
-     const [Status,setStatus]=useState("Pending") ;
- 
- const id = informations._id;
- console.log("database "+informations.status)
- console.log("frontend "+Status)
- 
-
-   const updateInformation =async()=>{
-    const formData = new FormData();
-   formData.append("status", Status);
-
-   await axios.put(`https://loanpredictionfypapi.herokuapp.com/api/informations/updatestatus/`+id,{id,formData})
-      .then((response) => {
-         console.log(response.status)  
-         getdata();
-      })
-      .catch((error) => console.log(error));
- }
- {Status == 'Approved' || Status == 'Rejected' &&
-updateInformation()
- }
+     
     return (
-      <div className="App">
+      <>
+      <Admin>
+              <div className="App">
                 <div className="AppGlass">
         <div className="body">
         <div className="row bodydiv" >
@@ -169,81 +152,49 @@ updateInformation()
     </>
             </div>
             <div className="col-sm">
-        <div className="Table pendingloantable">
+      
               
                
    {informations.length==0 &&
-   <p style={{paddingTop:'80px',marginLeft:'-80%'}}><b className='bold'>No Pending Loans</b></p>}
-   {informations.length >0 &&
-  <><p style={{paddingTop:'30px',marginRight:'30%'}}><b className='pbold' >Pending Loans</b></p>
-   <Table striped bordered hover  responsize className="pendingloantable">
-               <thead>
-                 <tr>
-                 <th style={{textAlign:'center'}}><b>Prediction By</b></th>
-                 <th style={{textAlign:'center'}} ><b>Applicant CNIC</b></th>
-                 <th style={{textAlign:'center'}} ><b>Documents</b></th>
-                   <th style={{textAlign:'center'}}><b>Age</b></th>
-                   <th style={{textAlign:'center'}}><b>Income</b></th>
-                   <th style={{textAlign:'center'}}><b>Car Ownership</b></th>
-                   <th style={{textAlign:'center'}}><b>RelationShip Status</b></th>
-                   <th style={{textAlign:'center'}}><b>Current House Years</b></th>
-                   <th style={{textAlign:'center'}}><b>Profession</b></th>
-                   <th style={{textAlign:'center'}}><b>Current Job Years</b></th>
-                   <th style={{textAlign:'center'}}><b>Experience</b></th>
-                   <th style={{textAlign:'center'}}><b>House Ownership</b></th>
-                   <th style={{textAlign:'center'}}><b>Prediction Result</b></th>
-                   <th style={{textAlign:'center'}}><b>Status</b></th>
-                  
-                 </tr>
-               </thead>
-               <tbody>
-                 {informations && informations.map((information) => (
-                    <>
+   <p style={{paddingTop:'80px'}}><b className='npendingbold'>No Pending Loans</b></p>}
+{informations.length>0&&
+  <><p style={{ paddingTop: '30px', marginRight: '0%' }}><b className='pendingbold'>Pending Loans</b></p><div className="pendingloantable">
+                    <Table striped bordered hover responsize className="">
+                      <thead>
+                        <tr>
+                          <th style={{ textAlign: 'center' }}><b>Prediction By</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Applicant CNIC</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Documents</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Age</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Income</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Car Ownership</b></th>
+                          <th style={{ textAlign: 'center' }}><b>RelationShip Status</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Current House Years</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Profession</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Current Job Years</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Experience</b></th>
+                          <th style={{ textAlign: 'center' }}><b>House Ownership</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Prediction Result</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Status</b></th>
 
-                    {information.result &&
-                     
-                 <tr>
-                    <td style={{textAlign:'center'}} >{information.firstname} {information.lastname}</td>
-                    <td style={{textAlign:'center'}} >{information.cnic} </td>
-                    <td style={{textAlign:'center'}} ><Link to={`/applicantdocuments/?backUrl=${information._id}`}
-                     className='applicantdocuments'>View</Link></td> 
-                   <td style={{textAlign:'center'}} >{information.age}</td>
-                   <td  style={{textAlign:'center'}}>{information.income}</td>
-                   <td  style={{textAlign:'center'}}>{information.carownership}</td>
-                   <td style={{textAlign:'center'}}> {information.married}</td>
-                   <td style={{textAlign:'center'}}>{information.currenthouseyears}</td>
-                   <td style={{textAlign:'center'}} >{information.profession}</td>
-                   <td style={{textAlign:'center'}} >{information.currentjobyears}</td>
-                   <td style={{textAlign:'center'}} >{information.experience}</td>
-                   <td style={{textAlign:'center'}} >{information.Houseownership}</td>
-                   <td style={makeStyle(information.result)} >{information.result}</td>
-                  
-                   <td><DropdownButton   id="dropdown-basic-button" title={Status} size="sm"
-                           drop={"down"}
-                           className="pendinginformationdropdown"
-                           >
-                           <Dropdown.Item value="Approved" onClick={() =>{
-                             setStatus("Approved")
-             
-                         }
-                              } >Approved</Dropdown.Item>
-                           <Dropdown.Item value="Rejected" onClick={(e) =>{
-                         
-                         }
-                              }>Rejected</Dropdown.Item>
-                           </DropdownButton>
-                           </td>
-                           
-                   
-                 </tr>
-                 }
-                 </>
-                 ))}
-                   
-               </tbody>
-             </Table></>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {informations && informations.map((information) => (
+
+                          <PendingInformation information={information} changestatus={getdata} />
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div></>
 }
-            </div></div></div></div>
-            </div></div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </Admin>
+      </>
+
     )
 }
