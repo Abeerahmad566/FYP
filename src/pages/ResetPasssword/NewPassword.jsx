@@ -42,6 +42,10 @@ import userService from "../../services/UserService";
         {
             setError("Please Enter Password")
         }
+        else if (password.length<8)
+{
+  setError("Please Enter 8 or more Characters Password")
+}
         else if (Confirmpassword=="")
         {
             setError("Please Enter Confirm Password")
@@ -69,7 +73,7 @@ import userService from "../../services/UserService";
               .catch((error) => {
                 swal({
                   title: 'Oops!',
-                  text: "Something Went Wrong",
+                  text: {error},
                   icon: 'error',
                   button: 'ok ',
                 });

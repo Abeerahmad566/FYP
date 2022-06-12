@@ -145,7 +145,7 @@ export default function PendingLoans() {
         <div className="menuItem"
         style={{position:'relative',top:"50px"}}
         >
-          <UilSignOutAlt  onClick={() => {  window.location.href = "/home" } }></UilSignOutAlt>
+          <UilSignOutAlt  onClick={() => {  window.location.href = "/adminpanel" } }></UilSignOutAlt>
         </div>
       </div>
     </motion.div>

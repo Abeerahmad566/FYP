@@ -4,6 +4,7 @@
    
    }
 
+
 .centerdiv{
    margin-left: 40%;
 }
@@ -75,6 +76,10 @@ color: #1e90ff;
    margin-left: -3%;
    height: 20px;
 }
+.oldpasswordfield{
+   margin-left: -3%;
+      height: 20px;
+  }
 .fa-4x{
    font-size: 1.5rem;
 }
@@ -160,6 +165,10 @@ color: #1e90ff;
       margin-left: -3%;
       height: 20px;
    }
+   .oldpasswordfield{
+      margin-left: -3%;
+         height: 20px;
+     }
    .fa-4x{
       font-size: 1.5rem;
    }
@@ -241,6 +250,10 @@ color: #1e90ff;
       margin-left: -3%;
       height: 20px;
    }
+   .oldpasswordfield{
+      margin-left: -3%;
+         height: 20px;
+     }
    .fa-4x{
       font-size: 1.5rem;
    }
@@ -321,6 +334,10 @@ color: #1e90ff;
       margin-left: -3%;
       height: 20px;
    }
+   .oldpasswordfield{
+      margin-left: -3%;
+         height: 20px;
+     }
    .fa-4x{
       font-size: 1.5rem;
    }
@@ -400,6 +417,10 @@ color: #1e90ff;
       margin-left: -3%;
       height: 20px;
    }
+  .oldpasswordfield{
+   margin-left: -3%;
+      height: 20px;
+  }
    .fa-4x{
       font-size: 1.5rem;
    }
@@ -707,6 +728,10 @@ color: #1e90ff;
    margin-left: -25%;
    height: 20px;
 }
+.oldpasswordfield{
+   margin-left: -25%;
+   height: 20px; 
+}
 .fa-4x{
    font-size: 1.5rem;
 }
@@ -753,6 +778,11 @@ color: #1e90ff;
    margin-left: 0%;
    height: 20px;
 }
+.oldpasswordfield{
+   margin-left: 0%;
+   height: 20px; 
+}
+
 .fa-4x{
    font-size: 1.5rem;
 }

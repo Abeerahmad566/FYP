@@ -107,6 +107,7 @@ useEffect(getuserdata, []);
                    <th><b>Experience</b></th>
                    <th><b>House Ownership</b></th>
                    <th><b>Prediction Result</b></th>
+                   <th><b>Status</b></th>
                    <th><b>Action</b></th>
                  </tr>
                </thead>

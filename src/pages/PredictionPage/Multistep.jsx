@@ -112,11 +112,6 @@ const cnicvalidation=(e)=>{
   setcnic(e.target.value)
   if (!regexp.test(cnic)) {
     setError("Please Enter Valid CNIC")
-    // toast.error("Please Enter Valid CNIC ", {
-    //   position: "top-right",
-    //   theme: "colored"
-    // });
-
 }
     else if(regexp.test(cnic)){
       setError("")
@@ -385,7 +380,7 @@ setError("")
         theme: "colored"
       });
     }
-    else if(photo.length<5)
+    else if(photo.length<1)
     {
       setError("Please Upload Your CNIC Photo, Job/Business Card, Electricity,Gas,Water Bills Photo")
       toast.error("Please Upload Your CNIC Photo, Job/Business Card, Electricity,Gas,Water Bills Photo", {
@@ -414,7 +409,6 @@ else{
   setthirdbackButton(false)
   setsubmitBtn(false)
    await axios.post("https://loanpredictionfypapi.herokuapp.com/api/informations/predict",{
-//await axios.post("http://localhost:4000/api/informations/predict",{
     Income:income,
     Age:age,
     Experience:Experience,
@@ -492,6 +486,10 @@ const handleNextStep=()=>{
     });
 
 }
+// else if (regexp.test(cnic)) {
+//   setError("")
+  
+// }
 
   else if(address=="")
   {
@@ -583,7 +581,7 @@ const handleNextStepsecond=()=>{
       theme: "colored"
     });
   }
-  else if(Experience>30)
+  else if(Experience>40)
    {
     setError("Experience must not be greater than 30")
     toast.error("Experience must not be greater than 30", {
@@ -980,7 +978,7 @@ const steps = [
                   </tr>
                </tbody>
                </Table>
-               <b style={{color:'green'}}>Conditional Loan is Due to Approved against these Information</b>
+               <b style={{color:'green'}}>Conditional Loan is awaited to Approved against these Information</b>
                    <Tick size={100} />
                <p style={{color:'red'}}>Credentials Verification required by Bank Adminstration</p>
                 </div>

@@ -6,6 +6,28 @@ import InformationService from "../../services/InformationService";
 const SingleInformation = (props) => {
 
     const {information,history,onDelete}=props
+    const makeStyle=(status)=>{
+      if(status === 'Approved')
+      {
+        return {
+          background: 'rgb(145 254 159 / 47%)',
+          color: 'green',
+        }
+      }
+      else if(status === 'Rejected')
+      {
+        return{
+          background: '#ffadad8f',
+          color: 'red',
+        }
+      }
+      else{
+        return{
+          background: '#59bfff',
+          color: 'white',
+        }
+      }
+    }
     return(
        <>
        {information.result&&
@@ -19,8 +41,8 @@ const SingleInformation = (props) => {
       <td style={{textAlign:'center'}} >{information.currentjobyears}</td>
       <td style={{textAlign:'center'}} >{information.experience}</td>
       <td style={{textAlign:'center'}} >{information.Houseownership}</td>
-      <td style={{textAlign:'center'}} >{information.result}</td>
-      <td style={{textAlign:'center'}} >{information.status}</td>
+      <td style={makeStyle(information.result)} >{information.result}</td>
+      <td style={makeStyle(information.status)} >{information.status}</td>
       <td style={{textAlign:'center'}}><Button variant="danger" style={{marginTop:"-8%"}}
       onClick={(e)=>{
         InformationService.deleteInformation(information._id).then((data) => {

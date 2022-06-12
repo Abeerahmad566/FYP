@@ -12,14 +12,14 @@ const AllInformation = (props) => {
   const id = information.userid;
   const[showpictures,setshowpictures]= useState(false);
     const makeStyle=(status)=>{
-      if(information.status === 'Approved')
+      if(status === 'Approved')
       {
         return {
           background: 'rgb(145 254 159 / 47%)',
           color: 'green',
         }
       }
-      else if(information.status === 'Rejected')
+      else if(status === 'Rejected')
       {
         return{
           background: '#ffadad8f',
@@ -51,7 +51,7 @@ const AllInformation = (props) => {
       <td style={{textAlign:'center'}} >{information.currentjobyears}</td>
       <td style={{textAlign:'center'}} >{information.experience}</td>
       <td style={{textAlign:'center'}} >{information.Houseownership}</td>
-      <td style={{textAlign:'center'}} >{information.result}</td>
+      <td style={makeStyle(information.result)} >{information.result}</td>
       <td style={makeStyle(information.status)} >{information.status}</td>
       {role=="superAdmin"&&
       <td style={{textAlign:'center'}}><Button variant="danger" size='sm'

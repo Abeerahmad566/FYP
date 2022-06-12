@@ -161,48 +161,48 @@
     overflow-y: scroll;
   }
   .firstname{
-    width:30%;
+    width:40%;
   }
   .lastname{
-    width: 30%;
+    width: 40%;
   }
   .email{
-    width: 30%;
+    width: 40%;
   }
   .cnic{
-    width: 30%;
+    width: 40%;
   }
   .address{
-    width: 30%;
+    width: 40%;
   }
   .age
 
   {
-    width: 30%;
+    width: 40%;
   }
   .currentjobyears{
-    width: 30%;
+    width: 40%;
   }
   .income{
-    width: 30%;
+    width: 40%;
   }
   .jobexperience{
-    width: 30%;
+    width: 40%;
   }
   .currenthouseyears{
-    width: 30%;
+    width: 40%;
   }
   .designation{
-    width: 30%;
+    width: 40%;
   }
   .organizationname{
-    width: 30%;
+    width: 40%;
   }
   .organizationaddress{
-    width: 30%;
+    width: 40%;
   }
   .loanamount{
-    width: 30%; 
+    width: 40%; 
   }
 @media (max-width:500px) { 
   .firstname{

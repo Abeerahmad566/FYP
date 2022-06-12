@@ -45,7 +45,7 @@ export default function ApplicantDocuments(props) {
          </tbody>
                     </Table>
                     </div>
-                    <UilSignOutAlt className="outsignuserdoc" onClick={() => {  window.location.href = "/allloans" } }></UilSignOutAlt>
+                    <UilSignOutAlt className="outsignuserdoc" onClick={() => {  window.location.href = "/adminpanel" } }></UilSignOutAlt>
             </div>
             </div>
             </Admin>

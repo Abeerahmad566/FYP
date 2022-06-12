@@ -31,23 +31,24 @@ const PendingInformation = (props) => {
       }
     }
     const {information,history,changestatus}=props
-    const [Status,setStatus]=useState("") ;
+    const [Status,setStatus]=useState("Pending") ;
  
  const id = information._id;
 
  
    const updateinformation =async(e)=>{
     setStatus(e)
-
-  // await axios.put(`http://localhost:4000/api/informations/updatestatus/`+id,{id:id,status:e})
-   await axios.put(`https://loanpredictionfypapi.herokuapp.com//api/informations/updatestatus/`+id,{id:id,status:e})
+   await axios.put(`https://loanpredictionfypapi.herokuapp.com/api/informations/updatestatus/`+id,{id:id,status:e})
       .then((response) => {
          console.log(response)  
          toast.success("Loan Successfully "+e, {
           position: "top-right",
           theme: "colored"
         });
-         changestatus();
+        setTimeout(function(){
+          changestatus();
+       }, 2000);
+         
       })
       .catch((error) => console.log(error));
     
@@ -75,7 +76,7 @@ const PendingInformation = (props) => {
       <td style={{textAlign:'center'}} >{information.Houseownership}</td>
       <td style={makeStyle(information.result)} >{information.result}</td>
      
-      <td><DropdownButton   id="dropdown-basic-button" title="Pending" size="sm"
+      <td><DropdownButton   id="dropdown-basic-button" title={Status} size="sm"
               drop={"down"}
               className="pendinginformationdropdown"
               onSelect={(e)=>updateinformation(e)}

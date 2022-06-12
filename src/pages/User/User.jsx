@@ -13,6 +13,7 @@ const User = (props)=>{
     const [lastname,setlastname,LastnameRef]=useState("")
     const [phonenumber,setphonenumber,PhonenumberRef]=useState("")
     const [password,setpassword]=useState("")
+    const [oldpassword,setoldpassword]=useState("")
     const [confrimpassword,setconfrimpassword]=useState("")
     const[showpasswordfld,setshowpasswordfld]=useState(false)
     const [photo,setphoto]=useState();
@@ -31,7 +32,14 @@ const User = (props)=>{
       setIsEnabled(false)
     };
     const updatepassword=()=>{
-        if(password=="")
+      if(oldpassword=="")
+      {
+        toast.error( "Old Password Field is Empty",{
+          position: "top-right",
+          theme:"colored"
+        });
+      }
+        else if(password=="")
         {
             
             toast.error( "Password Field is Empty",{
@@ -39,6 +47,14 @@ const User = (props)=>{
                 theme:"colored"
               });
         }
+        else if (password.length<8)
+{
+
+  toast.error( "Please Enter 8 or more Characters Password",{
+    position: "top-right",
+    theme:"colored"
+  });
+}
         else if(confrimpassword=="")
         {
             toast.error( "Confirm Password Field is Empty",{
@@ -50,7 +66,7 @@ const User = (props)=>{
             seterror("")
            
         userService
-            .updateUserpassword(userid,  {password})
+            .updateUserpassword(userid,  {oldpassword,password})
             .then((data) => {
                 toast.success( "Password Updated SuccessFully",{
                     position: "top-right",
@@ -61,10 +77,12 @@ const User = (props)=>{
                  }, 2000);
             })
             .catch((err) => {
-                toast.error( err,{
+              if(err.response.status==401){
+                toast.error( "Old Password is Wrong",{
                     position: "top-right",
                     theme:"colored"
                   });
+                }
               console.log(err);
             });
     
@@ -87,6 +105,9 @@ const User = (props)=>{
                     position: "top-right",
                     theme:"colored"
                   });
+                   setTimeout(function(){
+                    window.location.href = '/home';
+                 }, 2000);
             })
             .catch((err) => {
               console.log(err);
@@ -161,7 +182,11 @@ const User = (props)=>{
                  }, 2000);
             })
             .catch((err) => {
-              console.log(err);
+              
+              toast.success( "Something Went Wrong Try Again",{
+                position: "top-right",
+                theme:"colored"
+              });
             });
         }
   
@@ -234,8 +259,22 @@ const User = (props)=>{
             }
             {showpasswordfld &&
 <> <br/>
-             <label
+<label
              className="mt-4 changepassword"
+           
+             style={{paddingRight:"45px"}}>
+              <b> Old Password</b>
+            </label>
+            <input
+              className="oldpasswordfield"
+            type="password"
+            value={oldpassword}
+            onChange={(e) => {
+                setoldpassword(e.target.value);
+              } }/>
+              <br/>
+             <label
+             className="mt-3 changepassword"
            
              style={{paddingRight:"13px"}}>
               <b> Change Password</b>
@@ -280,7 +319,8 @@ const User = (props)=>{
                             updatepassword();
                         } } variant="outline-info"
                         >Change Password</Button>
-                  {error}
+                        <br/>
+                  <p style ={{color:'red'}}>{error}</p>
                     </>
                     
                   }

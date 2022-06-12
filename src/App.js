@@ -27,10 +27,11 @@ function App() {
     <Router>
       <ToastContainer theme="colored" />
       <Switch>
+        <Route path="/passwordreset/:resetToken">{<ResetPassword />}</Route>
         <Route path="/register">{<Register />}</Route>
         <Route path="/login">{<Login />}</Route>
         <Route path="/enteremail">{<Enteremail />}</Route>
-        <Route path="/passwordreset/:resetToken">{<ResetPassword />}</Route>
+
         <Route exact path="/">
           <LandingPage />
         </Route>
