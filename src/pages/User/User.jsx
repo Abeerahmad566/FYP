@@ -255,7 +255,7 @@ const User = (props)=>{
                <b >Change Email </b>
             </label>
             <input
-            className="changefirstnamefield"
+            className="changeemailnamefield"
             type="email"
              placeholder={user.email}
             onChange={(e) => {

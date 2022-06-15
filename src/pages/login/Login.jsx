@@ -1,6 +1,10 @@
 import React from "react";
-import swal from 'sweetalert';
-import { TextField } from "@material-ui/core";
+
+import IconButton from "@material-ui/core/IconButton";
+import Input from "@material-ui/core/Input";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import userService from "../../services/UserService";
 import login from '../img/login.jpg';
 import { Link } from "react-router-dom";
@@ -14,7 +18,10 @@ const Login = () => {
   const [loginerror,setLoginerror]= useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [showPassword,setshowPassword]=useState(false)
+  const showpassword=()=>{
+    setshowPassword(!showPassword)
+  }
   const checkvalidation=()=> {
     
     if(email ==""){
@@ -83,14 +90,25 @@ else if(password ==""){
         <br />
         <label style={{ marginTop: '20px' }}><b>Enter Password</b></label>
         <br />
-        <input
-          type="password"
+        <Input
+          type={showPassword? "text":"password"}
+          disableUnderline
           placeholder="*********"
           className="registerInput"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-          } } />
+          } } 
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                onClick={showpassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          }
+          />
         <br />
         <Link className="fgpsslink" to="/enteremail">
         Forgot Password!

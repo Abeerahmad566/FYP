@@ -53,16 +53,18 @@ function App() {
               </div>
             }
           </Route>
-          <Route path="/adminregister">
+          <Route path="/adminpanel/adminregister">
             <AdminRegister />
           </Route>
-          <Route path="/pendingloans">
+          <Route path="/adminpanel/pendingloans">
             <PendingLoans />
           </Route>
-          <Route path="/allloans">{<AllLoans />}</Route>
-          <Route path="/manageusers">{<ManageUsers />}</Route>
-          <Route path="/manageadmins">{<ManageAdmins />}</Route>
-          <Route path="/applicantdocuments">{<ApplicantDocuments />}</Route>
+          <Route path="/adminpanel/allloans">{<AllLoans />}</Route>
+          <Route path="/adminpanel/manageusers">{<ManageUsers />}</Route>
+          <Route path="/adminpanel/manageadmins">{<ManageAdmins />}</Route>
+          <Route path="/adminpanel/applicantdocuments">
+            {<ApplicantDocuments />}
+          </Route>
         </Auth>
       </Switch>
     </Router>

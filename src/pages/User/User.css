@@ -28,7 +28,7 @@ cursor: pointer;
 color: #1e90ff;
 }
 
-@media(width:375px)
+@media(max-width: 500px)
 
 {
    .updateprofile{
@@ -40,7 +40,11 @@ color: #1e90ff;
       font-size: 0.7rem;
    }
    .changefirstnamefield{ 
-      margin-left: -8%;
+      margin-left: -5%;
+      height: 20px;
+   }
+   .changeemailnamefield{
+      margin-left: -10%;
       height: 20px;
    }
    .changelastname{
@@ -48,7 +52,7 @@ color: #1e90ff;
       font-size: 0.7rem;
    }
    .changelastnamefield{
-      margin-left: -8%;
+      margin-left: -7%;
       height: 20px;
    }
    .changephonenumber
@@ -112,7 +116,7 @@ color: #1e90ff;
    font-size: xx-small; 
 }
 }
-@media(width:414px)
+/* @media(width:414px)
 {
    .changepasswordbtn{
       font-size: xx-small;
@@ -446,67 +450,17 @@ color: #1e90ff;
    
    font-size: xx-small;
 }
-}
+} */
 @media(width:412px)
 {
-   .changepasswordbtn{
-      font-size: xx-small;
-   }
-   .updatepassword{
-      font-size: xx-small; 
-   }
-   .updateprofile{
-      margin-left: -15%;
-      font-size: xx-small;
-   }
-   .changefirstname{
-      margin-left: -30%;
-      font-size: 0.7rem;
-   }
-   .changefirstnamefield{ 
-      margin-left: -8%;
-      height: 20px;
-   }
-   .changelastname{
-      margin-left: -30%;
-      font-size: 0.7rem;
-   }
-   .changelastnamefield{
-      margin-left: -8%;
-      height: 20px;
-   }
-   .changephonenumber
-   {
-      margin-left: -30%;
-      font-size: 0.7rem;
-   }
-   .changephonenumberfield{
-      margin-left: -3%;
-      height: 20px;
-   }
-   .centerdiv{
-      margin-left: 35%;
-   }
-   .changeimg{
-      border-radius:150px;
-      width:150px;
-      height:150px;
-   }
+   
    .uploadbtn
 {
-   margin-left: 5%;
+   margin-left:0%;
    font-size: xx-small;
   
 }
-.faicon{
-  margin-top: 1%;
-   margin-left: 30%;
-  
-}
-.backbtn{
- 
-   font-size: xx-small;
-}
+
 }
 @media(width:820px)
 {
@@ -647,7 +601,7 @@ color: #1e90ff;
    font-size: 1.5rem;
 }
 }
-@media(width:280px)
+/* @media(width:280px)
 {
    .changepasswordbtn{
       font-size:xx-small;
@@ -789,4 +743,4 @@ color: #1e90ff;
 .changepasswordbtn{
    margin-left: 0%;
 }
-}
+} */

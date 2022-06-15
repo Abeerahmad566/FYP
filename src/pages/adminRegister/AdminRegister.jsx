@@ -23,6 +23,7 @@ const AdminRegister = () => {
   const [Confirmpassword, setConfirmPassword] = React.useState("");
   const[nameError,setnameError]=useState("");
   const[role,setrole]=useState("admin")
+  const [phonenumbererror,setphonenumbererror] = useState("")
     const emlverfication = (e) => {
         const eml = e.target.value;
         setEmail(eml);
@@ -68,10 +69,7 @@ const AdminRegister = () => {
         }
         else
         {
-          toast.error("Please Enter Valid Phone Number",{
-            position: "top-right",
-            theme: "colored"
-          });
+          setphonenumbererror("Please enter a Valid Phone Number")
         }
       }
       const pssverfication = (e) => {
@@ -113,9 +111,9 @@ const AdminRegister = () => {
             theme: "colored"
           });
         }
-        else if (phonenumber.length > 11 || phonenumber.length < 11) {
-          setError("Enter 11 digits Number")
-          toast.error("Enter 11 digits Number",{
+        else if (phonenumbererror) {
+          setError(phonenumbererror)
+          toast.error(phonenumbererror,{
             position: "top-right",
             theme: "colored"
           });

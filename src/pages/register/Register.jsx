@@ -3,6 +3,7 @@ import swal from 'sweetalert';
 import React from "react";
 import Signup from '../img/signup.jpg'
 import { TextField } from "@material-ui/core";
+import Input from "@material-ui/core/Input";
 import userService from "../../services/UserService";
 import { toast,ToastContainer } from "react-toastify";
 import IconButton from "@material-ui/core/IconButton";
@@ -227,6 +228,9 @@ else if (password.length<8)
     }
   }
   }
+  const showpassword=()=>{
+    setshowPassword(!showPassword)
+  }
   const checkcnfpasswordvaldiation = (e) => {
     const confmpass = e.target.value
     setConfirmPassword(confmpass);
@@ -296,16 +300,30 @@ else if (password.length<8)
             <br />
             <input
               placeholder="03414180005"
-              type={showPassword? "text":"password"}
+              type='number'
               className="registerInput"
               value={phonenumber}
               onChange={(e) => {
                 pnverfication(e);
               }}
+              
+            />{" "}
+            <br />
+            <label style={{ marginTop: '20px' }}><b>Enter Your Password</b></label>
+            <br />
+            <Input 
+              type={showPassword? "text":"password"}
+              placeholder="********"
+              className="registerInput"
+              value={password}
+              disableUnderline
+              onChange={(e) => {
+                pssverfication(e);
+              }}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
-                    onClick={setshowPassword(!showPassword)}
+                    onClick={showpassword}
                   >
                     {showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
@@ -313,26 +331,24 @@ else if (password.length<8)
               }
             />{" "}
             <br />
-            <label style={{ marginTop: '20px' }}><b>Enter Your Password</b></label>
-            <br />
-            <input 
-              type="password"
-              placeholder="********"
-              className="registerInput"
-              value={password}
-              onChange={(e) => {
-                pssverfication(e);
-              }}
-            />{" "}
-            <br />
             <label style={{ marginTop: '20px' }} ><b>Enter Confrim Password</b></label>
             <br />
-            <input 
+            <Input 
               value={Confirmpassword}
-              type="password"
+              type={showPassword? "text":"password"}
+              disableUnderline
               className="registerInput"
               placeholder="********"
               onChange={(e) => checkcnfpasswordvaldiation(e)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={showpassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
             <br />
 

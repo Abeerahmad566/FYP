@@ -6,17 +6,17 @@
     margin-top: 3%;
     margin-bottom: 1%;
 }
-@media(width:375px)
+@media(max-width:500px)
 {
     .headerprofile{
     
         font-size: 1rem;
-        margin-left: 30%;
+        margin-left: 40%;
         margin-top: 3%;
         margin-bottom: 1%;
     } 
 }
-@media(width:414px)
+/* @media(width:414px)
 {
     .headerprofile{
     
@@ -55,17 +55,17 @@
         margin-top: 3%;
         margin-bottom: 1%;
     } 
-}
+}*/
 @media(width:412px)
 {
     .headerprofile{
     
         font-size: 1rem;
-        margin-left: 35%;
+        margin-left: 38%;
         margin-top: 3%;
         margin-bottom: 1%;
     } 
-}
+} 
 @media(width:820px)
 {
     .headerprofile{
@@ -96,7 +96,7 @@
         margin-bottom: 1%;
     } 
 }
-@media(width:280px)
+/* @media(width:280px)
 {
     .headerprofile{
     
@@ -115,7 +115,7 @@
         margin-top: 3%;
         margin-bottom: 1%;
     } 
-}
+} */
 @media(width:540px)
 {
     .headerprofile{
