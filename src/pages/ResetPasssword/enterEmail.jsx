@@ -2,7 +2,6 @@ import "./enterEmail.css";
 import entereml from "../img/entereml.jpg"
 import validator from 'validator'
 import swal from 'sweetalert';
-
 import React from 'react';
 import userService from "../../services/UserService";
 

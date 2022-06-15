@@ -1,4 +1,5 @@
 import axios from 'axios'
+import swal from 'sweetalert';
 import React from "react";
 import Signup from '../img/signup.jpg'
 import { TextField } from "@material-ui/core";
@@ -67,7 +68,7 @@ const Register = (props) => {
       setError("")
     }
   }
-  const checkvalidation = (e) => {
+  const checkvalidation = async(e) => {
     if (Firstname == "") {
       setError("Please Enter First Name")
       toast.error("Please Enter First Name",{
@@ -144,8 +145,41 @@ else if (password.length<8)
       userService
         .register(formData)
         .then((data) => {
-          console.log(data);
-          window.location.href = "/login";
+        userService.verifyemail(email)
+        .then((res) => {
+          console.log(email)
+          swal({
+            title: 'Congratulations!Email Sent SuccessFully ',
+            text: "Please Check Your Email to verify",
+            icon: 'success',
+            button: 'Ok',
+          })
+        //   .then(function() {
+        //     window.location = "/login";
+        // });
+         
+        })
+        .catch((error) => {
+          if(error.response.status==404)
+          {
+            swal({
+              title: 'Oops! ',
+              text: "Email Do not Exist",
+              icon: 'error',
+              button: 'ok ',
+            });
+          }
+
+          else{
+          swal({
+            title: 'Oops! ',
+            text: "Something went Wrong",
+            icon: 'error',
+            button: 'ok ',
+          });
+          console.log(error)
+        }
+        })
         })
         .catch((err) => {
           if (err.response.status == 400) {

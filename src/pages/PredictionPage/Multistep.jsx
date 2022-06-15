@@ -9,7 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import Box from '@mui/material/Box';
 import { toast, ToastContainer } from "react-toastify";
 import  useState from 'react-usestateref';
-import Topbar from "../TopBar/Topbar";
+import TopBar from "../TopBar/Topbar";
 import Button from 'react-bootstrap/Button'
 import {Stepper,StepLabel,Step} from "@material-ui/core"
 import CircularProgress from '@mui/material/CircularProgress';
@@ -690,10 +690,7 @@ const steps = [
   return(
     <><div >
 
-      
-      {users && users.map((user) => (
-        <Topbar user={user} />
-      ))}
+      <TopBar user={users}/>
 
 
       <Box >

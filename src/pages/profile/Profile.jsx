@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import userService from "../../services/UserService";
-import Topbar from "../TopBar/Topbar";
+import TopBar from "../TopBar/Topbar";
 import User from "../User/User"
 import "./profile.css"
 const Profile = ()=>{
@@ -21,7 +21,7 @@ const Profile = ()=>{
 useEffect(getdata, []);
     return(
         <>
-      {users && users.map((user)=>(  <Topbar user={user}/>))}
+     <TopBar user={users}/>
 <div className="profile">
     <div className="headerprofile">
         <b>Your Profile</b>
@@ -29,9 +29,9 @@ useEffect(getdata, []);
 </div>
 <div className="profilefields">
     
-{users && users.map((user)=>(
-            <User user={user} />
-         ))}
+
+            <User user={users} />
+        
 </div>
 </>
     );

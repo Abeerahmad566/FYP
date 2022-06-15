@@ -1,4 +1,5 @@
 import "./Topbar.css";
+import React, { useEffect,useState } from 'react';
 import logo from '../img/logo.png';
 import homepage from "../img/homepage.jpg"
 import userService from "../../services/UserService";
@@ -15,6 +16,8 @@ export default function Topbar(props) {
  const {user,history}=props
  const name = userService.getLoggedInUser().firstname;
  const role = userService.getLoggedInUser().role;
+ const [userid,setuserid]=useState(userService.getLoggedInUser()._id);
+
      return(
 <div >
   

@@ -1,5 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = "https://loanpredictionfypapi.herokuapp.com/api/";
+axios.defaults.baseURL = "http://localhost:4000/api/";
+//axios.defaults.baseURL = "https://loanpredictionfypapi.herokuapp.com/api/";
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 class GenericService {
   constructor() {}

@@ -32,16 +32,35 @@ const PendingInformation = (props) => {
     }
     const {information,history,changestatus}=props
     const [Status,setStatus]=useState("Pending") ;
+    const [reason,setReason]= useState ("")
  
  const id = information._id;
-
- 
-   const updateinformation =async(e)=>{
-    setStatus(e)
-   await axios.put(`https://loanpredictionfypapi.herokuapp.com/api/informations/updatestatus/`+id,{id:id,status:e})
+console.log(Status)
+console.log(reason)
+ const updateval =(e)=>{
+ setStatus(e);
+ }
+   const updateinformation =async()=>{
+    if(Status=="Pending")
+    {
+      toast.error("Please Set Status Of Loan", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
+    else if(reason=="")
+  {
+    toast.error("Please Enter Reason", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else {
+  //  await axios.put(`https://loanpredictionfypapi.herokuapp.com/api/informations/updatestatus/`+id,{id:id,status:Status,Reason:reason})
+   await axios.put(`http://localhost:4000/api/informations/updatestatus/`+id,{id:id,status:Status,reason:reason})
       .then((response) => {
          console.log(response)  
-         toast.success("Loan Successfully "+e, {
+         toast.success("Loan Successfully "+Status, {
           position: "top-right",
           theme: "colored"
         });
@@ -51,7 +70,7 @@ const PendingInformation = (props) => {
          
       })
       .catch((error) => console.log(error));
-    
+  }
  }
 
     return(
@@ -75,18 +94,28 @@ const PendingInformation = (props) => {
       <td style={{textAlign:'center'}} >{information.experience}</td>
       <td style={{textAlign:'center'}} >{information.Houseownership}</td>
       <td style={makeStyle(information.result)} >{information.result}</td>
+      
      
       <td><DropdownButton   id="dropdown-basic-button" title={Status} size="sm"
               drop={"down"}
               className="pendinginformationdropdown"
-              onSelect={(e)=>updateinformation(e)}
+              onSelect={(e)=>updateval(e)}
               >
               <Dropdown.Item eventKey="Approved"  >Approved</Dropdown.Item>
               <Dropdown.Item eventKey="Rejected" >Rejected</Dropdown.Item>
               </DropdownButton>
               </td>
-              
-      
+              <td style={{textAlign:'center'}} ><textarea placeholder="Enter Reason" value={reason}
+              onChange={(e)=>{
+                setReason(e.target.value);
+              }}
+              ></textarea>
+              </td>
+              <td><button
+          className="updatebtnadminpanel"
+          onClick={updateinformation}
+        >Update
+        </button></td>
     </tr>
   <ToastContainer/>
     </>

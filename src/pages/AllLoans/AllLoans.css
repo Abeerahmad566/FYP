@@ -12,6 +12,7 @@
 .allloantable{
  
         width: 1500px;
+        height: 600px;
     margin-left: -10%;
     overflow-y: scroll;
     background-color: white;

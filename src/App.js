@@ -22,11 +22,13 @@ import AllLoans from "./pages/AllLoans/AllLoans";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import ManageAdmins from "./pages/ManageAdmins/ManageAdmin";
 import ApplicantDocuments from "./pages/ApplicantDocuments/ApplicantDocuments";
+import Emailverify from "./pages/Emailverify";
 function App() {
   return (
     <Router>
       <ToastContainer theme="colored" />
       <Switch>
+        <Route path="/confirmation/:verifyToken/:id">{<Emailverify />}</Route>
         <Route path="/passwordreset/:resetToken">{<ResetPassword />}</Route>
         <Route path="/register">{<Register />}</Route>
         <Route path="/login">{<Login />}</Route>

@@ -32,7 +32,7 @@ useEffect(getdata, []);
             e.target.reset()
     }
     return(<div>
-{users && users.map((user)=>(<TopBar user={user}/>))}
+ <TopBar user={users}/>
 <div >
     <b className="ContactSize">Contact</b>
     <hr></hr>

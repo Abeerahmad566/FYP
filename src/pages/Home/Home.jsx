@@ -23,6 +23,7 @@ Aos.init({ duration:2000});
    },[])
    
   const [userid,setuserid]=useState(userService.getLoggedInUser()._id)
+  console.log(userid)
    const [informations, setInformations] = useState([""])
   const role = userService.getLoggedInUser().role;
    const getdata=()=>{
@@ -43,8 +44,7 @@ Aos.init({ duration:2000});
     userService
                 .getUser(userid)
                 .then((data) => {  
-                setusers(data)
-               
+                setusers(data)    
                 })
                 .catch((err) => {
                   console.log(err);
@@ -55,7 +55,7 @@ useEffect(getuserdata, []);
    return(
      
    <div>
-     {users&&users.map((user)=>(<TopBar user={user}/>))}
+ <TopBar user={users}/>
    
   
 
@@ -97,17 +97,18 @@ useEffect(getuserdata, []);
              <Table striped bordered hover>
                <thead>
                  <tr>
-                   <th><b>Age</b></th>
-                   <th><b>Income</b></th>
-                   <th><b>Car Ownership</b></th>
-                   <th><b>RelationShip Status</b></th>
-                   <th><b>Current House Years</b></th>
-                   <th><b>Profession</b></th>
-                   <th><b>Current Job Years</b></th>
-                   <th><b>Experience</b></th>
-                   <th><b>House Ownership</b></th>
-                   <th><b>Prediction Result</b></th>
-                   <th><b>Status</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Age</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Income</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Car Ownership</b></th>
+                   <th style={{ textAlign: 'center'}}><b>RelationShip Status</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Current House Years</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Profession</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Current Job Years</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Experience</b></th>
+                   <th style={{ textAlign: 'center'}}><b>House Ownership</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Prediction Result</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Status</b></th>
+                   <th style={{ textAlign: 'center'}}><b>Reason</b></th>
                    <th><b>Action</b></th>
                  </tr>
                </thead>

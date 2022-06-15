@@ -43,6 +43,7 @@ const SingleInformation = (props) => {
       <td style={{textAlign:'center'}} >{information.Houseownership}</td>
       <td style={makeStyle(information.result)} >{information.result}</td>
       <td style={makeStyle(information.status)} >{information.status}</td>
+      <td style={{textAlign:"center"}} >{information.reason}</td>
       <td style={{textAlign:'center'}}><Button variant="danger" style={{marginTop:"-8%"}}
       onClick={(e)=>{
         InformationService.deleteInformation(information._id).then((data) => {

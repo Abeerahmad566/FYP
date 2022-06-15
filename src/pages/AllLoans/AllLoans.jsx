@@ -87,6 +87,7 @@ export default function AllLoans() {
                         <th style={{ textAlign: 'center' }}><b>House Ownership</b></th>
                         <th style={{ textAlign: 'center' }}><b>Prediction Result</b></th>
                         <th style={{ textAlign: 'center' }}><b>Status</b></th>
+                        <th style={{ textAlign: 'center' }}><b>Reason</b></th>
                         {role == "superAdmin" &&
                           <th style={{ textAlign: 'center' }}><b>Action</b></th>}
                       </tr>

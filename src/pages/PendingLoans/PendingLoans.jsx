@@ -152,14 +152,11 @@ export default function PendingLoans() {
     </>
             </div>
             <div className="col-sm">
-      
-              
-               
    {informations.length==0 &&
-   <p style={{paddingTop:'80px'}}><b className='npendingbold'>No Pending Loans</b></p>}
+   <p style={{paddingTop:'80px',marginLeft:"0%"}}><b className='npendingbold'>No Pending Loans</b></p>}
 {informations.length>0&&
-  <><p style={{ paddingTop: '30px', marginRight: '0%' }}><b className='pendingbold'>Pending Loans</b></p><div className="pendingloantable">
-                    <Table striped bordered hover responsize className="">
+  <><p style={{ paddingTop: '30px',marginLeft:"40%"}}><b className='pendingbold'>Pending Loans</b></p><div className="pendingloantable">
+                    <Table striped bordered hover responsize >
                       <thead>
                         <tr>
                           <th style={{ textAlign: 'center' }}><b>Prediction By</b></th>
@@ -176,7 +173,8 @@ export default function PendingLoans() {
                           <th style={{ textAlign: 'center' }}><b>House Ownership</b></th>
                           <th style={{ textAlign: 'center' }}><b>Prediction Result</b></th>
                           <th style={{ textAlign: 'center' }}><b>Status</b></th>
-
+                          <th style={{ textAlign: 'center' }}><b>Reason</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Action</b></th>
                         </tr>
                       </thead>
                       <tbody>

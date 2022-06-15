@@ -62,9 +62,12 @@ import userService from "../../services/UserService";
               .then((res) => {
                 setPassword("")
                 setConfirmPassword("")
-                swal({ title: "Congratulations!",
+                swal({ 
+                  title: "Congratulations!",
                 text: "Password Reset Successfully",
-                type: "success"}).then(okay => {
+                icon: 'success',
+                button: 'ok ',
+              }).then(okay => {
                   if (okay) {
                    window.location.href = "/login";
                  }
@@ -90,7 +93,7 @@ import userService from "../../services/UserService";
       
       </div>
       <div className="col-sm ml-5 mt-5">
-      <b><span style={{fontSize:"2rem"}}>Reset Password</span></b><br/>
+      <b><span style={{fontSize:"2rem",color:"#1e90ff"}}>Reset Password</span></b><br/>
       
       <label style={{ marginTop: '20px' }}>Enter Your New Password</label><br/>
       <TextField

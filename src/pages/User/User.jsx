@@ -1,4 +1,5 @@
 import "./User.css"
+import validator from 'validator'
 import Button from 'react-bootstrap/Button'
 import userService from '../../services/UserService';
 import { toast, ToastContainer } from "react-toastify";
@@ -9,6 +10,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowUpFromBracket} from '@fortawesome/free-solid-svg-icons'
 const User = (props)=>{
     const {user,history}=props
+    const [email,setEmail,emailRef]=useState("")
     const [firstname,setfirstname,FirstnameRef]=useState("")
     const [lastname,setlastname,LastnameRef]=useState("")
     const [phonenumber,setphonenumber,PhonenumberRef]=useState("")
@@ -31,6 +33,16 @@ const User = (props)=>{
       });
       setIsEnabled(false)
     };
+    const emlverfication = (e) => {
+      const eml = e.target.value;
+      setEmail(eml);
+      if (!validator.isEmail(email)) {
+        seterror("Enter Valid Email")
+      }
+      else if (email != "") {
+        seterror("")
+      }
+    }
     const updatepassword=()=>{
       if(oldpassword=="")
       {
@@ -93,13 +105,26 @@ const User = (props)=>{
             toast.error( error,{
                 position: "top-right",
                 theme:"colored"
-              });
-             
+              });  
+        }
+        else if (email == "") {
+          seterror("Please Enter Email")
+          toast.error("Please Enter Email",{
+            position: "top-right",
+            theme: "colored"
+          });
+        }
+        else if (!email.includes("@")) {
+          seterror("Enter Valid Email")
+          toast.error("Please Enter  Valid Email",{
+            position: "top-right",
+            theme: "colored"
+          });
         }
         else
         {
             userService
-            .updateUser(userid, { firstname,lastname,phonenumber})
+            .updateUser(userid, { email,firstname,lastname,phonenumber})
             .then((data) => {
                 toast.success( "Profile Updated SuccessFully",{
                     position: "top-right",
@@ -110,7 +135,20 @@ const User = (props)=>{
                  }, 2000);
             })
             .catch((err) => {
-              console.log(err);
+              if(err.response.status==400)
+              {
+                toast.error( "Email Already Exist Try Another One",{
+                  position: "top-right",
+                  theme:"colored"
+                });
+              }
+              else if(err.response.status==404)
+              {
+                toast.error( "User not Found",{
+                  position: "top-right",
+                  theme:"colored"
+                });
+              }
             });
         }
      }
@@ -211,9 +249,21 @@ const User = (props)=>{
                 
             {!showpasswordfld &&
             <>
-            <br/>
+             <br/>
             <label className="mt-4 changefirstname"
-             style={{paddingRight:"45px"}}>
+             style={{paddingRight:"80px"}}>
+               <b >Change Email </b>
+            </label>
+            <input
+            className="changefirstnamefield"
+            type="email"
+             placeholder={user.email}
+            onChange={(e) => {
+              emlverfication(e);
+              } }/>
+            <br/>
+            <label className="mt-3 changefirstname"
+             style={{paddingRight:"40px"}}>
                <b >Change First Name</b>
             </label>
             <input

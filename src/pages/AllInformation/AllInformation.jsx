@@ -53,6 +53,7 @@ const AllInformation = (props) => {
       <td style={{textAlign:'center'}} >{information.Houseownership}</td>
       <td style={makeStyle(information.result)} >{information.result}</td>
       <td style={makeStyle(information.status)} >{information.status}</td>
+      <td style={{textAlign:'center'}} >{information.reason}</td>
       {role=="superAdmin"&&
       <td style={{textAlign:'center'}}><Button variant="danger" size='sm'
       onClick={(e)=>{

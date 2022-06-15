@@ -1,4 +1,5 @@
 import React from "react";
+import swal from 'sweetalert';
 import { TextField } from "@material-ui/core";
 import userService from "../../services/UserService";
 import login from '../img/login.jpg';
@@ -48,8 +49,16 @@ else if(password ==""){
         theme:"colored"
       });
     }
-      
-    });
+    // else if(err.response.status==402)
+    // {
+    //   swal({
+    //     title: 'Oops! Verify Your Email',
+    //     text: "An verification link has sent to your email ",
+    //     icon: 'error',
+    //     button: 'ok ',
+    //   });
+    // }
+     });
   }
 }
   return (
