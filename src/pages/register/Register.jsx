@@ -5,6 +5,11 @@ import Signup from '../img/signup.jpg'
 import { TextField } from "@material-ui/core";
 import userService from "../../services/UserService";
 import { toast,ToastContainer } from "react-toastify";
+import IconButton from "@material-ui/core/IconButton";
+import InputLabel from "@material-ui/core/InputLabel";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Link } from "react-router-dom";
 import './register.css'
 import validator from 'validator'
@@ -21,6 +26,8 @@ const Register = (props) => {
   const [phonenumber, setphonenumber] = React.useState("");
   const [Confirmpassword, setConfirmPassword] = React.useState("");
   const[nameError,setnameError]=useState("");
+  const [phonenumbererror,setphonenumbererror] = useState("")
+  const [showPassword,setshowPassword]=useState(false)
   const [stateimg, setStateimg] = React.useState({
     photo: "",
   });
@@ -57,9 +64,22 @@ const Register = (props) => {
   }
   const pnverfication = (e) => {
     setphonenumber(e.target.value);
-    if (phonenumber != "") {
-      setError("")
-    }
+    if (
+      phonenumber.length === 11 &&
+      phonenumber.startsWith("03") &&
+      phonenumber.match(/^[0-9]+$/)
+  ) 
+  {
+    setError("")
+  }
+  else if (phonenumber != "") {
+    setError("")
+  }
+  else
+  {
+   setphonenumbererror("Pleae Enter Valid Phone Number")
+  }
+
   }
   const pssverfication = (e) => {
     const pss = e.target.value;
@@ -100,13 +120,22 @@ const Register = (props) => {
         theme: "colored"
       });
     }
-    else if (phonenumber.length > 11 || phonenumber.length < 11) {
-      setError("Enter 11 digits Number")
-      toast.error("Enter 11 digits Number",{
+    // else if (phonenumber.length > 11 || phonenumber.length < 11) {
+    //   setError("Enter 11 digits Number")
+    //   toast.error("Enter 11 digits Number",{
+    //     position: "top-right",
+    //     theme: "colored"
+    //   });
+    // }
+
+     else if (phonenumbererror) {
+      setError(phonenumbererror)
+      toast.error(phonenumbererror,{
         position: "top-right",
         theme: "colored"
       });
     }
+    
 
 else if (password.length<8)
 {
@@ -267,12 +296,21 @@ else if (password.length<8)
             <br />
             <input
               placeholder="03414180005"
-              type="number"
+              type={showPassword? "text":"password"}
               className="registerInput"
               value={phonenumber}
               onChange={(e) => {
                 pnverfication(e);
               }}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={setshowPassword(!showPassword)}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />{" "}
             <br />
             <label style={{ marginTop: '20px' }}><b>Enter Your Password</b></label>

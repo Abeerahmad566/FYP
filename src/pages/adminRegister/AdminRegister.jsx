@@ -55,8 +55,23 @@ const AdminRegister = () => {
       }
       const pnverfication = (e) => {
         setphonenumber(e.target.value);
-        if (phonenumber != "") {
+          if (
+            phonenumber.length === 11 &&
+            phonenumber.startsWith("03") &&
+            phonenumber.match(/^[0-9]+$/)
+        ) 
+        {
           setError("")
+        }
+        else if (phonenumber != "") {
+          setError("")
+        }
+        else
+        {
+          toast.error("Please Enter Valid Phone Number",{
+            position: "top-right",
+            theme: "colored"
+          });
         }
       }
       const pssverfication = (e) => {
@@ -105,6 +120,7 @@ const AdminRegister = () => {
             theme: "colored"
           });
         }
+        
     
     else if (password.length<8)
     {
