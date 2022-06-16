@@ -14,8 +14,7 @@ import userService from "../../services/UserService";
     const [Confirmpassword, setConfirmPassword] =React. useState("");
     const [error, setError] = React.useState("");
 
-    const {resetToken} = useParams();
-    console.log(resetToken)
+   
 
     const pssverfication=(e)=>{
         const pss = e.target.value;

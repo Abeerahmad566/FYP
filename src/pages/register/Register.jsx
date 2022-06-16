@@ -27,8 +27,15 @@ const Register = (props) => {
   const [phonenumber, setphonenumber] = React.useState("");
   const [Confirmpassword, setConfirmPassword] = React.useState("");
   const[nameError,setnameError]=useState("");
-  const [phonenumbererror,setphonenumbererror] = useState("")
-  const [showPassword,setshowPassword]=useState(false)
+  const [phonenumbererror,setphonenumbererror] = useState("");
+  const [showPassword,setshowPassword]=useState(false);
+  const [showcnfmPassword,setshowcnfmPassword]=useState(false);
+  const [passworderror,setpassworderror]=useState(false);
+  const [firstnameerror,setfirstnameerror]=useState(false);
+  const [lastnameerror,setlastnameerror]=useState(false);
+  const [emailerror,setemailerror]=useState(false);
+  const [cnfmpassworderror,setcnfmpassworderror]=useState(false);
+  const [passwordferror,setpasswordferror]=useState(false);
   const [stateimg, setStateimg] = React.useState({
     photo: "",
   });
@@ -38,9 +45,15 @@ const Register = (props) => {
     setEmail(eml);
     if (!validator.isEmail(email)) {
       setError("Enter Valid Email")
+      setemailerror(true)
+    }
+    else if (validator.isEmail(email)) {
+      setError("")
+      setemailerror(false)
     }
     else if (email != "") {
       setError("")
+      setemailerror(false)
     }
   }
   const fnverfication = () => {
@@ -48,9 +61,11 @@ const Register = (props) => {
 
     if (!name.test(FirstnameRef.current)) {
       setnameError("Invalid firstname! It must contain all Alphabets")
+      setfirstnameerror(true)
     }
     else if (name.test(FirstnameRef.current)) {
       setnameError("")
+      setfirstnameerror(false)
     }
   }
   const lnverfication = () => {
@@ -58,27 +73,22 @@ const Register = (props) => {
 
     if (!name.test(LastnameRef.current)) {
       setnameError("Invalid lastname! It must contain all Alphabets")
+      setlastnameerror(true)
     }
     else if (name.test(LastnameRef.current)) {
       setnameError("")
+      setlastnameerror(false)
     }
-  }
-  const pnverfication = (e) => {
-    setphonenumber(e.target.value);
-    if (
-      phonenumber.length === 11 &&
-      phonenumber.startsWith("03") &&
-      phonenumber.match(/^[0-9]+$/)
-  ) 
-  {
-    setError("")
-  }
+  
+  
   else if (phonenumber != "") {
     setError("")
+    setphonenumbererror(false)
   }
   else
   {
    setphonenumbererror("Pleae Enter Valid Phone Number")
+   setphonenumbererror(true)
   }
 
   }
@@ -87,6 +97,7 @@ const Register = (props) => {
     setPassword(pss);
     if (password != "") {
       setError("")
+      setpasswordferror(false)
     }
   }
   const checkvalidation = async(e) => {
@@ -96,6 +107,7 @@ const Register = (props) => {
         position: "top-right",
         theme: "colored"
       });
+      setfirstnameerror(true)
     }
     else if (lastname == "") {
       setError("Please Enter Last Name")
@@ -103,6 +115,7 @@ const Register = (props) => {
         position: "top-right",
         theme: "colored"
       });
+      setlastnameerror(true)
     }
     else if (email == "") {
       setError("Please Enter Email")
@@ -110,9 +123,11 @@ const Register = (props) => {
         position: "top-right",
         theme: "colored"
       });
+     setemailerror(true)
     }
     else if (!email.includes("@")) {
       setError("Enter Valid Email")
+      setemailerror(true)
     }
     else if (phonenumber == "") {
       setError("Please Enter Phone Number")
@@ -120,6 +135,7 @@ const Register = (props) => {
         position: "top-right",
         theme: "colored"
       });
+      setphonenumbererror(true)
     }
     // else if (phonenumber.length > 11 || phonenumber.length < 11) {
     //   setError("Enter 11 digits Number")
@@ -135,19 +151,24 @@ const Register = (props) => {
         position: "top-right",
         theme: "colored"
       });
+      setphonenumbererror(true)
     }
     
 
 else if (password.length<8)
 {
   setError("Please Enter 8 or more Characters Password")
+  setpasswordferror(true)
+
 }
     else if (password == "") {
 
       setError("Please Enter Password")
+      setpasswordferror(true)
     }
     else if (Confirmpassword == "") {
       setError("Please Enter Confirm Password")
+      setcnfmpassworderror(true)
     }
     else {
       e.preventDefault();
@@ -175,41 +196,41 @@ else if (password.length<8)
       userService
         .register(formData)
         .then((data) => {
-        userService.verifyemail(email)
-        .then((res) => {
-          console.log(email)
-          swal({
-            title: 'Congratulations!Email Sent SuccessFully ',
-            text: "Please Check Your Email to verify",
-            icon: 'success',
-            button: 'Ok',
-          })
-        //   .then(function() {
-        //     window.location = "/login";
-        // });
+        // userService.verifyemail(email)
+        // .then((res) => {
+        //   console.log(email)
+        //   swal({
+        //     title: 'Congratulations!Email Sent SuccessFully ',
+        //     text: "Please Check Your Email to verify! Link will Expire in 1 day",
+        //     icon: 'success',
+        //     button: 'Ok',
+        //   })
+        // //   .then(function() {
+        // //     window.location = "/login";
+        // // });
          
-        })
-        .catch((error) => {
-          if(error.response.status==404)
-          {
-            swal({
-              title: 'Oops! ',
-              text: "Email Do not Exist",
-              icon: 'error',
-              button: 'ok ',
-            });
-          }
+        // })
+        // .catch((error) => {
+        //   if(error.response.status==404)
+        //   {
+        //     swal({
+        //       title: 'Oops! ',
+        //       text: "Email Do not Exist",
+        //       icon: 'error',
+        //       button: 'ok ',
+        //     });
+        //   }
 
-          else{
-          swal({
-            title: 'Oops! ',
-            text: "Something went Wrong",
-            icon: 'error',
-            button: 'ok ',
-          });
-          console.log(error)
-        }
-        })
+        //   else{
+        //   swal({
+        //     title: 'Oops! ',
+        //     text: "Something went Wrong",
+        //     icon: 'error',
+        //     button: 'ok ',
+        //   });
+        //   console.log(error)
+        // }
+        // })
         })
         .catch((err) => {
           if (err.response.status == 400) {
@@ -230,15 +251,22 @@ else if (password.length<8)
   }
   const showpassword=()=>{
     setshowPassword(!showPassword)
+
+  }
+  const showcnfmpassword=()=>{
+    
+    setshowcnfmPassword(!showcnfmPassword)
   }
   const checkcnfpasswordvaldiation = (e) => {
     const confmpass = e.target.value
     setConfirmPassword(confmpass);
     if (password != confmpass) {
       setError("Both Passwords should Match")
+      setcnfmpassworderror(true)
     }
     else {
       setError("");
+      setcnfmpassworderror(false)
     }
 
   }
@@ -264,6 +292,7 @@ else if (password.length<8)
             <input
               placeholder="John"
               className="registerInput"
+              style={firstnameerror?{borderColor:'red'}:{}}
               type='text'
               value={Firstname}
               onChange={(e) => {
@@ -277,6 +306,7 @@ else if (password.length<8)
             <input
               placeholder="Doe"
               className="registerInput"
+              style={lastnameerror?{borderColor:'red'}:{}}
               value={lastname}
               onChange={(e) => {
                 setlastName(e.target.value)
@@ -288,6 +318,7 @@ else if (password.length<8)
             <br />
             <input
               placeholder="johndoe@gmail.com"
+              style={emailerror?{borderColor:'red'}:{}}
               type="email"
               className="registerInput"
               value={email}
@@ -300,6 +331,7 @@ else if (password.length<8)
             <br />
             <input
               placeholder="03414180005"
+              style={phonenumbererror?{borderColor:'red'}:{}}
               type='number'
               className="registerInput"
               value={phonenumber}
@@ -313,6 +345,7 @@ else if (password.length<8)
             <br />
             <Input 
               type={showPassword? "text":"password"}
+              style={passwordferror?{borderColor:'red'}:{}}
               placeholder="********"
               className="registerInput"
               value={password}
@@ -335,7 +368,8 @@ else if (password.length<8)
             <br />
             <Input 
               value={Confirmpassword}
-              type={showPassword? "text":"password"}
+              type={showcnfmPassword? "text":"password"}
+              style={cnfmpassworderror?{ BorderColor:'red'}:{}}
               disableUnderline
               className="registerInput"
               placeholder="********"
@@ -343,9 +377,9 @@ else if (password.length<8)
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
-                    onClick={showpassword}
+                    onClick={showcnfmpassword}
                   >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                    {showcnfmPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               }

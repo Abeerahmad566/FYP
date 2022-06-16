@@ -1,5 +1,5 @@
 import React from "react";
-
+import swal from "sweetalert"
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
 import Visibility from "@material-ui/icons/Visibility";
@@ -19,19 +19,48 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword,setshowPassword]=useState(false)
+  const [emailerror,setemailerror]=useState(false);
+  const [passwordferror,setpasswordferror]=useState(false);
   const showpassword=()=>{
     setshowPassword(!showPassword)
+  }
+  const emlverfication = (e) => {
+    const eml = e.target.value;
+    setEmail(eml);
+    if (!validator.isEmail(email)) {
+      setLoginerror("Enter Valid Email")
+      setemailerror(true)
+    }
+    else if (validator.isEmail(email)) {
+      setLoginerror("")
+      setemailerror(false)
+    }
+    else if (email != "") {
+      setLoginerror("")
+      setemailerror(false)
+    }
+  }
+  const pssverfication = (e) => {
+    const pss = e.target.value;
+    setPassword(pss);
+    if (password != "") {
+      setLoginerror("")
+      setpasswordferror(false)
+    }
   }
   const checkvalidation=()=> {
     
     if(email ==""){
       setLoginerror("Email field is empty")
+      setemailerror(true)
 } else if(!validator.isEmail(email))
 {
   setLoginerror("Enter Valid Email")
+  setemailerror(true)
 }
 else if(password ==""){
   setLoginerror("Password field is empty")
+  setpasswordferror(true)
   }
   else{
     userService
@@ -56,15 +85,15 @@ else if(password ==""){
         theme:"colored"
       });
     }
-    // else if(err.response.status==402)
-    // {
-    //   swal({
-    //     title: 'Oops! Verify Your Email',
-    //     text: "An verification link has sent to your email ",
-    //     icon: 'error',
-    //     button: 'ok ',
-    //   });
-    // }
+    else if(err.response.status==402)
+    {
+      swal({
+        title: 'Oops! Verify Your Email',
+        text: "An verification link has sent to your email ",
+        icon: 'error',
+        button: 'ok ',
+      });
+    }
      });
   }
 }
@@ -81,23 +110,25 @@ else if(password ==""){
         <br />
         <input
         type="email"
+        style={emailerror?{borderColor:'red'}:{}}
           placeholder="johndoe@gmail.com"
           className="registerInput"
           value={email}
           onChange={(e) => {
-            setEmail(e.target.value);
+            emlverfication(e)
           } } />
         <br />
         <label style={{ marginTop: '20px' }}><b>Enter Password</b></label>
         <br />
         <Input
           type={showPassword? "text":"password"}
+          style={passwordferror?{borderColor:'red'}:{}}
           disableUnderline
           placeholder="*********"
           className="registerInput"
           value={password}
           onChange={(e) => {
-            setPassword(e.target.value);
+            pssverfication(e)
           } } 
           endAdornment={
             <InputAdornment position="end">
