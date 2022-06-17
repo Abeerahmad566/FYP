@@ -3,12 +3,13 @@ import entereml from "../img/entereml.jpg"
 import validator from 'validator'
 import swal from 'sweetalert';
 import React from 'react';
+import axios from 'axios'
 import userService from "../../services/UserService";
 
 export default function EnterEmail() {
   
   const [email, setEmail] = React.useState("null");
-    const handleEmail = (e) => {
+    const handleEmail = async(e) => {
       e.preventDefault();
   if(email=="")
   {
@@ -43,7 +44,7 @@ export default function EnterEmail() {
          
         })
         .catch((error) => {
-          if(error.response.status==404)
+          if(error.response.status==402)
           {
             swal({
               title: 'Oops! ',
@@ -59,7 +60,7 @@ export default function EnterEmail() {
             icon: 'error',
             button: 'ok ',
           });
-          console.log(error)
+          console.log()
         }
         })
       

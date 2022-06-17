@@ -8,7 +8,7 @@ import Contact from "./pages/Contact/Contact";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Enteremail from "./pages/ResetPasssword/enterEmail";
-import ResetPassword from "./pages/ResetPasssword/NewPassword";
+import NewPassword from "./pages/ResetPasssword/NewPassword";
 import { ToastContainer } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/profile/Profile";
@@ -23,13 +23,17 @@ import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import ManageAdmins from "./pages/ManageAdmins/ManageAdmin";
 import ApplicantDocuments from "./pages/ApplicantDocuments/ApplicantDocuments";
 import Emailverify from "./pages/Emailverify";
+import Emailverifylogin from "./pages/Emailverifylogin";
 function App() {
   return (
     <Router>
       <ToastContainer theme="colored" />
       <Switch>
-        <Route path="/confirmation/:verifyToken/:id">{<Emailverify />}</Route>
-        <Route path="/passwordreset/:resetToken">{<ResetPassword />}</Route>
+        <Route path="/:id/emailverify/:token">{<Emailverify />}</Route>
+        <Route path="/:id/emailverifylogin/:token">
+          {<Emailverifylogin />}
+        </Route>
+        <Route path="/newpassword/:id/:token">{<NewPassword />}</Route>
         <Route path="/register">{<Register />}</Route>
         <Route path="/login">{<Login />}</Route>
         <Route path="/enteremail">{<Enteremail />}</Route>
@@ -53,18 +57,16 @@ function App() {
               </div>
             }
           </Route>
-          <Route path="/adminpanel/adminregister">
+          <Route path="/adminregister">
             <AdminRegister />
           </Route>
-          <Route path="/adminpanel/pendingloans">
+          <Route path="/pendingloans">
             <PendingLoans />
           </Route>
-          <Route path="/adminpanel/allloans">{<AllLoans />}</Route>
-          <Route path="/adminpanel/manageusers">{<ManageUsers />}</Route>
-          <Route path="/adminpanel/manageadmins">{<ManageAdmins />}</Route>
-          <Route path="/adminpanel/applicantdocuments">
-            {<ApplicantDocuments />}
-          </Route>
+          <Route path="/allloans">{<AllLoans />}</Route>
+          <Route path="/manageusers">{<ManageUsers />}</Route>
+          <Route path="/manageadmins">{<ManageAdmins />}</Route>
+          <Route path="/applicantdocuments">{<ApplicantDocuments />}</Route>
         </Auth>
       </Switch>
     </Router>

@@ -27,6 +27,7 @@ const Register = (props) => {
   const [phonenumber, setphonenumber] = React.useState("");
   const [Confirmpassword, setConfirmPassword] = React.useState("");
   const[nameError,setnameError]=useState("");
+  const [phonenumberferror,setphonenumberferror] = useState(false);
   const [phonenumbererror,setphonenumbererror] = useState("");
   const [showPassword,setshowPassword]=useState(false);
   const [showcnfmPassword,setshowcnfmPassword]=useState(false);
@@ -56,6 +57,31 @@ const Register = (props) => {
       setemailerror(false)
     }
   }
+
+  const pnverfication = (e) => {
+    setphonenumber(e.target.value);
+      if (
+        phonenumber.length === 11 &&
+        phonenumber.startsWith("03") &&
+        phonenumber.match(/^[0-9]+$/)
+    ) 
+    {
+      setError("")
+      setphonenumberferror(false)
+      setphonenumbererror("")
+    }
+    else if (phonenumber != "") {
+      setError("")
+      setphonenumberferror(false)
+      setphonenumbererror("")
+    }
+    else
+    {
+      setphonenumberferror(true)
+      setphonenumbererror("Please enter a Valid Phone Number")
+    }
+  }
+
   const fnverfication = () => {
     const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
 
@@ -79,17 +105,6 @@ const Register = (props) => {
       setnameError("")
       setlastnameerror(false)
     }
-  
-  
-  else if (phonenumber != "") {
-    setError("")
-    setphonenumbererror(false)
-  }
-  else
-  {
-   setphonenumbererror("Pleae Enter Valid Phone Number")
-   setphonenumbererror(true)
-  }
 
   }
   const pssverfication = (e) => {
@@ -135,7 +150,7 @@ const Register = (props) => {
         position: "top-right",
         theme: "colored"
       });
-      setphonenumbererror(true)
+      setphonenumberferror(true)
     }
     // else if (phonenumber.length > 11 || phonenumber.length < 11) {
     //   setError("Enter 11 digits Number")
@@ -151,7 +166,7 @@ const Register = (props) => {
         position: "top-right",
         theme: "colored"
       });
-      setphonenumbererror(true)
+      setphonenumberferror(true)
     }
     
 
@@ -196,43 +211,20 @@ else if (password.length<8)
       userService
         .register(formData)
         .then((data) => {
-        // userService.verifyemail(email)
-        // .then((res) => {
-        //   console.log(email)
-        //   swal({
-        //     title: 'Congratulations!Email Sent SuccessFully ',
-        //     text: "Please Check Your Email to verify! Link will Expire in 1 day",
-        //     icon: 'success',
-        //     button: 'Ok',
-        //   })
-        // //   .then(function() {
-        // //     window.location = "/login";
-        // // });
-         
-        // })
-        // .catch((error) => {
-        //   if(error.response.status==404)
-        //   {
-        //     swal({
-        //       title: 'Oops! ',
-        //       text: "Email Do not Exist",
-        //       icon: 'error',
-        //       button: 'ok ',
-        //     });
-        //   }
-
-        //   else{
-        //   swal({
-        //     title: 'Oops! ',
-        //     text: "Something went Wrong",
-        //     icon: 'error',
-        //     button: 'ok ',
-        //   });
-        //   console.log(error)
-        // }
-        // })
+        
+          swal({
+            title: 'Congratulations!Email Sent SuccessFully ',
+            text: "Please Check Your Email to verify! Link will Expire in 1 day",
+            icon: 'success',
+            button: 'Ok',
+          })
+        //   .then(function() {
+        //     window.location = "/login";
+        // });
+        
         })
         .catch((err) => {
+          console.log(err)
           if (err.response.status == 400) {
             setError("User with Given Email is already Registered")
             toast.error("User with Given Email is already Registered", {
@@ -331,7 +323,7 @@ else if (password.length<8)
             <br />
             <input
               placeholder="03414180005"
-              style={phonenumbererror?{borderColor:'red'}:{}}
+              style={phonenumberferror?{borderColor:'red'}:{}}
               type='number'
               className="registerInput"
               value={phonenumber}

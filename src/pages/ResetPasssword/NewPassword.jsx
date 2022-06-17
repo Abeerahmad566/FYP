@@ -9,7 +9,8 @@ import {useParams} from "react-router-dom";
 import userService from "../../services/UserService";
  const NewPassword = (props) =>
  {
-  
+  const {id} = useParams();
+  const {token} = useParams();
     const [password, setPassword] = React.useState("");
     const [Confirmpassword, setConfirmPassword] =React. useState("");
     const [error, setError] = React.useState("");
@@ -57,7 +58,7 @@ import userService from "../../services/UserService";
         {
          
             userService.newpassword
-              (resetToken, { password })
+              (id,token, password )
               .then((res) => {
                 setPassword("")
                 setConfirmPassword("")

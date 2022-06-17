@@ -23,6 +23,7 @@ const AdminRegister = () => {
   const [Confirmpassword, setConfirmPassword] = React.useState("");
   const[nameError,setnameError]=useState("");
   const[role,setrole]=useState("admin")
+  const [phonenumberferror,setphonenumberferror] = useState(false);
   const [phonenumbererror,setphonenumbererror] = useState("")
     const emlverfication = (e) => {
         const eml = e.target.value;
@@ -63,13 +64,17 @@ const AdminRegister = () => {
         ) 
         {
           setError("")
+          setphonenumberferror(false)
         }
         else if (phonenumber != "") {
           setError("")
+          setphonenumberferror(false)
         }
         else
         {
+          setError("Please enter a Valid Phone Number")
           setphonenumbererror("Please enter a Valid Phone Number")
+          setphonenumberferror(true)
         }
       }
       const pssverfication = (e) => {
@@ -110,6 +115,7 @@ const AdminRegister = () => {
             position: "top-right",
             theme: "colored"
           });
+          setphonenumberferror(true)
         }
         else if (phonenumbererror) {
           setError(phonenumbererror)
@@ -117,6 +123,7 @@ const AdminRegister = () => {
             position: "top-right",
             theme: "colored"
           });
+          setphonenumberferror(true)
         }
         
     
@@ -218,7 +225,7 @@ const AdminRegister = () => {
                           <div class="form-outline flex-fill mb-0">
                             <input type="text" id="form3Example1c" class="form-control"
                               placeholder="Admin First Name"
-                              className="registerInput"
+                              className="aregisterInput"
                               value={Firstname}
                               onChange={(e) => {
                                 setFirstName(e.target.value);
@@ -233,7 +240,7 @@ const AdminRegister = () => {
                           <div class="form-outline flex-fill mb-0">
                             <input type="text" id="form3Example1c" class="form-control"
                               placeholder="Admin Last Name"
-                              className="registerInput"
+                              className="aregisterInput"
                               value={lastname}
                               onChange={(e) => {
                                 setlastName(e.target.value);
@@ -248,8 +255,8 @@ const AdminRegister = () => {
                           <div class="form-outline flex-fill mb-0">
                             <input type="number" id="form3Example1c" class="form-control"
                               placeholder="Admin Phone Number"
-
-                              className="registerInput"
+                           
+                              className="aregisterInput"
                               value={phonenumber}
                               onChange={(e) => {
                                 pnverfication(e);
@@ -265,7 +272,7 @@ const AdminRegister = () => {
                             <input type="email" id="form3Example3c" class="form-control"
                               placeholder="Admin Email"
 
-                              className="registerInput"
+                              className="aregisterInput"
                               value={email}
                               onChange={(e) => {
                                 emlverfication(e);
@@ -280,7 +287,7 @@ const AdminRegister = () => {
                             <input type="password" id="form3Example4c" class="form-control"
 
                               placeholder="Admin Password"
-                              className="registerInput"
+                              className="aregisterInput"
                               value={password}
                               onChange={(e) => {
                                 pssverfication(e);
@@ -296,15 +303,15 @@ const AdminRegister = () => {
 
                               value={Confirmpassword}
 
-                              className="registerInput"
+                              className="aregisterInput"
                               placeholder="Admin Confrim Password"
                               onChange={(e) => checkcnfpasswordvaldiation(e)} />
 
                           </div>
                         </div>
 
-
-
+                        <div style={{ color: "red" }}>{error}</div>
+            <div style={{ color: "red" }}>{nameError}</div>
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button type="button" class="btn btn-primary btn-lg"
 

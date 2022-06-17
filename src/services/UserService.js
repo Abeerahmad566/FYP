@@ -30,12 +30,11 @@ class UserService extends GenericService {
 
   forget = (email) => this.post("users/forgetpassword", { email });
 
-  verifyemail = (email) => this.post("users/verify", { email });
+  newpassword = (id, token, password) =>
+    this.post("users/newpassword/" + id + "/" + token, { password });
 
-  newpassword = (token, password) =>
-    this.put("users/passwordreset/" + token, password);
-
-  confirmation = (token) => this.put("users/confirmation/" + token);
+  confirmation = (id, token) =>
+    this.get("users/" + id + "/emailverify/" + token);
 
   logout = () => {
     localStorage.removeItem("token");

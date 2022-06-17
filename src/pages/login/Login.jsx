@@ -46,6 +46,7 @@ const Login = () => {
     if (password != "") {
       setLoginerror("")
       setpasswordferror(false)
+      setemailerror(false)
     }
   }
   const checkvalidation=()=> {
@@ -53,11 +54,7 @@ const Login = () => {
     if(email ==""){
       setLoginerror("Email field is empty")
       setemailerror(true)
-} else if(!validator.isEmail(email))
-{
-  setLoginerror("Enter Valid Email")
-  setemailerror(true)
-}
+} 
 else if(password ==""){
   setLoginerror("Password field is empty")
   setpasswordferror(true)
