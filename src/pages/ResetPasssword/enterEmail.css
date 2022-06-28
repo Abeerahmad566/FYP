@@ -2,6 +2,30 @@
   float: right;
   width: 40%;
 }
+.resetbtn {
+  cursor: pointer;
+  background-color: #1e90ff;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 3%;
+}
+.resetbtn:hover{
+  background-color: white;
+ border: 2px solid #1e90ff ;
+  transition: color 1000ms linear;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+
+}
+.resetbtn:hover{
+  color:black;
+  transition: color 1000ms;
+  -webkit-transition: color 1000ms linear;
+  -ms-transition: color 1000ms linear;
+}
 @media (max-width: 500px) {
   .entreml {
     width: 60%;

@@ -1,6 +1,7 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import "./Footer.css"
 import { Link } from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {  faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +11,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 const Footer = () => {
    return(
 
-        <MDBFooter color="blue" className="font-small pt-4 mt-4">
+        <MDBFooter  className="font-small footer">
           <MDBContainer fluid className="text-center text-md-left">
             <MDBRow>
               <MDBCol md="6">

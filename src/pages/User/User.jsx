@@ -245,7 +245,7 @@ const User = (props)=>{
             onChange={imageFileSelectHandler}
           />
           
-       <Button disabled = {IsEnabled} variant="outline-info"  className="uploadbtn" onClick={handleimgupdate}>Change Image</Button>
+       <Button disabled = {IsEnabled}  className="uploadbtn" onClick={handleimgupdate}>Change Image</Button>
                 
             {!showpasswordfld &&
             <>
@@ -350,11 +350,11 @@ const User = (props)=>{
               </>
             }
                   <br/>
-                  {!showpasswordfld && <Button style={{marginRight:"40px"}} className="updateprofile"  variant="outline-info"onClick={updatedata}>Update Profile</Button>}
-                  {!showpasswordfld && <Button variant="outline-info" className="updatepassword"onClick={()=>{setshowpasswordfld(true)}}>Update Password</Button>}
+                  {!showpasswordfld && <Button style={{marginRight:"40px"}} className="updateprofile"  onClick={updatedata}>Update Profile</Button>}
+                  {!showpasswordfld && <Button  className="updatepassword"onClick={()=>{setshowpasswordfld(true)}}>Update Password</Button>}
                
                  {showpasswordfld && 
-                 <><Button variant="outline-info"
+                 <><Button 
                 
                  className="backbtn"
                     
@@ -367,7 +367,7 @@ const User = (props)=>{
                       className="changepasswordbtn"
                         onClick={() => {
                             updatepassword();
-                        } } variant="outline-info"
+                        } } 
                         >Change Password</Button>
                         <br/>
                   <p style ={{color:'red'}}>{error}</p>

@@ -22,10 +22,10 @@ import Footer from "../../components/Footer/Footer";
 Aos.init({ duration:2000});
    },[])
    
-  const [userid,setuserid]=useState(userService.getLoggedInUser()._id)
+  const [userid,setuserid]=useState(userService.isLoggedIn()?userService.getLoggedInUser()._id:"")
   console.log(userid)
    const [informations, setInformations] = useState([""])
-  const role = userService.getLoggedInUser().role;
+  const role = userService.isLoggedIn()?userService.getLoggedInUser().role:"";
    const getdata=()=>{
       InformationService
                   .getInformation(userid)
@@ -44,6 +44,7 @@ Aos.init({ duration:2000});
     userService
                 .getUser(userid)
                 .then((data) => {  
+                  console.log(data)
                 setusers(data)    
                 })
                 .catch((err) => {
@@ -53,12 +54,10 @@ Aos.init({ duration:2000});
  }
 useEffect(getuserdata, []);
    return(
-     
-   <div>
- <TopBar user={users}/>
-   
-  
+    <>
+   <div className='home'>
 
+ <TopBar user={users}/>
      <Carousel>
   <Carousel.Item interval={2000}>
     <img
@@ -126,9 +125,10 @@ useEffect(getuserdata, []);
 </> 
  }
            </div>
-  
-   <Footer/>
+
    </div>
+     
+     <Footer/></>
    );
 }
 

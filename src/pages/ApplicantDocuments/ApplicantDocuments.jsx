@@ -8,9 +8,10 @@ import { UilSignOutAlt } from "@iconscout/react-unicons";
 import Admin from "../../components/Admin"
 export default function ApplicantDocuments(props) {
    const [userpictures,setuserpictures]=useState([])
-   const search = useLocation().search;
-   const id = new URLSearchParams(search).get("backUrl");
-   console.log(id);
+  //  const search = useLocation().search;
+  //  const id = new URLSearchParams(search).get("backUrl");
+  const {id} =useParams(); 
+  console.log(id);
 
    const getdata=()=>{
        informationService.getuserspictures(id)

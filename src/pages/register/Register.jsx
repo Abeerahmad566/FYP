@@ -1,21 +1,16 @@
-import axios from 'axios'
 import swal from 'sweetalert';
 import React from "react";
 import Signup from '../img/signup.jpg'
-import { TextField } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 import userService from "../../services/UserService";
 import { toast,ToastContainer } from "react-toastify";
 import IconButton from "@material-ui/core/IconButton";
-import InputLabel from "@material-ui/core/InputLabel";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Link } from "react-router-dom";
 import './register.css'
-import validator from 'validator'
 import useState from 'react-usestateref';
-import nophoto from "../img/nophoto.jpg"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowUpFromBracket} from '@fortawesome/free-solid-svg-icons'
 const Register = (props) => {
@@ -41,23 +36,43 @@ const Register = (props) => {
     photo: "",
   });
 
-  const emlverfication = (e) => {
-    const eml = e.target.value;
-    setEmail(eml);
-    if (!validator.isEmail(email)) {
-      setError("Enter Valid Email")
+  function emlverfication  () {
+  
+    var dot = email.indexOf(".");
+    var atSymbol = email.indexOf("@");
+if(atSymbol < 1) {
+     return false;
+    }
+    
+if(dot <= atSymbol + 2) {
+return false;
+    }
+    if (dot === email.length - 1){
+    return false;
+    }
+   
+      return true;
+    
+
+    //  if (email != "") {
+    //   setError("")
+    //   setemailerror(false)
+    // }
+  }
+  const emailvalidation = (e)=>{
+    setEmail(e.target.value)
+    var result = emlverfication(email);
+    if(result)
+    {
+      setemailerror(false)
+    setError("")
+  }
+    else{
+     
+    setError("Enter Valid Email")
       setemailerror(true)
     }
-    else if (validator.isEmail(email)) {
-      setError("")
-      setemailerror(false)
-    }
-    else if (email != "") {
-      setError("")
-      setemailerror(false)
-    }
   }
-
   const pnverfication = (e) => {
     setphonenumber(e.target.value);
       if (
@@ -138,11 +153,25 @@ const Register = (props) => {
         position: "top-right",
         theme: "colored"
       });
-     setemailerror(true)
+      setemailerror(false)
     }
     else if (!email.includes("@")) {
       setError("Enter Valid Email")
+   
+      toast.error("Enter Valid Email",{
+        position: "top-right",
+        theme: "colored"
+      });
       setemailerror(true)
+    }
+    else if(emailerror)
+    {
+      setError("Enter Valid Email")
+   
+      toast.error("Enter Valid Email",{
+        position: "top-right",
+        theme: "colored"
+      });
     }
     else if (phonenumber == "") {
       setError("Please Enter Phone Number")
@@ -170,21 +199,32 @@ const Register = (props) => {
     }
     
 
-else if (password.length<8)
-{
-  setError("Please Enter 8 or more Characters Password")
-  setpasswordferror(true)
-
-}
-    else if (password == "") {
-
-      setError("Please Enter Password")
+    else if (password.length<8)
+    {
+      setError("Please Enter 8 or more Characters Password")
+      toast.error("Please Enter 8 or more Characters Password",{
+        position: "top-right",
+        theme: "colored"
+      });
       setpasswordferror(true)
     }
-    else if (Confirmpassword == "") {
-      setError("Please Enter Confirm Password")
-      setcnfmpassworderror(true)
-    }
+        else if (password == "") {
+    
+          setError("Please Enter Password")
+          toast.error("Please Enter Password",{
+            position: "top-right",
+            theme: "colored"
+          });
+          setpasswordferror(true)
+        }
+        else if (Confirmpassword == "") {
+          setError("Please Enter Confirm Password")
+          toast.error("Please Enter Confirm Password",{
+            position: "top-right",
+            theme: "colored"
+          });
+          setcnfmpassworderror(true)
+        }
     else {
       e.preventDefault();
       const formData = new FormData();
@@ -276,15 +316,14 @@ else if (password.length<8)
           <div className="col-sm">
             <img className="rgstrpic" src={Signup} alt="" />
           </div>
-          <div className="col-sm">
+          <div className="col-sm registerwrapper">
             <span className="rgstrtxt">Register</span>
             <br />
             <label style={{ marginTop: '20px' }}><b>Enter Your First Name</b></label>
             <br />
             <input
               placeholder="John"
-              className="registerInput"
-              style={firstnameerror?{borderColor:'red'}:{}}
+              className={firstnameerror? "registerInputerror":"registerInput"}
               type='text'
               value={Firstname}
               onChange={(e) => {
@@ -297,8 +336,7 @@ else if (password.length<8)
             <br />
             <input
               placeholder="Doe"
-              className="registerInput"
-              style={lastnameerror?{borderColor:'red'}:{}}
+              className={lastnameerror?"registerInputerror":"registerInput"}
               value={lastname}
               onChange={(e) => {
                 setlastName(e.target.value)
@@ -310,12 +348,11 @@ else if (password.length<8)
             <br />
             <input
               placeholder="johndoe@gmail.com"
-              style={emailerror?{borderColor:'red'}:{}}
+              className={emailerror?"registerInputerror":"registerInput"}
               type="email"
-              className="registerInput"
               value={email}
               onChange={(e) => {
-                emlverfication(e);
+                emailvalidation(e);
               }}
             />{" "}
             <br />
@@ -323,9 +360,8 @@ else if (password.length<8)
             <br />
             <input
               placeholder="03414180005"
-              style={phonenumberferror?{borderColor:'red'}:{}}
+              className={phonenumberferror?"registerInputerror":"registerInput"}
               type='number'
-              className="registerInput"
               value={phonenumber}
               onChange={(e) => {
                 pnverfication(e);
@@ -337,9 +373,9 @@ else if (password.length<8)
             <br />
             <Input 
               type={showPassword? "text":"password"}
-              style={passwordferror?{borderColor:'red'}:{}}
+              className={passwordferror?"pregisterInputerror":"pregisterInput"}
+           
               placeholder="********"
-              className="registerInput"
               value={password}
               disableUnderline
               onChange={(e) => {
@@ -361,9 +397,8 @@ else if (password.length<8)
             <Input 
               value={Confirmpassword}
               type={showcnfmPassword? "text":"password"}
-              style={cnfmpassworderror?{ BorderColor:'red'}:{}}
+              className={cnfmpassworderror?"pregisterInputerror":"pregisterInput"}
               disableUnderline
-              className="registerInput"
               placeholder="********"
               onChange={(e) => checkcnfpasswordvaldiation(e)}
               endAdornment={

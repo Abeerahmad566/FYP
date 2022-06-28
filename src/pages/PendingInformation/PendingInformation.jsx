@@ -56,8 +56,8 @@ console.log(reason)
     });
   }
   else {
-  //  await axios.put(`https://loanpredictionfypapi.herokuapp.com/api/informations/updatestatus/`+id,{id:id,status:Status,Reason:reason})
-   await axios.put(`http://localhost:4000/api/informations/updatestatus/`+id,{id:id,status:Status,reason:reason})
+    await axios.put(`https://loanpredictionfypapi.herokuapp.com/api/informations/updatestatus/`+id,{id:id,status:Status,reason:reason})
+  // await axios.put(`http://localhost:4000/api/informations/updatestatus/`+id,{id:id,status:Status,reason:reason})
       .then((response) => {
          console.log(response)  
          toast.success("Loan Successfully "+Status, {
@@ -82,7 +82,7 @@ console.log(reason)
     <tr>
        <td style={{textAlign:'center'}} >{information.firstname} {information.lastname}</td>
        <td style={{textAlign:'center'}} >{information.cnic} </td>
-       <td style={{textAlign:'center'}} ><Link to={`/applicantdocuments/?backUrl=${information._id}`}
+       <td style={{textAlign:'center'}} ><Link to={`/applicantdocuments/`+information._id}
         className='applicantdocuments'>View</Link></td> 
       <td style={{textAlign:'center'}} >{information.age}</td>
       <td  style={{textAlign:'center'}}>{information.income}</td>

@@ -1,4 +1,8 @@
 
+
+.login{
+  background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+}
 .lgntxt {
   font-size: 6vw;
   color: #1e90ff;
@@ -23,8 +27,23 @@
   color: white;
   border-radius: 10px;
   padding: 10px;
+  margin-left: 15%;
 }
+.siginbtn:hover{
+  background-color: white;
+ border: 2px solid #1e90ff ;
+  transition: color 1000ms linear;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
 
+}
+.siginbtn:hover{
+  color:black;
+  transition: color 1000ms;
+  -webkit-transition: color 1000ms linear;
+  -ms-transition: color 1000ms linear;
+}
 .registerlink:hover {
   opacity: 0.5;
 }
@@ -39,5 +58,15 @@
 @media (max-width: 500px) {
   .lgntxt {
     margin-top: 5%;
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 10%;
   }
+  .loginwrapper{
+    margin-left: 40%;
+  }
+  .imgWrapper{
+    margin-left: 20%;
+  }
+ 
 }

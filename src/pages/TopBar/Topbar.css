@@ -1,3 +1,11 @@
+
+.Navbar
+{
+  background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+}
+.Navbart{
+  color: white !important;
+}
 .logohomepage {
   height: 60px;
 }
@@ -35,56 +43,10 @@ text-decoration: underline;
   border-radius:100px ;
   height:50px;
   width:50px;
+  margin-left: 5%;
 }
 
-@media  (width: 375px) {
-  .homeicon {
-   
-    position: relative;
-    top: 0px;
-    left: 0px;
-  }
-.Hometxt
-{
-  position: relative;
-  left: -80px;
-}
-.onlinepredictionicon{
-position: relative;
-top: 0px;
-left: 0px;
 
-}
-.predicttxt{
-position: relative;
-left: -80px;
-}
-.Contacttxt{
-position: relative;
-left: -80px;
-}
-.connect{
-  position: relative;
-  top: 0px;
-  left: 0px;
-}
-  .logouticon{
-    position: relative;
-    top: -70px;
-    left: -25px;
-  }
-  .dropbtn{
-    position: relative;
-   top: -95px;
-   left: 0px
-  }
-  .profileimg{
-    position: relative;
-    top: -189px;
-    left: 30px;
-   
-  }
-}
 @media (width: 1024px) {
   .homeicon {
    
@@ -95,7 +57,7 @@ left: -80px;
   .Hometxt
   {
     position: relative;
-    left: -200px;
+    left: -160px;
   }
 .onlinepredictionicon{
   position: relative;
@@ -105,11 +67,11 @@ left: -80px;
 }
 .predicttxt{
   position: relative;
-  left: -200px;
+  left: -160px;
 }
 .Contacttxt{
   position: relative;
-  left: -200px;
+  left: -160px;
 }
 .connect{
   position: relative;
@@ -119,8 +81,8 @@ left: -80px;
 }
 .profileimg{
   position: relative;
-  top: -189px;
-  left: -100px;
+  top: -315px;
+  left: 20px;
  
 }
 .logouticon{
@@ -133,26 +95,14 @@ left: -80px;
  top: -95px;
  left: 10px
 }
+.welcometxt{
+  position: relative;
+  top: -255px;
+    left: 120px;
+}
 }
 
-@media (max-width: 280px) {
- 
-  .Hometxt
-  {
-    position: relative;
-    top:0px;
-    left: -50px;
-  }
-.predicttxt{
-  position: relative;
-  left: -50px;
-}
-.Contacttxt{
-  position: relative;
-  left: -50px;
-}
 
-}
 @media (width: 540px) {
   .homeicon {
    
@@ -163,7 +113,7 @@ left: -80px;
   .Hometxt
   {
     position: relative;
-    left: -110px;
+    left: -90px;
   }
 .onlinepredictionicon{
   position: relative;
@@ -173,11 +123,11 @@ left: -80px;
 }
 .predicttxt{
   position: relative;
-  left: -110px;
+  left: -90px;
 }
 .Contacttxt{
   position: relative;
-  left: -110px;
+  left: -90px;
 }
 .connect{
   position: relative;
@@ -187,7 +137,7 @@ left: -80px;
 }
 .profileimg{
   position: relative;
-  top: -189px;
+  top: -315px;
   left: 40px;
  
 }
@@ -201,7 +151,11 @@ left: -80px;
  top: -95px;
  left: 10px
 }
-
+.welcometxt{
+  position: relative;
+  top: -255px;
+  left: 120px;
+}
 }
 @media (width: 912px) {
   .logouticon{
@@ -233,7 +187,7 @@ left: -80px;
   }
   .profileimg{
     position: relative;
-    top: -189px;
+    top: -315px;
     left: 40px;
    
   }
@@ -241,15 +195,20 @@ left: -80px;
   {
     position: relative;
     top:0px;
-    left: -180px;
+    left: -130px;
   }
 .predicttxt{
   position: relative;
-  left: -180px;
+  left: -130px;
 }
 .Contacttxt{
   position: relative;
-  left: -180px;
+  left: -130px;
+}
+.welcometxt{
+  position: relative;
+  top: -255px;
+  left: 120px;
 }
 }
 @media (width: 768px) {
@@ -283,7 +242,7 @@ left: -80px;
   }
   .profileimg{
     position: relative;
-    top: -189px;
+    top: -315px;
     left: 40px;
    
   }
@@ -291,17 +250,21 @@ left: -80px;
   {
     position: relative;
     top:0px;
-    left: -160px;
+    left: -120px;
   }
 .predicttxt{
   position: relative;
-  left: -160px;
+  left: -120px;
 }
 .Contacttxt{
   position: relative;
-  left: -160px;
+  left: -120px;
 }
-
+.welcometxt{
+  position: relative;
+  top: -255px;
+  left: 120px;
+}
 }
 @media (width: 820px) {
   .logouticon{
@@ -333,7 +296,7 @@ left: -80px;
   }
   .profileimg{
     position: relative;
-    top: -189px;
+    top: -315px;
     left: 40px;
    
   }
@@ -341,168 +304,23 @@ left: -80px;
   {
     position: relative;
     top:0px;
-    left: -160px;
+    left: -130px;
   }
 .predicttxt{
   position: relative;
-  left: -160px;
+  left: -130px;
 }
 .Contacttxt{
   position: relative;
-  left: -160px;
+  left: -130px;
 }
-}
-@media (width: 360px) {
-  .profileimg{
-    position: relative;
-    top: -189px;
-    left: 40px;
-   
-  }
-  .homeicon {
-   
-    position: relative;
-    top: -2px;
-    left: 0px;
-  }
-  .Hometxt
-  {
-    position: relative;
-    left: -80px;
-  }
-.onlinepredictionicon{
+.welcometxt{
   position: relative;
-  top: 0px;
-  left: 0px;
-  
+  top: -255px;
+  left: 120px;
 }
-.predicttxt{
-  position: relative;
-  left: -80px;
-}
-.Contacttxt{
-  position: relative;
-  left: -80px;
-}
-.connect{
-  position: relative;
-  top: 0px;
-  left: 0px;
- 
 }
 
-.logouticon{
-  position: relative;
-  top: -70px;
-  left: -22px;
-}
-.dropbtn{
-  position: relative;
- top: -95px;
- left: 0px
-}
-}
-@media (width: 390px) {
- 
-  .homeicon {
-   
-    position: relative;
-    top: -2px;
-    left: 0px;
-  }
-  .Hometxt
-  {
-    position: relative;
-    left: -80px;
-  }
-.onlinepredictionicon{
-  position: relative;
-  top: 0px;
-  left: 0px;
-  
-}
-.predicttxt{
-  position: relative;
-  left: -80px;
-}
-.Contacttxt{
-  position: relative;
-  left: -80px;
-}
-.connect{
-  position: relative;
-  top: 0px;
-  left: 0px;
- 
-}
-
-.logouticon{
-  position: relative;
-  top: -70px;
-  left: -22px;
-}
-.dropbtn{
-  position: relative;
- top: -95px;
- left: 0px
-}
-.profileimg{
-  position: relative;
-  top: -189px;
-  left: 40px;
- 
-}
-}
-@media (width: 393px) {
-  .profileimg{
-    position: relative;
-    top: -189px;
-    left: 40px;
-   
-  }
-  .homeicon {
-   
-    position: relative;
-    top: -2px;
-    left: 0px;
-  }
-  .Hometxt
-  {
-    position: relative;
-    left: -80px;
-  }
-.onlinepredictionicon{
-  position: relative;
-  top: 0px;
-  left: 0px;
-  
-}
-.predicttxt{
-  position: relative;
-  left: -80px;
-}
-.Contacttxt{
-  position: relative;
-  left: -80px;
-}
-.connect{
-  position: relative;
-  top: 0px;
-  left: 0px;
- 
-}
-
-.logouticon{
-  position: relative;
-  top: -70px;
-  left: -22px;
-}
-.dropbtn{
-  position: relative;
- top: -95px;
- left: 0px
-}
-}
 
 @media (width: 280px) {
  
@@ -521,7 +339,8 @@ left: -80px;
   .Hometxt
   {
     position: relative;
-    left: -60px;
+    left: -50px!important;
+    top:20px;
   }
 .onlinepredictionicon{
   position: relative;
@@ -531,11 +350,13 @@ left: -80px;
 }
 .predicttxt{
   position: relative;
-  left: -60px;
+  left: -50px!important;
+  top:20px;
 }
 .Contacttxt{
   position: relative;
-  left: -60px;
+  left: -50px!important;
+  top:20px;
 }
 .connect{
   position: relative;
@@ -554,58 +375,15 @@ left: -80px;
  top: -95px;
  left: 5px
 }
+.welcometxt{
+  position: relative!important;
+  left: -20px!important;
+  top:-220px!important;
 }
-@media (width: 412px) {
-  .profileimg{
-    position: relative;
-    top: -189px;
-    left: 40px;
-   
-  }
- .homeicon {
-   
-    position: relative;
-    top: -2px;
-    left: 0px;
-  }
-  .Hometxt
-  {
-    position: relative;
-    left: -80px;
-  }
-.onlinepredictionicon{
-  position: relative;
-  top: 0px;
-  left: 0px;
-  
-}
-.predicttxt{
-  position: relative;
-  left: -80px;
-}
-.Contacttxt{
-  position: relative;
-  left: -80px;
-}
-.connect{
-  position: relative;
-  top: 0px;
-  left: 0px;
- 
 }
 
-.logouticon{
-  position: relative;
-  top: -70px;
-  left: -20px;
-}
-.dropbtn{
-  position: relative;
- top: -95px;
- left: 5px
-}
-}
-@media (width: 414px) {
+
+@media (max-width: 500px) {
 
   .homeicon {
     
@@ -616,7 +394,7 @@ left: -80px;
    .Hometxt
    {
      position: relative;
-     left: -80px;
+     left: -60px;
    }
  .onlinepredictionicon{
    position: relative;
@@ -626,11 +404,11 @@ left: -80px;
  }
  .predicttxt{
    position: relative;
-   left: -80px;
+   left: -60px;
  }
  .Contacttxt{
    position: relative;
-   left: -80px;
+   left: -60px;
  }
  .connect{
    position: relative;
@@ -651,8 +429,13 @@ left: -80px;
  }
  .profileimg{
   position: relative;
-  top: -189px;
-  left: 40px;
+  top: -315px;
+    left: 50px;
  
+}
+.welcometxt{
+  position: relative;
+  top: -255px;
+  left: 120px;
 }
  }

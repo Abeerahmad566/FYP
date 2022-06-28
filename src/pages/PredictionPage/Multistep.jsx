@@ -21,6 +21,7 @@ import validator from 'validator'
 
 const MultiStep = () => {
   const userRole= userService.getLoggedInUser().role;
+  const [reason,setreason]=useState(userRole=="user"?"Pending":"Predicted by Admin")
   const[age,setage,ageRef]= useState("");
   const[CurrentJobYears,setCurrentJobYears,currentjobyearsRef]= useState("");
   const[CurrentHouseYears,setCurrentHouseYears,currenthouseyearsRef]= useState("");
@@ -53,10 +54,11 @@ const[address,setaddress]=useState("");
 const [photo, setphoto] = useState([]);
 const[designation,setdesignation]=useState("");
 const[organizationname,setorganizationname,OrganizationnameRef]=useState("");
+
 const[organizationaddress,setorganizationaddress]=useState("");
 const useStyles = makeStyles(() => ({
   root: {
-    "& .MuiStepIcon-active": { color: "#005CA9", fontSize: "1.6rem",
+    "& .MuiStepIcon-active": { color: "#005CA9", fontSize: "1.6rem", 
   '@media(max-width:500px)':{color: "#005CA9", fontSize: "1rem"},
   },
     "& .MuiStepLabel-active": { color: "#005CA9", fontSize: "1.6rem",
@@ -164,7 +166,8 @@ if(result){
       formData.append("organizationaddress", organizationaddress);
       formData.append("loanamount", loanamount);
       formData.append("result", result);
-      formData.append("userRole",userRole)
+      formData.append("userRole",userRole);
+      formData.append("reason",reason);
       if(result=='Approved')
       {
         if(userRole=='superAdmin')
@@ -486,10 +489,10 @@ const handleNextStep=()=>{
     });
 
 }
-// else if (regexp.test(cnic)) {
-//   setError("")
+//  else if (regexp.test(cnic)) {
+//    setError("")
   
-// }
+//  }
 
   else if(address=="")
   {

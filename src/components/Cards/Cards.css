@@ -1,0 +1,80 @@
+.Cards {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.Icon{
+  font-size: 69px !important;
+  color: white !important;
+  float: left !important;
+  margin-top: 10px !important;
+}
+
+.totalprediction {
+  flex: 1;
+  margin: 10px 20px !important;
+  padding: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  background-color: #2d86df !important;
+  text-align: center !important;
+}
+.LoanApproved {
+  flex: 1;
+  margin: 10px 20px !important;
+  padding: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  background-color: #34da79 !important;
+  text-align: center !important;
+}
+.loanrejected {
+  flex: 1;
+  margin: 10px 20px !important;
+  padding: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  background-color:#e03232!important;
+  text-align: center !important;
+  /* margin-right: 20px !important; */
+}
+
+.Cardstitle {
+  font-size: 28px;
+  color: white;
+  text-align: center !important;
+}
+
+.opContainer {
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  color: white;
+  
+}
+
+.divspan {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center !important;
+  margin-left: 140px;
+}
+.Rspan {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center !important;
+  margin-left: 106px;
+}
+
+
+
+

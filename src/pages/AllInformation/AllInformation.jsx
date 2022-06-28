@@ -40,7 +40,7 @@ const AllInformation = (props) => {
       <td style={{textAlign:'center'}} >{information.firstname} {information.lastname}</td>
       <td style={{textAlign:'center'}} >{information.userRole}</td>
       <td style={{textAlign:'center'}} >{information.cnic}</td>
-      <td style={{textAlign:'center'}} ><Link to={`/applicantdocuments/?backUrl=${information._id}`}
+      <td style={{textAlign:'center'}} ><Link to={`/applicantdocuments/`+information._id}
         className='applicantdocuments'>View</Link></td> 
       <td style={{textAlign:'center'}} >{information.age}</td>
       <td  style={{textAlign:'center'}}>{information.income}</td>

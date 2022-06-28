@@ -1,14 +1,14 @@
 import React from "react";
 import Admin from "../Admin";
-import Table from "../Table/Table";
+import Graph from "../Graph/Graph";
 import "./MainDash.css";
 const MainDash = () => {
   return (
     <>
     <Admin>
     <div className="MainDash">
-      <h1>Dashboard</h1>
-      <Table />
+      <h1>Admin Dashboard</h1>
+      <Graph />
     </div>
     </Admin>
     </>

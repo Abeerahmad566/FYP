@@ -1,9 +1,127 @@
 .backbtn{
     margin-right: 5%;
     margin-left: 5%;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 1%;
+    padding-right: 2%;
+    padding-left: 2%;
+
    
    }
+   .updbackbtnateprofile:hover{
+      background-color: white;
+     
+      transition: color 1000ms linear;
+      -webkit-transition: background-color 1000ms linear;
+      -ms-transition: background-color 1000ms linear;
+      transition: background-color 1000ms linear;
+  
+  }
+  .backbtn:hover{
+      color:black;
+      transition: color 1000ms;
+      -webkit-transition: color 1000ms linear;
+      -ms-transition: color 1000ms linear;
+  }
+   .updateprofile{
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 25px;
+     
+      padding: 1%;
+   }
+   .updateprofile:hover{
+      background-color: white;
+     
+      transition: color 1000ms linear;
+      -webkit-transition: background-color 1000ms linear;
+      -ms-transition: background-color 1000ms linear;
+      transition: background-color 1000ms linear;
+  
+  }
+  .updateprofile:hover{
+      color:black;
+      transition: color 1000ms;
+      -webkit-transition: color 1000ms linear;
+      -ms-transition: color 1000ms linear;
+  }
+  .uploadbtn{
+   background-color: transparent;
+   color: white;
+   border: 2px solid white;
+   border-radius: 25px;
+  
+   padding: 1%;
+}
+.uploadbtn:hover{
+   background-color: white;
+   transition: color 1000ms linear;
+   -webkit-transition: background-color 1000ms linear;
+   -ms-transition: background-color 1000ms linear;
+   transition: background-color 1000ms linear;
 
+}
+.uploadbtn:hover{
+   color:black;
+   transition: color 1000ms;
+   -webkit-transition: color 1000ms linear;
+   -ms-transition: color 1000ms linear;
+}
+.updatepassword{ 
+   background-color: transparent;
+   color: white;
+   border: 2px solid white;
+   border-radius: 25px;
+  
+   padding: 1%;
+}
+.updatepassword:hover{
+   background-color: white;
+   transition: color 1000ms linear;
+   -webkit-transition: background-color 1000ms linear;
+   -ms-transition: background-color 1000ms linear;
+   transition: background-color 1000ms linear;
+
+}
+.updatepassword:hover{
+   color:black;
+   transition: color 1000ms;
+   -webkit-transition: color 1000ms linear;
+   -ms-transition: color 1000ms linear;
+}
+
+.changepasswordbtn{
+   background-color: transparent;
+   color: white;
+   border: 2px solid white;
+   border-radius: 25px;
+  
+   padding: 1%;
+}
+.changepasswordbtn:hover{
+   background-color: white;
+   transition: color 1000ms linear;
+   -webkit-transition: background-color 1000ms linear;
+   -ms-transition: background-color 1000ms linear;
+   transition: background-color 1000ms linear;
+
+}
+.changepasswordbtn:hover{
+   color:black;
+   transition: color 1000ms;
+   -webkit-transition: color 1000ms linear;
+   -ms-transition: color 1000ms linear;
+}
+
+
+
+.main{
+   background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+}
 
 .centerdiv{
    margin-left: 40%;
@@ -97,7 +215,7 @@ color: #1e90ff;
    }
    .uploadbtn
 {
-   margin-left:17%;
+   margin-left:0%;
    font-size: xx-small
 }
 .faicon{

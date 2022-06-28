@@ -83,7 +83,7 @@ export default function EnterEmail() {
   </div>
  
   <br/>
-  <button onClick={handleEmail} class="btn btn-primary">Submit</button>
+  <button onClick={handleEmail} class="resetbtn">Submit</button>
 </form>
   
     </div>

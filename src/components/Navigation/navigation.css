@@ -1,0 +1,262 @@
+.logohomepage {
+  height: 60px;
+}
+.icon{
+  position:relative;
+  left:0px;
+  top:-3px;
+}
+.Navbar{
+  background-color: white;
+}
+
+.txt{
+  font-size: large;
+}
+.txtf{
+  font-size: large;
+  font-weight: 400;
+}
+
+@media  (max-width: 500px) {
+  .icon {
+   
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+.txt
+{
+  position: relative;
+  left: -30px;
+}
+
+.txtf{
+  position: relative;
+  left: -60px;
+}
+ 
+}
+@media (width: 1024px) {
+   
+  .icon {
+  position: relative;
+  top: 0px;
+  left: 0px;
+
+}
+.txt
+{
+position: relative;
+left: -30px;
+}
+  .txtf
+  {
+    font-size: 4vw;
+   font-weight: 400;
+    position: relative;
+    top:0px;
+    left:-125px;
+  }
+
+}
+
+
+
+@media (width: 540px) {
+  .icon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .txt
+  {
+    position: relative;
+    top:0px;
+    left: -30px;
+    font-size: x-large;
+  }
+  .txtf
+  {
+    font-size: x-large;
+    font-weight: 400;
+    position: relative;
+    top:0px;
+    left: -80px;
+  }
+
+
+
+
+}
+@media (width: 912px) {
+ 
+  
+ 
+  .icon{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
+  }
+ 
+  
+  .txt
+  {
+    position: relative;
+    top:0px;
+    left: -30px;
+    font-size: x-large;
+  }
+  .txtf
+  {
+    font-size: x-large;
+    font-weight: 400;
+    position: relative;
+    top:0px;
+    left: -115px;
+  }
+}
+@media (width: 768px) {
+ 
+  .icon{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
+  }
+ 
+  .txt
+  {
+    position: relative;
+    top:0px;
+    left: -30px;
+    font-size: x-large;
+  }
+
+  .txtf
+  {
+    font-weight: 400;
+    font-size: x-large;
+    position: relative;
+    top:0px;
+    left: -100px;
+  }
+
+}
+@media (width: 820px) {
+  .icon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+   
+  }
+  
+  .txt
+  {
+    font-size: x-large;
+    position: relative;
+    top:0px;
+    left: -30px;
+  }
+  .txtf
+  {
+    font-size: x-large;
+    font-weight: 400;
+    position: relative;
+    top:0px;
+    left: -105px;
+  }
+
+}
+@media (width: 280px) {
+ 
+  
+  
+  .txtf
+  {
+    font-size: small;
+    position: relative;
+    top:0px;
+    left:-53px;
+  }
+
+ }
+@media (width: 360px) {
+  
+  .homeicon {
+   
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+  .Hometxt
+  {
+    position: relative;
+    left: -80px;
+  }
+.onlinepredictionicon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  
+}
+.predicttxt{
+  position: relative;
+  left: -80px;
+}
+.Contacttxt{
+  position: relative;
+  left: -80px;
+}
+.connect{
+  position: relative;
+  top: 0px;
+  left: 0px;
+ 
+}
+
+
+}
+@media (width: 390px) {
+ 
+  .txtf
+  {
+    
+   font-weight: 400;
+    position: relative;
+    top:0px;
+    left:-65px;
+  }
+
+}
+@media (width: 393px) {
+
+  .txtf
+  {
+    
+   font-weight: 400;
+    position: relative;
+    top:0px;
+    left:-65px;
+  }
+
+}
+
+
+
+
+
+@media (width: 414px) {
+
+  .txtf
+  {
+    font-size: large;
+   font-weight: 400;
+    position: relative;
+    top:0px;
+    left:-65px;
+  }
+ }  

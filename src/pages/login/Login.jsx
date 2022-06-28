@@ -24,20 +24,41 @@ const Login = () => {
   const showpassword=()=>{
     setshowPassword(!showPassword)
   }
-  const emlverfication = (e) => {
-    const eml = e.target.value;
-    setEmail(eml);
-    if (!validator.isEmail(email)) {
+  function emlverfication  () {
+  
+    var dot = email.indexOf(".");
+    var atSymbol = email.indexOf("@");
+if(atSymbol < 1) {
+     return false;
+    }
+    
+if(dot <= atSymbol + 2) {
+return false;
+    }
+    if (dot === email.length - 1){
+    return false;
+    }
+   
+      return true;
+    
+
+    //  if (email != "") {
+    //   setError("")
+    //   setemailerror(false)
+    // }
+  }
+  const emailvalidation = (e)=>{
+    setEmail(e.target.value)
+    var result = emlverfication(email);
+    if(result)
+    {
+      setemailerror(false)
+      setLoginerror("")
+  }
+    else{
+     
       setLoginerror("Enter Valid Email")
       setemailerror(true)
-    }
-    else if (validator.isEmail(email)) {
-      setLoginerror("")
-      setemailerror(false)
-    }
-    else if (email != "") {
-      setLoginerror("")
-      setemailerror(false)
     }
   }
   const pssverfication = (e) => {
@@ -54,10 +75,18 @@ const Login = () => {
     if(email ==""){
       setLoginerror("Email field is empty")
       setemailerror(true)
+      toast.error("Email field is empty",{
+        position: "top-right",
+        theme: "colored"
+      });
 } 
 else if(password ==""){
   setLoginerror("Password field is empty")
   setpasswordferror(true)
+  toast.error("Password field is empty",{
+    position: "top-right",
+    theme: "colored"
+  });
   }
   else{
     userService
@@ -100,7 +129,7 @@ else if(password ==""){
       <div className="col-sm imgcolWrapper">
       <img className="imgWrapper"  src={login} alt="" />
       </div>
-      <div className="col-sm">
+      <div className="col-sm loginwrapper">
         <span className="lgntxt">Login</span>
         <br />
         <label><b>Enter Email</b></label>
@@ -109,20 +138,19 @@ else if(password ==""){
         type="email"
         style={emailerror?{borderColor:'red'}:{}}
           placeholder="johndoe@gmail.com"
-          className="registerInput"
+          className={emailerror?"registerInputerror":"registerInput"}
           value={email}
           onChange={(e) => {
-            emlverfication(e)
+            emailvalidation(e)
           } } />
         <br />
         <label style={{ marginTop: '20px' }}><b>Enter Password</b></label>
         <br />
         <Input
           type={showPassword? "text":"password"}
-          style={passwordferror?{borderColor:'red'}:{}}
           disableUnderline
           placeholder="*********"
-          className="registerInput"
+          className={passwordferror?"pregisterInputerror":"pregisterInput"}
           value={password}
           onChange={(e) => {
             pssverfication(e)

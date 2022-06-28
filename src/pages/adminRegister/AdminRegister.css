@@ -1,0 +1,15 @@
+.aregisterInput{
+  border:1px solid#ccc;
+  border-radius: 5px;
+  height: 30px;
+
+}
+.aregisterInputerror{
+  border:2px solid red;
+  border-radius: 5px;
+  height: 30px;
+ 
+}
+.aregisterInput:focus{
+  border:1px solid black
+}

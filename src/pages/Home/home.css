@@ -1,4 +1,7 @@
+.home{
+  background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
 
+}
 .btnwrapper {
  
 margin-right: 30%;
@@ -11,7 +14,9 @@ margin-right: 30%;
   font-weight: 400;
 }
 .tableWrapper {
-  overflow: auto;
+  overflow-y: auto;
+  background: white;
+ 
 }
 .bold{
   font-size: 30px;
@@ -26,11 +31,13 @@ margin-right: 30%;
   .makeprediction{
    font-size: large;
    border: none;
-   background-color: #0071D4;
+   background-color: #014f92;
    border-radius: 5%;
    color: aliceblue;
-   margin-top: 1%;
+   margin-top: 2%;
    text-decoration: none;
+padding-top:0.5%;
+padding-bottom:0.5%;
   }
   .makeprediction:hover{
     color: aliceblue;

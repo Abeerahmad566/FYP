@@ -24,7 +24,15 @@ import ManageAdmins from "./pages/ManageAdmins/ManageAdmin";
 import ApplicantDocuments from "./pages/ApplicantDocuments/ApplicantDocuments";
 import Emailverify from "./pages/Emailverify";
 import Emailverifylogin from "./pages/Emailverifylogin";
+import Navigation from "./components/Navigation/Navigation";
+import userService from "./services/UserService";
+import Team from "./components/Team/Team";
+import Footer from "./components/Footer/Footer";
+import Features from "./components/Features/Features";
+import About from "./components/AboutUs/About";
+import GetinTouch from "./components/GetinTouch/GetinTouch";
 function App() {
+  const user = userService.isLoggedIn();
   return (
     <Router>
       <ToastContainer theme="colored" />
@@ -37,36 +45,52 @@ function App() {
         <Route path="/register">{<Register />}</Route>
         <Route path="/login">{<Login />}</Route>
         <Route path="/enteremail">{<Enteremail />}</Route>
-
+        <Route path="/contact">{<Contact />}</Route>
         <Route exact path="/">
+          <Navigation />
           <LandingPage />
+          <Features />
+          <Team />
+          <About />
+          <GetinTouch />
         </Route>
         <Auth>
-          <Route path="/contact">{<Contact />}</Route>
-          <Route path="/predictionPage">{<Multistep />}</Route>
-          <Route path="/home">{<Home />}</Route>
-          <Route path="/profile">{<Profile />}</Route>
+          <Route path="/predictionPage">
+            {user ? <Multistep /> : <LandingPage />}
+          </Route>
+          <Route path="/home">{user ? <Home /> : <LandingPage />}</Route>
+          <Route path="/profile">{user ? <Profile /> : <LandingPage />}</Route>
 
           <Route path="/adminpanel">
-            {
+            {user ? (
               <div className="App">
                 <div className="AppGlass">
                   <Sidebar />
                   <MainDash />
                 </div>
               </div>
-            }
+            ) : (
+              <LandingPage />
+            )}
           </Route>
           <Route path="/adminregister">
-            <AdminRegister />
+            {user ? <AdminRegister /> : <LandingPage />}
           </Route>
           <Route path="/pendingloans">
-            <PendingLoans />
+            {user ? <PendingLoans /> : <LandingPage />}
           </Route>
-          <Route path="/allloans">{<AllLoans />}</Route>
-          <Route path="/manageusers">{<ManageUsers />}</Route>
-          <Route path="/manageadmins">{<ManageAdmins />}</Route>
-          <Route path="/applicantdocuments">{<ApplicantDocuments />}</Route>
+          <Route path="/allloans">
+            {user ? <AllLoans /> : <LandingPage />}
+          </Route>
+          <Route path="/manageusers">
+            {user ? <ManageUsers /> : <LandingPage />}
+          </Route>
+          <Route path="/manageadmins">
+            {user ? <ManageAdmins /> : <LandingPage />}
+          </Route>
+          <Route path="/applicantdocuments/:id">
+            {user ? <ApplicantDocuments /> : <LandingPage />}
+          </Route>
         </Auth>
       </Switch>
     </Router>

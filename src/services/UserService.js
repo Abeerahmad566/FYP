@@ -4,9 +4,9 @@ class UserService extends GenericService {
   constructor() {
     super();
   }
-  getUser = (id) => this.get("users/" + id);
-  getUsers = () => this.get("users/users/");
-  getAdmins = () => this.get("users/admins/");
+  getUser = (id) => this.get("users/getsingle/" + id);
+  getUsers = () => this.get("users/getusers/");
+  getAdmins = () => this.get("users/getadmins/");
   deleteUser = (id) => this.delete("users/" + id);
   updateUser = (_id, data) => this.put("users/updateprofile/" + _id, data);
 

@@ -1,3 +1,6 @@
+.Contact{
+  background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+}
 .form {
   width: 40%;
  margin-left: 31%;
@@ -17,6 +20,8 @@
   top: 7%;
   background-color: #005ca9;
   border-radius: 5%;
+padding-right: 10px;
+padding-left: 10px;
 }
 
 .para1 {

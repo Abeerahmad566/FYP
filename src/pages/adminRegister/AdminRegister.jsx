@@ -1,5 +1,9 @@
-
-import axios from 'axios'
+import "./AdminRegister.css"
+import Input from "@material-ui/core/Input";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import React from "react";
 import Signup from '../img/signup.jpg'
 import { TextField } from "@material-ui/core";
@@ -25,63 +29,105 @@ const AdminRegister = () => {
   const[role,setrole]=useState("admin")
   const [phonenumberferror,setphonenumberferror] = useState(false);
   const [phonenumbererror,setphonenumbererror] = useState("")
-    const emlverfication = (e) => {
-        const eml = e.target.value;
-        setEmail(eml);
-        if (!validator.isEmail(email)) {
-          setError("Enter Valid Email")
+  const [showPassword,setshowPassword]=useState(false);
+  const [showcnfmPassword,setshowcnfmPassword]=useState(false);
+  const [passworderror,setpassworderror]=useState(false);
+  const [firstnameerror,setfirstnameerror]=useState(false);
+  const [lastnameerror,setlastnameerror]=useState(false);
+  const [emailerror,setemailerror]=useState(false);
+  const [cnfmpassworderror,setcnfmpassworderror]=useState(false);
+  const [passwordferror,setpasswordferror]=useState(false);
+    function emlverfication  () {
+  
+        var dot = email.indexOf(".");
+        var atSymbol = email.indexOf("@");
+    if(atSymbol < 1) {
+         return false;
         }
-        else if (email != "") {
-          setError("")
+        
+ if(dot <= atSymbol + 2) {
+  return false;
+        }
+        if (dot === email.length - 1){
+        return false;
+        }
+       
+          return true;
+        
+
+        //  if (email != "") {
+        //   setError("")
+        //   setemailerror(false)
+        // }
+      }
+      const emailvalidation = (e)=>{
+        setEmail(e.target.value)
+        var result = emlverfication(email);
+        if(result)
+        {
+          setemailerror(false)
+        setError("")
+      }
+        else{
+         
+        setError("Enter Valid Email")
+          setemailerror(true)
         }
       }
       const fnverfication = () => {
         const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
     
-        if (!name.test(FirstnameRef.current)) {
-          setnameError("Invalid firstname! It must contain all Alphabets")
-        }
-        else if (name.test(FirstnameRef.current)) {
-          setnameError("")
-        }
+       
+    if (!name.test(FirstnameRef.current)) {
+      setnameError("Invalid firstname! It must contain all Alphabets")
+      setfirstnameerror(true)
+    }
+    else if (name.test(FirstnameRef.current)) {
+      setnameError("")
+      setfirstnameerror(false)
+    }
       }
       const lnverfication = () => {
         const name = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/i;
     
         if (!name.test(LastnameRef.current)) {
           setnameError("Invalid lastname! It must contain all Alphabets")
+          setlastnameerror(true)
         }
         else if (name.test(LastnameRef.current)) {
           setnameError("")
+          setlastnameerror(false)
         }
       }
       const pnverfication = (e) => {
         setphonenumber(e.target.value);
-          if (
-            phonenumber.length === 11 &&
-            phonenumber.startsWith("03") &&
-            phonenumber.match(/^[0-9]+$/)
-        ) 
-        {
-          setError("")
-          setphonenumberferror(false)
-        }
-        else if (phonenumber != "") {
-          setError("")
-          setphonenumberferror(false)
-        }
-        else
-        {
-          setError("Please enter a Valid Phone Number")
-          setphonenumbererror("Please enter a Valid Phone Number")
-          setphonenumberferror(true)
-        }
+        if (
+          phonenumber.length === 11 &&
+          phonenumber.startsWith("03") &&
+          phonenumber.match(/^[0-9]+$/)
+      ) 
+      {
+        setError("")
+        setphonenumberferror(false)
+        setphonenumbererror("")
+      }
+      else if (phonenumber != "") {
+        setError("")
+        setphonenumberferror(false)
+        setphonenumbererror("")
+      }
+      else
+      {
+        setphonenumberferror(true)
+        setphonenumbererror("Please enter a Valid Phone Number")
+      }
       }
       const pssverfication = (e) => {
         const pss = e.target.value;
         setPassword(pss);
         if (password != "") {
           setError("")
+          setpasswordferror(false)
         }
       }
       const checkvalidation = (e) => {
@@ -105,10 +151,27 @@ const AdminRegister = () => {
             position: "top-right",
             theme: "colored"
           });
+          setemailerror(false)
         }
         else if (!email.includes("@")) {
           setError("Enter Valid Email")
+       
+          toast.error("Enter Valid Email",{
+            position: "top-right",
+            theme: "colored"
+          });
+          setemailerror(true)
         }
+        else if(emailerror)
+        {
+          setError("Enter Valid Email")
+       
+          toast.error("Enter Valid Email",{
+            position: "top-right",
+            theme: "colored"
+          });
+        }
+        
         else if (phonenumber == "") {
           setError("Please Enter Phone Number")
           toast.error("Please Enter Phone Number",{
@@ -130,13 +193,28 @@ const AdminRegister = () => {
     else if (password.length<8)
     {
       setError("Please Enter 8 or more Characters Password")
+      toast.error("Please Enter 8 or more Characters Password",{
+        position: "top-right",
+        theme: "colored"
+      });
+      setpasswordferror(true)
     }
         else if (password == "") {
     
           setError("Please Enter Password")
+          toast.error("Please Enter Password",{
+            position: "top-right",
+            theme: "colored"
+          });
+          setpasswordferror(true)
         }
         else if (Confirmpassword == "") {
           setError("Please Enter Confirm Password")
+          toast.error("Please Enter Confirm Password",{
+            position: "top-right",
+            theme: "colored"
+          });
+          setcnfmpassworderror(true)
         }
         else {
           e.preventDefault();
@@ -165,11 +243,13 @@ const AdminRegister = () => {
             .register(formData)
             .then((data) => {
               console.log(data);
-              window.location.href = "/adminpanel";
               toast.success("New Admin Successfully Registered", {
                 position: "top-right",
                 theme: "colored"
               });
+              setTimeout(function(){
+                window.location.href = '/adminpanel';
+             }, 2000);
             })
             .catch((err) => {
               if (err.response.status == 400) {
@@ -188,14 +268,24 @@ const AdminRegister = () => {
         }
       }
       }
+      const showpassword=()=>{
+        setshowPassword(!showPassword)
+    
+      }
+      const showcnfmpassword=()=>{
+        
+        setshowcnfmPassword(!showcnfmPassword)
+      }
     const checkcnfpasswordvaldiation = (e) => {
         const confmpass = e.target.value
         setConfirmPassword(confmpass);
         if (password != confmpass) {
           setError("Both Passwords should Match")
+          setcnfmpassworderror(true)
         }
         else {
           setError("");
+          setcnfmpassworderror(false)
         }
     
       }
@@ -225,7 +315,7 @@ const AdminRegister = () => {
                           <div class="form-outline flex-fill mb-0">
                             <input type="text" id="form3Example1c" class="form-control"
                               placeholder="Admin First Name"
-                              className="aregisterInput"
+                              className={firstnameerror? "aregisterInputerror":"aregisterInput"}
                               value={Firstname}
                               onChange={(e) => {
                                 setFirstName(e.target.value);
@@ -240,7 +330,7 @@ const AdminRegister = () => {
                           <div class="form-outline flex-fill mb-0">
                             <input type="text" id="form3Example1c" class="form-control"
                               placeholder="Admin Last Name"
-                              className="aregisterInput"
+                              className={lastnameerror?"aregisterInputerror":"aregisterInput"}
                               value={lastname}
                               onChange={(e) => {
                                 setlastName(e.target.value);
@@ -255,8 +345,7 @@ const AdminRegister = () => {
                           <div class="form-outline flex-fill mb-0">
                             <input type="number" id="form3Example1c" class="form-control"
                               placeholder="Admin Phone Number"
-                           
-                              className="aregisterInput"
+                              className={phonenumberferror?"aregisterInputerror":"aregisterInput"}
                               value={phonenumber}
                               onChange={(e) => {
                                 pnverfication(e);
@@ -271,11 +360,10 @@ const AdminRegister = () => {
                           <div class="form-outline flex-fill mb-0">
                             <input type="email" id="form3Example3c" class="form-control"
                               placeholder="Admin Email"
-
-                              className="aregisterInput"
+                              className={emailerror?"aregisterInputerror":"aregisterInput"}
                               value={email}
                               onChange={(e) => {
-                                emlverfication(e);
+                                emailvalidation(e);
                               } } />
 
                           </div>
@@ -284,14 +372,26 @@ const AdminRegister = () => {
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="password" id="form3Example4c" class="form-control"
-
-                              placeholder="Admin Password"
-                              className="aregisterInput"
+                          <Input 
+                              type={showPassword? "text":"password"}
+                              className={passwordferror?"aregisterInputerror":"aregisterInput"}
+                              style={{width:'189px'}}
+                              placeholder="********"
                               value={password}
+                              disableUnderline
                               onChange={(e) => {
                                 pssverfication(e);
-                              } } />
+                              }}
+                              endAdornment={
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    onClick={showpassword}
+                                  >
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                  </IconButton>
+                                </InputAdornment>
+                              }
+                            />{" "}
 
                           </div>
                         </div>
@@ -299,13 +399,24 @@ const AdminRegister = () => {
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="password" id="form3Example4cd" class="form-control"
-
-                              value={Confirmpassword}
-
-                              className="aregisterInput"
-                              placeholder="Admin Confrim Password"
-                              onChange={(e) => checkcnfpasswordvaldiation(e)} />
+                          <Input 
+              value={Confirmpassword}
+              type={showcnfmPassword? "text":"password"}
+              className={cnfmpassworderror?"aregisterInputerror":"aregisterInput"}
+              disableUnderline
+              style={{width:'189px'}}
+              placeholder="********"
+              onChange={(e) => checkcnfpasswordvaldiation(e)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={showcnfmpassword}
+                  >
+                    {showcnfmPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
 
                           </div>
                         </div>

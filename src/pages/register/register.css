@@ -11,9 +11,32 @@
   border:1px solid#ccc;
   border-radius: 5px;
   height: 30px;
-  width:40%
+  /* width:40% */
+}
+.registerInputerror{
+  border:2px solid red;
+  border-radius: 5px;
+  height: 30px;
+ 
 }
 .registerInput:focus{
+  border:1px solid black
+}
+
+.pregisterInput{
+  border:1px solid#ccc;
+  border-radius: 5px;
+  height: 30px;
+  width:40%
+}
+.pregisterInputerror{
+  border:2px solid red;
+  border-radius: 5px;
+  height: 30px;
+  width:40%
+ 
+}
+.pregisterInput:focus{
   border:1px solid black
 }
 .registerButton {
@@ -24,6 +47,22 @@
   color: white;
   border-radius: 10px;
   padding: 10px;
+  margin-left: 15%;
+}
+.registerButton:hover{
+  background-color: white;
+ border: 2px solid #1e90ff ;
+  transition: color 1000ms linear;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+
+}
+.registerButton:hover{
+  color:black;
+  transition: color 1000ms;
+  -webkit-transition: color 1000ms linear;
+  -ms-transition: color 1000ms linear;
 }
 .btnimg{
 border: none;
@@ -38,6 +77,21 @@ cursor:pointer
 }
 @media (max-width: 500px) {
   .rgstrpic {
-    width: 50%;
+    width: 100%;
+  }
+  .pregisterInput{
+    width: 64%;
+  }
+  .pregisterInputerror
+  {
+    width: 64%;
+  }
+  .registerwrapper{
+    margin-left: 10%;
+  }
+  .rgstrtxt{
+    font-size: 40px;
+    font-weight: 700;
+    margin-left: 10%;
   }
 }

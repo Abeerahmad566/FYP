@@ -4,22 +4,25 @@ import userService from "../../services/UserService";
 import TopBar from "../TopBar/Topbar"
 import emailjs from "emailjs-com";
 import Footer from "../../components/Footer/Footer";
-export default function PredictionPage() {
-    const [userid,setuserid]=useState(userService.getLoggedInUser()._id)
-   const [users, setusers] = useState([""])
-   const getdata=()=>{
-    userService
-                .getUser(userid)
-                .then((data) => {  
-                setusers(data)
-                console.log(data)
-                })
-                .catch((err) => {
-                  console.log(err);
-                 
-                });
- }
-useEffect(getdata, []);
+import Navigation from "../../components/Navigation/Navigation";
+export default function Contact() {
+    const userid = userService.getLoggedInUser()._id;
+  const [users, setusers] = useState([""])
+    const getdata=()=>{
+        userService
+                    .getUser(userid)
+                    .then((data) => {  
+                    setusers(data)
+                    console.log(data)
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                     
+                    });
+     }
+     useEffect(getdata, []);
+     
+
     function sendemail(e){
         e.preventDefault();
 
@@ -31,14 +34,17 @@ useEffect(getdata, []);
             });
             e.target.reset()
     }
-    return(<div>
+
+    return(
+    <div className='Contact'>
  <TopBar user={users}/>
-<div >
+ 
+
     <b className="ContactSize">Contact</b>
     <hr></hr>
     <span className="spanpara1">We'd love to help! </span>
     <p className="para1">Feel Free to Leave us a Message!</p>
-</div>
+
 <div className="form ">
             <form  onSubmit={sendemail}>
                         <div className="col-sm-15 form-group ">
@@ -54,7 +60,7 @@ useEffect(getdata, []);
                             <textarea className="form-control" id="" cols="30" rows="8" placeholder="Your message" name="message"></textarea>
                         </div>
                         <div className="col-sm-15  pt-3 ">
-                            <input type="submit" className="btn btn-info" value="Send Message"></input>
+                            <input type="submit" className="gitbtn" value="Send Message"></input>
                         </div>
                    
                 </form>

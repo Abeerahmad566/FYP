@@ -20,10 +20,11 @@ const Profile = ()=>{
  }
 useEffect(getdata, []);
     return(
-        <>
+        <div className='main'>
      <TopBar user={users}/>
 <div className="profile">
     <div className="headerprofile">
+        <div className='pline'></div>
         <b>Your Profile</b>
 </div>
 </div>
@@ -33,7 +34,7 @@ useEffect(getdata, []);
             <User user={users} />
         
 </div>
-</>
+</div>
     );
 }
 export default Profile;
