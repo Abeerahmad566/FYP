@@ -22,7 +22,7 @@ export default function (){
               
                 <div className="col-sm">
                 <div data-aos="fade-up">
-                <div className="aboutline"></div>
+                
                     <h2>About Us</h2>
                     <p className='colp'>Loan Predicton is a Webiste For Predicting your Loan Status</p>
                     <p className='colp'>A person can predict his loan status by just visiting Website and 

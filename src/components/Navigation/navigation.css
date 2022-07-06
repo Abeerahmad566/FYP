@@ -6,6 +6,7 @@
   left:0px;
   top:-3px;
 }
+
 .Navbar{
   background-color: white;
 }
@@ -184,42 +185,7 @@ left: -30px;
   }
 
  }
-@media (width: 360px) {
-  
-  .homeicon {
-   
-    position: relative;
-    top: -2px;
-    left: 0px;
-  }
-  .Hometxt
-  {
-    position: relative;
-    left: -80px;
-  }
-.onlinepredictionicon{
-  position: relative;
-  top: 0px;
-  left: 0px;
-  
-}
-.predicttxt{
-  position: relative;
-  left: -80px;
-}
-.Contacttxt{
-  position: relative;
-  left: -80px;
-}
-.connect{
-  position: relative;
-  top: 0px;
-  left: 0px;
- 
-}
 
-
-}
 @media (width: 390px) {
  
   .txtf

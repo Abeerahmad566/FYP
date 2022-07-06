@@ -1,4 +1,5 @@
 import "./Topbar.css";
+import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect,useState } from 'react';
 import logo from '../img/logo.png';
 import homepage from "../img/homepage.jpg"
@@ -27,8 +28,8 @@ export default function Topbar(props) {
 <Navbar  variant="dark" expand="xl" className='Navbar'>
  
     <Navbar.Brand  href="/home"><img className="logohomepage" src={logo}></img></Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
+    <Navbar.Toggle aria-controls="navbarScroll" />
+    <Navbar.Collapse id="navbarScroll">
       <Nav className="me-auto">
         
         <Nav.Link className="Hometxt" style={{marginLeft: '15%',color:'white' }}href="/home"><HomeIcon className="homeicon"></HomeIcon>Home</Nav.Link>
@@ -48,7 +49,7 @@ export default function Topbar(props) {
          ><LogoutIcon className="connect" ></LogoutIcon > Logout
            </Nav.Link>
       </Nav>
-      <Nav.Link className='welcometxt'  style={{color:'white'}} >Welcome {user.firstname} </Nav.Link>
+      <Nav.Link className='welcometxt' ><p className="welcomep">Welcome {user.firstname}</p> </Nav.Link>
     <Nav.Link  style={{marginLeft: '-2%'}} href="/profile"><img className="profileimg" src={user.photo?user.photo:nophoto}/></Nav.Link>
  
     </Navbar.Collapse>

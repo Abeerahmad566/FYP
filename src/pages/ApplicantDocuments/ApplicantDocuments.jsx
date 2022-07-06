@@ -1,5 +1,5 @@
 import React from 'react';
-import {useLocation,useParams} from 'react-router-dom';
+import {useLocation,useParams,useHistory} from 'react-router-dom';
 import informationService from '../../services/InformationService';
 import useState from 'react-usestateref';
 import {Table} from 'react-bootstrap'
@@ -8,8 +8,7 @@ import { UilSignOutAlt } from "@iconscout/react-unicons";
 import Admin from "../../components/Admin"
 export default function ApplicantDocuments(props) {
    const [userpictures,setuserpictures]=useState([])
-  //  const search = useLocation().search;
-  //  const id = new URLSearchParams(search).get("backUrl");
+   let history = useHistory();
   const {id} =useParams(); 
   console.log(id);
 
@@ -46,7 +45,7 @@ export default function ApplicantDocuments(props) {
          </tbody>
                     </Table>
                     </div>
-                    <UilSignOutAlt className="outsignuserdoc" onClick={() => {  window.location.href = "/adminpanel" } }></UilSignOutAlt>
+                    <UilSignOutAlt className="outsignuserdoc" onClick={() => {  history.goBack()} }></UilSignOutAlt>
             </div>
             </div>
             </Admin>

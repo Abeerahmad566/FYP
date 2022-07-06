@@ -13,7 +13,6 @@ export default function Team (){
         <div data-aos="zoom-in">
 <div data-aos="zoom-in-up">
         <div className="team"> 
-            <div className="lineT"></div>
         <h2>Meet the Team</h2>
    
         

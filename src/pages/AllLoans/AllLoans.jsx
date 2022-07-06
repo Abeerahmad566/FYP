@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Table} from "react-bootstrap"
+import { useHistory } from "react-router-dom";
 import "./AllLoans.css";
 import userService from "../../services/UserService";
 import InformationService from "../../services/InformationService";
@@ -7,7 +8,7 @@ import AllInformation from "../AllInformation/AllInformation"
 import { UilSignOutAlt } from "@iconscout/react-unicons";
 import Admin from "../../components/Admin"
 export default function AllLoans() {
- 
+  let history = useHistory();
 
     const makeStyle=(status)=>{
         if(status === 'Approved')
@@ -67,7 +68,7 @@ export default function AllLoans() {
    <p style={{paddingTop:'30px',marginRight:"30%"}}><b className='nbold'>No Loans</b></p>}
 {informations.length>0 && 
   <><p className='existingloansbold'>Existing Loans</p>
-  <UilSignOutAlt className="alloutsign" onClick={() => { window.location.href = "/adminpanel"; } }></UilSignOutAlt>
+  <UilSignOutAlt className="alloutsign" onClick={() => { history.goBack() }}></UilSignOutAlt>
   <div className="allloantable">
                   <Table striped bordered hover responsize>
                     <thead>

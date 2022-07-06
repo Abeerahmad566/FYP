@@ -45,9 +45,18 @@ text-decoration: underline;
   width:50px;
   margin-left: 5%;
 }
+.welcomep{
+  color: white;
+position: relative;
+top: 15px ;
+right: 10px;
+}
 
-
-@media (width: 1024px) {
+@media (max-width: 1024px) {
+  .welcomep,
+  .logohomepage{
+    display: none;
+  }
   .homeicon {
    
     position: relative;
@@ -81,8 +90,8 @@ text-decoration: underline;
 }
 .profileimg{
   position: relative;
-  top: -315px;
-  left: 20px;
+  top: -280px;
+  left: -40px;
  
 }
 .logouticon{
@@ -95,15 +104,12 @@ text-decoration: underline;
  top: -95px;
  left: 10px
 }
-.welcometxt{
-  position: relative;
-  top: -255px;
-    left: 120px;
-}
+
 }
 
 
 @media (width: 540px) {
+
   .homeicon {
    
     position: relative;
@@ -137,8 +143,8 @@ text-decoration: underline;
 }
 .profileimg{
   position: relative;
-  top: -315px;
-  left: 40px;
+  top: -278px;
+  left: -40px;
  
 }
 .logouticon{
@@ -151,11 +157,7 @@ text-decoration: underline;
  top: -95px;
  left: 10px
 }
-.welcometxt{
-  position: relative;
-  top: -255px;
-  left: 120px;
-}
+
 }
 @media (width: 912px) {
   .logouticon{
@@ -185,12 +187,7 @@ text-decoration: underline;
     top: -2px;
     left: 0px;
   }
-  .profileimg{
-    position: relative;
-    top: -315px;
-    left: 40px;
-   
-  }
+  
   .Hometxt
   {
     position: relative;
@@ -205,11 +202,7 @@ text-decoration: underline;
   position: relative;
   left: -130px;
 }
-.welcometxt{
-  position: relative;
-  top: -255px;
-  left: 120px;
-}
+
 }
 @media (width: 768px) {
  
@@ -240,12 +233,7 @@ text-decoration: underline;
     top: -2px;
     left: 0px;
   }
-  .profileimg{
-    position: relative;
-    top: -315px;
-    left: 40px;
-   
-  }
+ 
   .Hometxt
   {
     position: relative;
@@ -260,11 +248,7 @@ text-decoration: underline;
   position: relative;
   left: -120px;
 }
-.welcometxt{
-  position: relative;
-  top: -255px;
-  left: 120px;
-}
+
 }
 @media (width: 820px) {
   .logouticon{
@@ -294,12 +278,7 @@ text-decoration: underline;
     top: -2px;
     left: 0px;
   }
-  .profileimg{
-    position: relative;
-    top: -315px;
-    left: 40px;
-   
-  }
+ 
   .Hometxt
   {
     position: relative;
@@ -314,11 +293,7 @@ text-decoration: underline;
   position: relative;
   left: -130px;
 }
-.welcometxt{
-  position: relative;
-  top: -255px;
-  left: 120px;
-}
+
 }
 
 
@@ -375,15 +350,14 @@ text-decoration: underline;
  top: -95px;
  left: 5px
 }
-.welcometxt{
-  position: relative!important;
-  left: -20px!important;
-  top:-220px!important;
-}
+
 }
 
 
 @media (max-width: 500px) {
+  .logohomepage{
+    display: none;
+  }
 
   .homeicon {
     
@@ -429,13 +403,9 @@ text-decoration: underline;
  }
  .profileimg{
   position: relative;
-  top: -315px;
-    left: 50px;
- 
+  top: -280px;
+  left: -30px; 
 }
-.welcometxt{
-  position: relative;
-  top: -255px;
-  left: 120px;
-}
+
  }
+ 

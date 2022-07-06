@@ -15,7 +15,6 @@ export default function Features (){
 <div data-aos="zoom-in">
 <div data-aos="zoom-in-up">
         <div className="features" >
-            <div className="featuresline"></div>
         <h2>Features</h2>
             <div className="row colwrapper">
                 <div className="col-sm">
