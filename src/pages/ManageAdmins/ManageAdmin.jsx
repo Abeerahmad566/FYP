@@ -18,6 +18,8 @@ import {
 
 } from "@iconscout/react-unicons";
 import Admin from "../../components/Admin"
+import axios from "axios"
+import Badge from '@mui/material/Badge';
 export default function ManageAdmin() {
 
   const [selectedprediction, setselectedprediction] = useState(false);
@@ -30,7 +32,7 @@ export default function ManageAdmin() {
       const [selectedRejected, setselectedRejected] = useState(false);
       const [selectedUsers, setselectedUser] = useState(false);
       const [selectedAdmins, setselectedAdmin] = useState(false);
-     
+      const [total, setTotal] = useState("");
       const role = userService.getLoggedInUser().role;
       const [expanded, setExpaned] = useState(true)
       const sidebarVariants = {
@@ -79,16 +81,21 @@ export default function ManageAdmin() {
      }
         
      React.useEffect(getdata, []);
+     const totalpending=async()=>{
+      await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/get/totalpendingloans").then((res) => {
+        setTotal(res.data);
+      });
+    }
+    React.useEffect(totalpending, []);
     return (
       <>
       <Admin>
       <div className="App">
       <div className="AppGlass">
         <div className="body">
-        <div className="row bodydiv" >
-            <div className="col-sm ">
-            <>
-      <div className="bars" style={expanded?{left: '60%'}:{left: '5%'}} onClick={()=>setExpaned(!expanded)}>
+        <div className="row" >
+            <div className="col-sm">
+            <div className="bars" style={expanded?{left: '60%'}:{left: '5%'}} onClick={()=>setExpaned(!expanded)}>
         <UilBars />
       </div>
     <motion.div className='sidebar'
@@ -96,12 +103,20 @@ export default function ManageAdmin() {
     animate={window.innerWidth<=768?`${expanded}`:''}
     >
       {/* logo */}
-     
-
+    
       <div className="menu">    
                  
       <a  className={selectedHome? "menuItem aactive" : "menuItem"}  href="/adminpanel" style={{textDecoration:'none',color:"black"}} onClick={changestyleHome}><UilEstate/>Home</a> 
+      <Badge  badgeContent={total} sx={{
+          "& .MuiBadge-badge": {
+            color: "black",
+            backgroundColor: "red",
+          }
+         
+        }}
+        >
     <a  className={selectedPending? "menuItem aactive" : "menuItem"}href="/pendingloans" style={{textDecoration:'none',color:"black"}} onClick={changestylepending}><UilUsersAlt/>Pending Loans</a>
+  </Badge>
   <a  className={selectedApproved? "menuItem aactive" : "menuItem"}href="/allloans" style={{textDecoration:'none',color:"black"}} onClick={changestyleapproved}><UilPackage/>All Loans</a>
   <a className={selectedprediction? "menuItem aactive" : "menuItem"} href="/predictionPage" style={{textDecoration:'none',color:"black"}} onClick={changestyleprediction}><OnlinePredictionIcon/>Predict Loan</a>
   
@@ -114,44 +129,44 @@ export default function ManageAdmin() {
   }
         
          {/* signoutIcon */}
+         <>
         <div className="menuItem"
         style={{position:'relative',top:"50px"}}
         >
           <UilSignOutAlt  onClick={() => {  window.location.href = "/home" } }></UilSignOutAlt>
         </div>
+        </>
       </div>
+      
     </motion.div>
-    </>
+    
             </div>
-            <div className="col-sm">
-        
-              
-               
+            <div className="col-sm">               
    {informations.length==0 &&
-   <p style={{paddingTop:'30px',marginLeft:'-70%'}}><b className='nexistingadminbold'>No Existing Admins</b></p>}
-   
-  <p style={{paddingTop:'30px',marginLeft:'-70%'}}><b className='existingadminbold' >Existing Admins</b></p>
-  <div className="Table manageadminstable">
-   <Table striped bordered hover  responsize >
-   <thead>
-                 <tr>
-                 <th style={{textAlign:'center'}}><b>First Name</b></th>
-                   <th style={{textAlign:'center'}}><b>Last Name</b></th>
-                   <th style={{textAlign:'center'}}><b>Phone Number</b></th>
-                   <th style={{textAlign:'center'}}><b>Email</b></th>
-                   <th style={{textAlign:'center'}}><b>Role</b></th>
-                   <th style={{textAlign:'center'}}><b>Action</b></th>
-                 </tr>
-               </thead>
-               <tbody>
-                 {informations && informations.map((information) => (
-                   <RenderAdmins information={information} onDelete={getdata} />
-                 ))}
-                   
-               </tbody>
-             </Table>
+   <p  className='nexistingadminbold'>No Existing Admins</p>}
+   {informations.length>0 &&
+  <><p className='existingadminbold'>Existing Admins</p><div className="Table manageadminstable">
+                        <Table striped bordered hover responsize>
+                          <thead>
+                            <tr>
+                              <th style={{ textAlign: 'center' }}><b>First Name</b></th>
+                              <th style={{ textAlign: 'center' }}><b>Last Name</b></th>
+                              <th style={{ textAlign: 'center' }}><b>Phone Number</b></th>
+                              <th style={{ textAlign: 'center' }}><b>Email</b></th>
+                              <th style={{ textAlign: 'center' }}><b>Role</b></th>
+                              <th style={{ textAlign: 'center' }}><b>Action</b></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {informations && informations.map((information) => (
+                              <RenderAdmins information={information} onDelete={getdata} />
+                            ))}
 
-            </div>
+                          </tbody>
+                        </Table>
+
+                      </div></>
+}
             </div>
             </div>
             </div>

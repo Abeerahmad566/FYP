@@ -18,6 +18,8 @@ import {
 
 } from "@iconscout/react-unicons";
 import Admin from "../../components/Admin"
+import axios from "axios"
+import Badge from '@mui/material/Badge';
 export default function ManageUsers() {
 
   const [selectedprediction, setselectedprediction] = useState(false);
@@ -30,7 +32,7 @@ export default function ManageUsers() {
       const [selectedRejected, setselectedRejected] = useState(false);
       const [selectedUsers, setselectedUser] = useState(false);
       const [selectedAdmins, setselectedAdmin] = useState(false);
-     
+      const [total, setTotal] = useState("");
       const role = userService.getLoggedInUser().role;
       const [expanded, setExpaned] = useState(true)
       const sidebarVariants = {
@@ -79,6 +81,12 @@ export default function ManageUsers() {
      }
         
      React.useEffect(getdata, []);
+     const totalpending=async()=>{
+      await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/get/totalpendingloans").then((res) => {
+        setTotal(res.data);
+      });
+    }
+    React.useEffect(totalpending, []);
     return (
       <>
       <Admin>
@@ -87,7 +95,7 @@ export default function ManageUsers() {
       <div className="App">
       <div className="AppGlass">
         <div className="body">
-        <div className="row bodydiv" >
+        <div className="row" >
             <div className="col-sm">
             <>
       <div className="bars" style={expanded?{left: '60%'}:{left: '5%'}} onClick={()=>setExpaned(!expanded)}>
@@ -103,7 +111,16 @@ export default function ManageUsers() {
       <div className="menu">    
                  
       <a  className={selectedHome? "menuItem aactive" : "menuItem"}  href="/adminpanel" style={{textDecoration:'none',color:"black"}} onClick={changestyleHome}><UilEstate/>Home</a> 
+      <Badge  badgeContent={total} sx={{
+          "& .MuiBadge-badge": {
+            color: "black",
+            backgroundColor: "red",
+          }
+         
+        }}
+        >
    <a  className={selectedPending? "menuItem aactive" : "menuItem"}href="/pendingloans" style={{textDecoration:'none',color:"black"}} onClick={changestylepending}><UilUsersAlt/>Pending Loans</a>
+  </Badge>
   <a  className={selectedApproved? "menuItem aactive" : "menuItem"}href="/allloans" style={{textDecoration:'none',color:"black"}} onClick={changestyleapproved}><UilPackage/>All Loans</a>
   <a className={selectedprediction? "menuItem aactive" : "menuItem"} href="/predictionPage" style={{textDecoration:'none',color:"black"}} onClick={changestyleprediction}><OnlinePredictionIcon/>Predict Loan</a>
   
@@ -126,10 +143,9 @@ export default function ManageUsers() {
             </div>
             <div className="col-sm">  
    {informations.length==0 &&
-   <p style={{paddingTop:'30px'}}><b className='nmanageusersbold'>No Existing Users</b></p>}
+   <p className='nmanageusersbold'>No Existing Users</p>}
    {informations.length >0 &&
-   
-  <><p style={{ paddingTop: '30px'}}><b className='manageusersbold'>Existing Users</b></p>
+  <><p className='manageusersbold'>Existing Users</p>
   <div className="manageuserstable">
                     <Table striped bordered hover responsize>
                       <thead>

@@ -21,7 +21,7 @@
   height: 4%;
 }
 .logo > span > span {
-  color: var(--pink);
+  color: var(--ligthblue);
 }
 
 .logo > img {
@@ -67,11 +67,11 @@ ul {
   background-color: #1e90ff;
 
 }
-.active::before {
+.aactive::before {
   content: "";
   width: 8px;
   height: 100%;
-  background: var(--pink);
+  background: var(--ligthblue);
   margin-right: calc(1rem - 8px);
 }
 

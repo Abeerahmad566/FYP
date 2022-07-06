@@ -1,15 +1,31 @@
 
 .pendingloantable{
-   overflow-y: auto;
-   width:1250px;
-
-
+   background-color: white;
+    overflow-y: scroll;
+   height: 600px;
+   width: 1300px;
+   position: relative;
+   margin-left: 130%;
+  
 }
+
+
 .npendingbold{
 font-size: 30px;
 font-weight: 700;
+margin-left: 360%;
+margin-top: -200%;
+white-space: normal;
+    overflow-wrap: break-word;
+    width: 96vw;
 }
 .pendingbold{
    font-size: 30px;
 font-weight: 700;
+margin-left: 360%;
+margin-top: -380%;
+white-space: normal;
+    overflow-wrap: break-word;
+    width: 96vw;
+
 }

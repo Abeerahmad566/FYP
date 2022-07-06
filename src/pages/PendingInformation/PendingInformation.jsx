@@ -93,6 +93,7 @@ console.log(reason)
       <td style={{textAlign:'center'}} >{information.currentjobyears}</td>
       <td style={{textAlign:'center'}} >{information.experience}</td>
       <td style={{textAlign:'center'}} >{information.Houseownership}</td>
+      <td style={{textAlign:'center'}} >{information.tenure}</td>
       <td style={makeStyle(information.result)} >{information.result}</td>
       
      

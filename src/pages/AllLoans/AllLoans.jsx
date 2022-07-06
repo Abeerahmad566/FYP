@@ -85,6 +85,7 @@ export default function AllLoans() {
                         <th style={{ textAlign: 'center' }}><b>Current Job Years</b></th>
                         <th style={{ textAlign: 'center' }}><b>Experience</b></th>
                         <th style={{ textAlign: 'center' }}><b>House Ownership</b></th>
+                        <th style={{ textAlign: 'center' }}><b>Loan Tenure</b></th>
                         <th style={{ textAlign: 'center' }}><b>Prediction Result</b></th>
                         <th style={{ textAlign: 'center' }}><b>Status</b></th>
                         <th style={{ textAlign: 'center' }}><b>Reason</b></th>

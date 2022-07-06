@@ -17,15 +17,13 @@ import {
 
 } from "@iconscout/react-unicons";
 import OnlinePredictionIcon from '@mui/icons-material/OnlinePrediction';
-import { DropdownButton,Dropdown } from 'react-bootstrap';
-import { toast, ToastContainer } from "react-toastify";
-import {Link} from 'react-router-dom'
+import Badge from '@mui/material/Badge';
 import axios from 'axios';
 import  useState  from 'react-usestateref'
 import Admin from "../../components/Admin"
 export default function PendingLoans() {
 
-    
+  const [total, setTotal] = useState("");
       const [selectedHome, setSelectedHome] = useState(false);
       const [informations, setInformations] = useState([""]);
       const [userid,setuserid]=useState(userService.getLoggedInUser()._id);
@@ -106,6 +104,12 @@ export default function PendingLoans() {
      }
         
      React.useEffect(getdata, []);
+     const totalpending=async()=>{
+      await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/get/totalpendingloans").then((res) => {
+        setTotal(res.data);
+      });
+    }
+    React.useEffect(totalpending, []);
      
     return (
       <>
@@ -113,7 +117,7 @@ export default function PendingLoans() {
               <div className="App">
                 <div className="AppGlass">
         <div className="body">
-        <div className="row bodydiv" >
+        <div className="row" >
             <div className="col-sm ">
             <>
       <div className="bars" style={expanded?{left: '60%'}:{left: '5%'}} onClick={()=>setExpaned(!expanded)}>
@@ -129,8 +133,16 @@ export default function PendingLoans() {
       <div className="menu">    
                  
       <a  className={selectedHome? "menuItem aactive" : "menuItem"}  href="/adminpanel" style={{textDecoration:'none',color:"black"}} onClick={changestyleHome}><UilEstate/>Home</a> 
-    
+      <Badge  badgeContent={total} sx={{
+          "& .MuiBadge-badge": {
+            color: "black",
+            backgroundColor: "red",
+          }
+         
+        }}
+        >
     <a  className={selectedPending? "menuItem aactive" : "menuItem"}href="/pendingloans" style={{textDecoration:'none',color:"black"}} onClick={changestylepending}><UilUsersAlt/>Pending Loans</a>
+  </Badge>
   <a  className={selectedApproved? "menuItem aactive" : "menuItem"}href="/allloans" style={{textDecoration:'none',color:"black"}} onClick={changestyleapproved}><UilPackage/>All Loans</a>
   <a className={selectedprediction? "menuItem aactive" : "menuItem"} href="/predictionPage" style={{textDecoration:'none',color:"black"}} onClick={changestyleprediction}><OnlinePredictionIcon/>Predict Loan</a> 
   
@@ -153,9 +165,9 @@ export default function PendingLoans() {
             </div>
             <div className="col-sm">
    {informations.length==0 &&
-   <p style={{paddingTop:'80px',marginLeft:"0%"}}><b className='npendingbold'>No Pending Loans</b></p>}
+   <p className='npendingbold'>No Pending Loans</p>}
 {informations.length>0&&
-  <><p style={{ paddingTop: '30px',marginLeft:"40%"}}><b className='pendingbold'>Pending Loans</b></p><div className="pendingloantable">
+  <><p className='pendingbold'>Pending Loans</p><div className="pendingloantable">
                     <Table striped bordered hover responsize >
                       <thead>
                         <tr>
@@ -171,6 +183,7 @@ export default function PendingLoans() {
                           <th style={{ textAlign: 'center' }}><b>Current Job Years</b></th>
                           <th style={{ textAlign: 'center' }}><b>Experience</b></th>
                           <th style={{ textAlign: 'center' }}><b>House Ownership</b></th>
+                          <th style={{ textAlign: 'center' }}><b>Loan Tenure</b></th>
                           <th style={{ textAlign: 'center' }}><b>Prediction Result</b></th>
                           <th style={{ textAlign: 'center' }}><b>Status</b></th>
                           <th style={{ textAlign: 'center' }}><b>Reason</b></th>

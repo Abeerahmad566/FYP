@@ -17,6 +17,8 @@ import {
   UilChart,
 
 } from "@iconscout/react-unicons";
+import axios from "axios"
+import Badge from '@mui/material/Badge';
 import OnlinePredictionIcon from '@mui/icons-material/OnlinePrediction';
 const Sidebar = () => {
   const [selectedHome, setSelectedHome] = useState(false);
@@ -26,7 +28,7 @@ const Sidebar = () => {
   const [selectedprediction, setselectedprediction] = useState(false);
   const [selectedUsers, setselectedUser] = useState(false);
   const [selectedAdmins, setselectedAdmin] = useState(false);
- 
+  const [total, setTotal] = useState("");
   const role = userService.getLoggedInUser().role;
   const [expanded, setExpaned] = useState(true)
   const sidebarVariants = {
@@ -59,6 +61,12 @@ const Sidebar = () => {
   const changestyleadmin=()=>{
     setselectedAdmin(true)
   }
+  const totalpending=async()=>{
+    await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/get/totalpendingloans").then((res) => {
+      setTotal(res.data);
+    });
+  }
+  React.useEffect(totalpending, []);
   return (
     <>
     <Admin>
@@ -75,8 +83,14 @@ const Sidebar = () => {
       <div className="menu">    
                  
       <a  className={selectedHome? "menuItem aactive" : "menuItem"}  href="/adminpanel" style={{textDecoration:'none',color:"black"}} onClick={changestyleHome}><UilEstate/>Home</a> 
-   
+   <Badge badgeContent={total} sx={{
+          "& .MuiBadge-badge": {
+            color: "black",
+            backgroundColor: "red"
+          }
+        }}>
     <a  className={selectedPending? "menuItem aactive" : "menuItem"}href="/pendingloans" style={{textDecoration:'none',color:"black"}} onClick={changestylepending}><UilUsersAlt/>Pending Loans</a>
+    </Badge>
   <a  className={selectedApproved? "menuItem aactive" : "menuItem"}href="/allloans" style={{textDecoration:'none',color:"black"}} onClick={changestyleapproved}><UilPackage/>All Loans</a>
   <a className={selectedprediction? "menuItem aactive" : "menuItem"} href="/predictionPage" style={{textDecoration:'none',color:"black"}} onClick={changestyleprediction}><OnlinePredictionIcon/>Predict Loan</a> 
   {role=='superAdmin'&&

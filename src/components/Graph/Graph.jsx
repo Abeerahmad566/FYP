@@ -5,6 +5,7 @@ import { ResponsiveContainer, LineChart,
   XAxis,
   Tooltip
   } from 'recharts';
+
 import axios from 'axios'
 import "./Graph.css";
 

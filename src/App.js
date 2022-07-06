@@ -66,6 +66,7 @@ function App() {
               <div className="App">
                 <div className="AppGlass">
                   <Sidebar />
+
                   <MainDash />
                 </div>
               </div>

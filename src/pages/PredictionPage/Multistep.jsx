@@ -30,6 +30,7 @@ const MultiStep = () => {
   const[Profession,setProfession]= useState("Select Profession");
   const[CarOwnership,setCarOwnership]= useState("");
   const[HouseOwnership,setHouseOwnership]= useState("Select House OwnerShip");
+  const[loantenure,setloantenure]= useState("Desired Loan Repayment Period");
   const[Experience,setExperience,experienceRef]= useState("");
   const [result,setresult]=useState("");
   const [error, setError] = useState("");
@@ -168,6 +169,7 @@ if(result){
       formData.append("result", result);
       formData.append("userRole",userRole);
       formData.append("reason",reason);
+      formData.append("tenure",loantenure);
       if(result=='Approved')
       {
         if(userRole=='superAdmin')
@@ -208,6 +210,15 @@ const HouseOwnershipval=(e)=>{
   setHouseOwnership(e)
   
     if(HouseOwnership!="")
+    {
+setError("")
+    }
+  
+}
+const loantenureval=(e)=>{
+  setloantenure(e)
+  
+    if(loantenure!="")
     {
 setError("")
     }
@@ -406,6 +417,13 @@ setError("")
         theme: "colored"
       });
     }
+    else if(loantenure=="Desired Loan Repayment Period")
+    {
+      toast.error("Please Select Loan Tenure", {
+        position: "top-right",
+        theme: "colored"
+      });
+    }
 else{
   setshowresult(true)
   setthirdStep(false)
@@ -504,6 +522,13 @@ const handleNextStep=()=>{
   else if(age<18)
   {
     toast.error("Age Must be 18 or Above", {
+      position: "top-right",
+      theme: "colored"
+    });
+  }
+  else if(age>78){
+  
+    toast.error("Age Must be less than 78", {
       position: "top-right",
       theme: "colored"
     });
@@ -898,7 +923,7 @@ const steps = [
               <Dropdown.Item eventKey="owned">Owned</Dropdown.Item>
               <Dropdown.Item eventKey="norent_noown">Other</Dropdown.Item>
             </DropdownButton>
-            <label ><b>Upload CNIC, Job/Business Card, Bills Images</b></label>
+            <label ><b>Upload CNIC, Job/Business Card, Bills Images,Income Evidence</b></label>
          <br/>
           <input
             type='file'
@@ -908,7 +933,7 @@ const steps = [
           />
           <i style={{fontSize:'0.9rem',color:'grey'}}>(jpeg,png,file)</i>
           <br/>
-         <i style={{fontSize:'0.9rem',color:'grey'}}>(Front back cnic and job card and each electricity,gas and water bills image)</i>
+         <i style={{fontSize:'0.9rem',color:'grey'}}>(Front back cnic and job card and each electricity,gas and water bills image,Salary Slip)</i>
          <br/>
             <label class="mt-4" ><b>Loan Amount</b></label>
             <input class="form-control loanamount" type="number" placeholder="You can Maximam loan of 200,000"
@@ -916,7 +941,18 @@ const steps = [
               onChange={(e) => {
                 loanamountvalidation(e);
               } } />
+              <br/>
+            <label  ><b>Loan Tenure</b></label>
+            <DropdownButton id="dropdown-basic-button" style={{marginLeft:'-1%'}} title={loantenure} size="sm"
+              onSelect={(e) => loantenureval(e)}>
+              <Dropdown.Item eventKey="12 Months(1 Year)">12 Months(1 Year)</Dropdown.Item>
+              <Dropdown.Item eventKey="24 Months(2 Year)">24 Months(2 Year)</Dropdown.Item>
+              <Dropdown.Item eventKey="36 Months(3 Year)">36 Months(3 Year)</Dropdown.Item>
+              <Dropdown.Item eventKey="48 Months(4 Year">48 Months(4 Year)</Dropdown.Item>
+            </DropdownButton>
+
           </>}
+         
           </div>
         <br />
         {secondbackButton &&
