@@ -21,6 +21,7 @@ import validator from 'validator'
 
 const MultiStep = () => {
   const userRole= userService.getLoggedInUser().role;
+
   const [reason,setreason]=useState(userRole=="user"?"Pending":"Predicted by Admin")
   const[age,setage,ageRef]= useState("");
   const[CurrentJobYears,setCurrentJobYears,currentjobyearsRef]= useState("");
@@ -55,7 +56,7 @@ const[address,setaddress]=useState("");
 const [photo, setphoto] = useState([]);
 const[designation,setdesignation]=useState("");
 const[organizationname,setorganizationname,OrganizationnameRef]=useState("");
-
+const[saveresult,setsaveresult]=useState(false);
 const[organizationaddress,setorganizationaddress]=useState("");
 const useStyles = makeStyles(() => ({
   root: {
@@ -191,7 +192,7 @@ infromationService
       .addInformation(formData)
 
         .then(() => {
-        
+          setsaveresult(true)
         })
         .catch((err) => {
           console.log(err);
@@ -443,6 +444,7 @@ else{
   .then((response) => {
   console.log(response.data.Status)  
   setresult(response.data.Status)
+ 
   })
   .catch((error) => console.log(error));
   }
@@ -976,6 +978,7 @@ const steps = [
               
               <br />
             {!result&&
+            
               <CircularProgress style={{marginLeft: "45%"}} />
             }
               <div style={{ marginLeft: "20%" }}>
@@ -1017,6 +1020,10 @@ const steps = [
                <b style={{color:'green'}}>Conditional Loan is awaited to Approved against these Information</b>
                    <Tick size={100} />
                <p style={{color:'red'}}>Credentials Verification required by Bank Adminstration</p>
+               {!saveresult&&
+                  <p>Saving your Results...</p>}
+                  {saveresult&&
+                  <p style={{color:'green'}}>Result Successfully Saved</p>}
                 </div>
           :
           <div className="">
@@ -1054,8 +1061,12 @@ const steps = [
          </Table>
          <b style={{color:'green'}}>Conditional Loan is Approved against these Information</b>
              <Tick size={100} />
-       
+             {!saveresult&&
+                  <p>Saving your Results...</p>}
+                      {saveresult&&
+                  <p style={{color:'green'}}>Result Successfully Saved</p>}
           </div>
+          
                 :result=="Rejected"?
                 
                 
@@ -1097,12 +1108,17 @@ const steps = [
                   <span class="cross-delete-line cross-delete-left"></span>
                   <span class="cross-delete-line cross-delete-right"></span>
                   </div>  */}
+                  {!saveresult&&
+                  <p>Saving your Results...</p>}
+                      {saveresult&&
+                  <p style={{color:'green'}}>Result Successfully Saved</p>}
                   </>
             :"" }
               </div>
 
 
             </div>
+       
             <Button className="predictagainbtn" variant="outline-info" onClick={() => {  window.location.href = "/predictionPage" } }>Predict Again</Button>
           </>}
           

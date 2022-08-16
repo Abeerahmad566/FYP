@@ -105,7 +105,7 @@ export default function PendingLoans() {
         
      React.useEffect(getdata, []);
      const totalpending=async()=>{
-      await axios.get("https://loanpredictionfypapi.herokuapp.com/api/informations/get/totalpendingloans").then((res) => {
+      await axios.get("http://localhost:4000/api/informations/get/totalpendingloans").then((res) => {
         setTotal(res.data);
       });
     }

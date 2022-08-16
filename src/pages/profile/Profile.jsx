@@ -24,7 +24,7 @@ useEffect(getdata, []);
      <TopBar user={users}/>
 <div className="profile">
     <div className="headerprofile">
-        <div className='pline'></div>
+   
         <b>Your Profile</b>
 </div>
 </div>
